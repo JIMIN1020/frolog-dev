@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Slider, { Settings } from 'react-slick';
 
 function AdBanner() {
-  const [activeSlide, setActiveSlide] = useState<number>(0);
+  const [activeSlide, setActiveSlide] = useState<number>(1);
   const settings: Settings = {
     dots: false,
     arrows: false,

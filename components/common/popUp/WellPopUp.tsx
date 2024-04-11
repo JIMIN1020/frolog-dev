@@ -6,26 +6,19 @@ import { motion } from 'framer-motion';
 import { modalBackgroundVariants } from '@styles/framer-motion/modalBackground';
 import Cancel from 'public/icons/popUp/Cancel.svg';
 import styled from 'styled-components';
-import { reportData } from '../../../data/reportData';
 import useClickOutside from '../../../hooks/useClickOutside';
 
-type FeedPopUpProps = {
+type WellPopUpProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function FeedPopUp({ setOpen }: FeedPopUpProps) {
+function WellPopUp({ setOpen }: WellPopUpProps) {
   const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
-  const [openReport, setOpenReport] = useState<boolean>(false); // 신고 팝업
-  const [openDone, setOpenDone] = useState<boolean>(false); // 신고 완료 팝업
+  const [openDelete, setOpenDelete] = useState<boolean>(false); // 우물 삭제 팝업
 
   /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
   useClickOutside(ref, () => setOpen(false));
 
-  const report = () => {
-    // 신고 함수 -> 추후 api 연동
-    setOpenReport(false);
-    setOpenDone(true);
-  };
   return (
     <Background
       variants={modalBackgroundVariants}
@@ -40,55 +33,39 @@ function FeedPopUp({ setOpen }: FeedPopUpProps) {
         exit={{ opacity: 0, y: 30 }}
       >
         {/* 기본 팝업 */}
-        {!openReport && !openDone && (
+        {!openDelete && (
           <>
-            <MenuItem>이 계정 보기</MenuItem>
-            <MenuItem>숨기기</MenuItem>
+            <MenuItem>이 우물 보기</MenuItem>
+            <MenuItem>편집하기</MenuItem>
             <MenuItem
-              onClick={() => setOpenReport(true)}
+              onClick={() => setOpenDelete(true)}
               style={{ color: 'red' }}
             >
-              신고
+              삭제
             </MenuItem>
           </>
         )}
-        {/* 신고 팝업 */}
-        {openReport && (
+        {/* 삭제 팝업 */}
+        {openDelete && (
           <>
-            {reportData.map((data) => (
-              <MenuItem key={data.id} onClick={report}>
-                {data.title}
-              </MenuItem>
-            ))}
+            <DeleteWarning>
+              이 우물이 삭제됩니다. 이 동작은 취소할 수 없습니다.
+            </DeleteWarning>
+            <MenuItem style={{ color: 'red' }} onClick={() => setOpen(false)}>
+              우물 삭제
+            </MenuItem>
           </>
         )}
-        {/* 신고 완료 팝업 */}
-        {openDone && (
-          <ReportBox>
-            <ReportTitle>신고완료!</ReportTitle>
-            <ReportContent>
-              더 나은 서비스로 찾아뵙겠습니다.
-              <br />
-              감사합니다.
-            </ReportContent>
-          </ReportBox>
-        )}
         <CancelBtn onClick={() => setOpen(false)}>
-          {openDone ? (
-            '확인'
-          ) : (
-            <>
-              <Image src={Cancel} alt='cancel' />
-              취소
-            </>
-          )}
+          <Image src={Cancel} alt='cancel' />
+          취소
         </CancelBtn>
       </PopUp>
     </Background>
   );
 }
 
-export default FeedPopUp;
+export default WellPopUp;
 
 const Background = styled(motion.div)`
   width: 100%;
@@ -153,27 +130,9 @@ const CancelBtn = styled.button`
   }
 `;
 
-const ReportBox = styled.div`
-  padding: 25px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const ReportTitle = styled.h2`
-  width: 100%;
-  text-align: center;
-  font-weight: 700;
-  font-size: ${({ theme }) => theme.fontSize.title};
-  color: ${({ theme }) => theme.colors.key_color};
-`;
-
-const ReportContent = styled.p`
-  width: 100%;
-  text-align: center;
-  line-height: 22px; /* 137.5% */
-  letter-spacing: -0.408px;
-  font-size: ${({ theme }) => theme.fontSize.lg};
-  color: ${({ theme }) => theme.colors.text_black};
+const DeleteWarning = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.colors.text_gray};
   font-weight: 400;
+  padding: 25px 0 10px 0;
 `;

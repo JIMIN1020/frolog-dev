@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from '@styles/components/home/bookReview';
 import { BookReviewData } from '@data/dummyData/homeDummy';
-import ProfileBar from './ProfileBar';
+import ProfileBar from '../common/ProfileBar';
 import Content from './Content';
-import BottomBar from './BottomBar';
+import BottomBar from '../common/BottomBar';
 
 interface BookReviewProps {
   reviewData: BookReviewData;
@@ -12,7 +12,7 @@ interface BookReviewProps {
 function BookReview({ reviewData }: BookReviewProps) {
   return (
     <S.ReviewContainer>
-      <ProfileBar user={reviewData.user} />
+      <ProfileBar user={reviewData.user} popUp />
       <Content reviewData={reviewData} />
       <BottomBar commentsCount={reviewData.commentsCount} />
       <S.BottomGreenBar /> {/** 위치 수정 */}

@@ -7,9 +7,10 @@ import { AnimatePresence } from 'framer-motion';
 import commentIcon from 'public/icons/home/comment.svg';
 import shareIcon from 'public/icons/home/share.svg';
 import CommentBottomSheet from '../comment/CommentBottomSheet';
-import LikeButton from '../common/button/LikeButton';
+import LikeButton from './button/LikeButton';
 
 interface BottomBarProps {
+  /* 댓글 개수 */
   commentsCount: number;
 }
 
@@ -59,14 +60,13 @@ function BottomBar({ commentsCount }: BottomBarProps) {
           <ButtonText>댓글달기 {commentsCount}</ButtonText>
         </CommentButton>
       </ButtonsContainer>
-      <AnimatePresence>
-        {commentOpen && <CommentBottomSheet setOpen={setCommentOpen} />}
-      </AnimatePresence>
-
       <ShareButton onClick={handleShare}>
         <Icon src={shareIcon} alt='share' />
         <ButtonText>공유하기</ButtonText>
       </ShareButton>
+      <AnimatePresence>
+        {commentOpen && <CommentBottomSheet setOpen={setCommentOpen} />}
+      </AnimatePresence>
     </BarContainer>
   );
 }
@@ -78,7 +78,7 @@ const BarContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+
   align-items: center;
   background-color: ${({ theme }) => theme.colors.bg_white};
 `;

@@ -1,20 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import styled from 'styled-components';
-import { AnimatePresence } from 'framer-motion';
-import menuIcon from 'public/icons/home/menu.svg';
 import { UserProfile } from '@data/dummyData/homeDummy';
-import FeedPopUp from '../common/popUp/FeedPopUp';
+import MenuButton from './MenuButton';
 
 interface ProfileBarProps {
+  /** 프로필 유저 정보 */
   user: UserProfile;
+  /** 팝업 메뉴 여부 */
+  popUp: boolean;
 }
 
-function ProfileBar({ user }: ProfileBarProps) {
-  const [feedPopUp, setFeedPopUp] = useState(false);
-
+function ProfileBar({ user, popUp }: ProfileBarProps) {
   return (
     <BarContainer>
       <LeftSection>
@@ -27,30 +25,25 @@ function ProfileBar({ user }: ProfileBarProps) {
           <UserNickname>{user.nickname}</UserNickname>
         </UserInfo>
       </LeftSection>
-      <MenuButton onClick={() => setFeedPopUp(true)}>
-        <MenuIcon src={menuIcon} alt='menu' />
-      </MenuButton>
-      <AnimatePresence>
-        {feedPopUp && <FeedPopUp setOpen={setFeedPopUp} />}
-      </AnimatePresence>
+      {popUp && <MenuButton type='feed' />}
     </BarContainer>
   );
 }
 
 export default ProfileBar;
 
-const LeftSection = styled.div`
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  margin-top: 5px;
-`;
-
 const BarContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   padding: 8px 16px 16px;
+`;
+
+const LeftSection = styled.div`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 5px;
 `;
 
 const ProfileImage = styled.img`
@@ -81,11 +74,4 @@ const UserNickname = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: 400;
   line-height: normal;
-`;
-
-const MenuButton = styled.button``; // 자연스럽게 오른쪽으로 정렬되도록 레이아웃 수정됨
-
-const MenuIcon = styled(Image)`
-  width: 22px;
-  height: 22px;
 `;

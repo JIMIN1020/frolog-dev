@@ -55,14 +55,14 @@ function NavigationBar() {
         />
         <Label>우물</Label>
       </NavItem>
-      <NavItem href='/profile'>
+      <NavItem href='/myPage'>
         <Icon
           src={
-            pathname?.startsWith('/profile')
+            pathname?.startsWith('/myPage')
               ? ProfileClickedIcon
               : ProfileDefaultIcon
           }
-          alt='profile'
+          alt='myPage'
           style={{ width: '24px', height: '24px' }}
         />
         <Label>내 정보</Label>

@@ -7,8 +7,6 @@ export const Container = styled.div`
   height: fit-content;
   display: flex;
   flex-direction: column;
-  border-top: 8px solid ${({ theme }) => theme.colors.key_color_light};
-  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
 `;
 
 export const BookContainer = styled.div`
@@ -18,6 +16,8 @@ export const BookContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 8px solid ${({ theme }) => theme.colors.key_color_light};
+  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
 `;
 
 export const Wrapper = styled.div`

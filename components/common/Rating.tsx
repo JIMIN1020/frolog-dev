@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
-import styled from 'styled-components';
+import * as S from '@styles/components/common/rating';
 import star from 'public/icons/home/star.svg';
 import halfstar from 'public/icons/home/halfstar.svg';
 import nostar from 'public/icons/home/nostar.svg';
-import Image from 'next/image';
 
 export interface RatingProps {
   /** 별점 */
@@ -24,12 +23,12 @@ function Rating({ rating, starSize, gap, fontSize }: RatingProps) {
     for (let i = 0; i < 5; i += 1) {
       if (currentRating >= 1) {
         stars.push(
-          <StarIcon $starSize={starSize} src={star} alt='star' key={i} />
+          <S.StarIcon $starSize={starSize} src={star} alt='star' key={i} />
         );
         currentRating -= 1;
       } else if (currentRating > 0) {
         stars.push(
-          <StarIcon
+          <S.StarIcon
             $starSize={starSize}
             src={halfstar}
             alt='half star'
@@ -39,7 +38,7 @@ function Rating({ rating, starSize, gap, fontSize }: RatingProps) {
         currentRating = 0;
       } else {
         stars.push(
-          <StarIcon $starSize={starSize} src={nostar} alt='no star' key={i} />
+          <S.StarIcon $starSize={starSize} src={nostar} alt='no star' key={i} />
         );
       }
     }
@@ -47,33 +46,11 @@ function Rating({ rating, starSize, gap, fontSize }: RatingProps) {
   }, []);
 
   return (
-    <RatingContainer $gap={gap}>
+    <S.RatingContainer $gap={gap}>
       {generateRatingStars(rating)}
-      <RatingNumber $fontSize={fontSize}>{rating}</RatingNumber>
-    </RatingContainer>
+      <S.RatingNumber $fontSize={fontSize}>{rating}</S.RatingNumber>
+    </S.RatingContainer>
   );
 }
 
 export default Rating;
-
-const RatingContainer = styled.div<{ $gap: number }>`
-  display: flex;
-  align-items: center;
-  gap: ${({ $gap }) => $gap}px;
-`;
-
-const RatingNumber = styled.span<{ $fontSize: number }>`
-  color: ${({ theme }) => theme.colors.text_black};
-  text-align: right;
-  font-size: ${({ $fontSize }) => $fontSize}px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.04px;
-  padding-left: 5px;
-`;
-
-const StarIcon = styled(Image)<{ $starSize: number }>`
-  width: ${({ $starSize }) => $starSize}px;
-  height: ${({ $starSize }) => $starSize}px;
-`;

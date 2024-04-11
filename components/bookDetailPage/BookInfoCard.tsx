@@ -70,6 +70,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 10px 0;
+  gap: 10px;
 `;
 
 const BookInfo = styled.div`
