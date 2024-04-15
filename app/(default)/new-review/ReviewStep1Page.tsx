@@ -9,6 +9,7 @@ import OneLiner from '@components/newReviewPage/OneLiner';
 import Review from '@components/newReviewPage/Review';
 import { BookDataType } from '@data/dummyData/recommendDummy';
 import Rating from '@components/newReviewPage/Rating';
+import { StyledButton } from '@styles/GlobalStyles';
 
 interface ReviewStep1PageProps {
   selectedBook: BookDataType;
@@ -49,13 +50,14 @@ function ReviewStep1Page({ selectedBook, setStep }: ReviewStep1PageProps) {
       <OneLiner />
       <Review />
       <S.ValidationError>{validationError}</S.ValidationError>
-      <S.NextButton
+      <StyledButton
         type='button'
         disabled={!watch('oneLiner') && !watch('review')}
+        $color='key_color'
         onClick={handleNext}
       >
         다음
-      </S.NextButton>
+      </StyledButton>
     </S.Container>
   );
 }

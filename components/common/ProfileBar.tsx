@@ -3,16 +3,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import { UserProfile } from '@data/dummyData/homeDummy';
+import Image from 'next/image';
+import editIcon from 'public/icons/mypage/edit-icon.svg';
+import editDone from 'public/icons/mypage/edit-done.svg';
 import MenuButton from './MenuButton';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
   user: UserProfile;
-  /** 팝업 메뉴 여부 */
-  popUp: boolean;
+  /** 팝업 메뉴 여부 (피드, 우물페이지) */
+  popUp?: boolean;
+  /** edit 버튼 여부 (마이페이지) */
+  edit?: boolean;
+  /** edit 중인지 여부 (마이페이지) */
+  isEdit?: boolean;
+  /** edit 버튼 클릭 시 핸들러 (마이페이지) */
+  onClickEdit?: undefined | (() => void);
 }
 
-function ProfileBar({ user, popUp }: ProfileBarProps) {
+function ProfileBar({
+  user,
+  popUp = false,
+  edit = false,
+  isEdit = false,
+  onClickEdit = undefined,
+}: ProfileBarProps) {
   return (
     <BarContainer>
       <LeftSection>
@@ -26,6 +41,15 @@ function ProfileBar({ user, popUp }: ProfileBarProps) {
         </UserInfo>
       </LeftSection>
       {popUp && <MenuButton type='feed' />}
+      {edit && (
+        <EditIcon onClick={onClickEdit}>
+          {isEdit ? (
+            <Image src={editDone} alt='done' />
+          ) : (
+            <Image src={editIcon} alt='edit' />
+          )}
+        </EditIcon>
+      )}
     </BarContainer>
   );
 }
@@ -74,4 +98,9 @@ const UserNickname = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: 400;
   line-height: normal;
+`;
+
+const EditIcon = styled.button`
+  width: fit-content;
+  height: fit-content;
 `;

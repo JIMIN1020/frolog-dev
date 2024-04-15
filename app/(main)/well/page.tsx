@@ -2,10 +2,11 @@ import ProfileBar from '@components/common/ProfileBar';
 import WellButton from '@components/wellPage/WellButton';
 import WellList from '@components/wellPage/WellList';
 import React from 'react';
+import * as S from '@styles/pages/wellPage';
 
 function WellPage() {
   return (
-    <div style={{ width: '100%' }}>
+    <S.Container>
       <ProfileBar
         user={{
           id: 'user1',
@@ -18,7 +19,7 @@ function WellPage() {
       />
       <WellButton />
       <WellList />
-    </div>
+    </S.Container>
   );
 }
 
