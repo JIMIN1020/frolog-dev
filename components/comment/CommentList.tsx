@@ -28,6 +28,7 @@ const Container = styled.div`
 
 const CommentContainer = styled.div`
   flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding-bottom: 12px;

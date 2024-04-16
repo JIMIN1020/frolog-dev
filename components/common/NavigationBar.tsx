@@ -94,6 +94,7 @@ const NavItem = styled(Link)`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 const Icon = styled(Image)`

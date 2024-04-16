@@ -29,6 +29,8 @@ export default function MenuButton({ type }: MenuButtonProps) {
 const Button = styled.button`
   width: fit-content;
   height: fit-content;
+  background: none;
+  border: none;
 `; // 자연스럽게 오른쪽으로 정렬되도록 레이아웃 수정됨
 
 const MenuIcon = styled(Image)`

@@ -79,13 +79,15 @@ const CancelIcon = styled.button`
   width: fit-content;
   height: 24px;
   cursor: pointer;
+  background: none;
+  border: none;
 `;
 
 const BottomBar = styled.div`
   width: 100%;
   height: 8px;
   flex-shrink: 0;
-  background: #acd1ad;
+  background: ${({ theme }) => theme.colors.key_color};
   position: absolute;
   left: 0;
   bottom: 0;

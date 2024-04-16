@@ -56,6 +56,7 @@ export default CommentItem;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const CommentWrapper = styled.div`
@@ -128,6 +129,8 @@ const ReplyButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme }) => theme.colors.text_lightgray};
   cursor: pointer;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const LikeBox = styled.div`
@@ -145,6 +148,8 @@ const LikeBox = styled.div`
 
 const LikeButton = styled.button`
   cursor: pointer;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const ReplyContainer = styled.div<{ $open: boolean }>`

@@ -135,6 +135,8 @@ const Header = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
   color: ${({ theme }) => theme.colors.text_black};
 `;
 

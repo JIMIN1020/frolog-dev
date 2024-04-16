@@ -24,6 +24,8 @@ export default LikeButton;
 const Button = styled.button`
   display: flex;
   align-items: center;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const Icon = styled(Image)`

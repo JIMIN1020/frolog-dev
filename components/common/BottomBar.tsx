@@ -93,11 +93,15 @@ const ButtonsContainer = styled.div`
 const CommentButton = styled.button`
   display: flex;
   align-items: center;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 const ShareButton = styled.button`
   display: flex;
   align-items: center;
   margin-right: 42px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const Icon = styled(Image)`

@@ -59,6 +59,8 @@ const Emoji = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 
   cursor: pointer;
 `;
@@ -88,6 +90,8 @@ const SendButton = styled.button`
   cursor: pointer;
   padding: 0;
   margin-left: 8px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 
   & img {
     width: 40px;

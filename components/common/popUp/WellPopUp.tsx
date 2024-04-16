@@ -109,6 +109,8 @@ const MenuItem = styled.button`
   text-align: start;
   cursor: pointer;
   font-weight: 400;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const CancelBtn = styled.button`
@@ -117,6 +119,8 @@ const CancelBtn = styled.button`
   text-align: start;
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSize.lg};
+  border: none;
+  background-color: ${({ theme }) => theme.colors.bg_white};
   border-top: 1px solid ${({ theme }) => theme.colors.key_color};
   color: ${({ theme }) => theme.colors.text_black};
 

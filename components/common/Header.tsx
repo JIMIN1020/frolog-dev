@@ -7,7 +7,7 @@ import Image from 'next/image';
 function Header() {
   return (
     <HeaderContainer>
-      <Link href='/'>
+      <Link href='/' style={{ textDecoration: 'none' }}>
         <Logo>Frolog</Logo>
       </Link>
 
@@ -40,7 +40,7 @@ const HeaderContainer = styled.header`
 `;
 
 const Logo = styled.h1`
-  color: #acd1ad;
+  color: ${({ theme }) => theme.colors.key_color};
   font-family: Pretendard;
   font-size: 32px;
   font-style: normal;

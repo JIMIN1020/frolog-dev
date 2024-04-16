@@ -70,6 +70,7 @@ const LoginButton = styled(Link)`
 
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
+  text-decoration: none;
 
   &:hover {
     scale: calc(1.03);

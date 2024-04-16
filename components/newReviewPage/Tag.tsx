@@ -28,6 +28,7 @@ const TagContainer = styled.div<{
   background: ${({ $backgroundColor }) => $backgroundColor};
   padding: 8px 16px;
   height: 35px;
+  width: fit-content;
   display: flex;
   align-items: center;
   cursor: pointer;
