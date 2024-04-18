@@ -1,36 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { UserProfile } from '@data/dummyData/homeDummy';
 import Image from 'next/image';
-import { AnimatePresence } from 'framer-motion';
-import editIcon from 'public/icons/mypage/edit-icon.svg';
-import editDone from 'public/icons/mypage/edit-done.svg';
-import menuIcon from 'public/icons/home/menu.svg';
-import FeedPopUp from './popUp/FeedPopUp';
+import WellIcon from 'public/icons/common/well-mini-icon.svg';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
   user: UserProfile;
-  /** 팝업 메뉴 여부 (피드, 우물페이지) */
-  popUp?: boolean;
-  /** edit 버튼 여부 (마이페이지) */
-  edit?: boolean;
-  /** edit 중인지 여부 (마이페이지) */
-  isEdit?: boolean;
-  /** edit 버튼 클릭 시 핸들러 (마이페이지) */
-  onClickEdit?: undefined | (() => void);
 }
 
-function ProfileBar({
-  user,
-  popUp = false,
-  edit = false,
-  isEdit = false,
-  onClickEdit = undefined,
-}: ProfileBarProps) {
-  const [openPopup, setOpenPopup] = useState<boolean>(false);
+export default function ProfileBarWithIcon({ user }: ProfileBarProps) {
   return (
     <BarContainer>
       <LeftSection>
@@ -43,28 +24,10 @@ function ProfileBar({
           <UserNickname>{user.nickname}</UserNickname>
         </UserInfo>
       </LeftSection>
-      {popUp && (
-        <Button onClick={() => setOpenPopup(true)}>
-          <MenuIcon src={menuIcon} alt='menu' />
-        </Button>
-      )}
-      {edit && (
-        <EditIcon onClick={onClickEdit}>
-          {isEdit ? (
-            <Image src={editDone} alt='done' />
-          ) : (
-            <Image src={editIcon} alt='edit' />
-          )}
-        </EditIcon>
-      )}
-      <AnimatePresence>
-        {openPopup && <FeedPopUp setOpen={setOpenPopup} />}
-      </AnimatePresence>
+      <Image src={WellIcon} alt='well' />
     </BarContainer>
   );
 }
-
-export default ProfileBar;
 
 const BarContainer = styled.div`
   display: flex;

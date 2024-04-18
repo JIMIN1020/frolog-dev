@@ -14,7 +14,7 @@ function BookReview({ reviewData }: BookReviewProps) {
     <S.ReviewContainer>
       <ProfileBar user={reviewData.user} popUp />
       <Content reviewData={reviewData} />
-      <BottomBar commentsCount={reviewData.commentsCount} />
+      <BottomBar commentsCount={reviewData.commentsCount} isLikeList={false} />
       <S.BottomGreenBar /> {/** 위치 수정 */}
     </S.ReviewContainer>
   );

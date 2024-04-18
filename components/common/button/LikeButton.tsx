@@ -6,13 +6,13 @@ import Image from 'next/image';
 
 interface LikeButtonProps {
   like: boolean;
-  toggleLike: () => void;
+  onClick: () => void;
   likesCount: number;
 }
 
-function LikeButton({ like, toggleLike, likesCount }: LikeButtonProps) {
+function LikeButton({ like, onClick, likesCount }: LikeButtonProps) {
   return (
-    <Button onClick={toggleLike}>
+    <Button onClick={onClick}>
       <Icon src={like ? likeClicked : likeDefault} alt='like' />
       <ButtonText>좋아요 {likesCount}</ButtonText>
     </Button>

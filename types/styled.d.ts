@@ -10,6 +10,7 @@ declare module 'styled-components' {
     bg_popup: string;
     text_white: string;
     text_black: string;
+    text_darkgray: string;
     text_gray: string;
     text_lightgray: string;
     text_red: string;

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
+import LikeBottomSheet from '@components/wellPage/LikeBottomSheet';
 import commentIcon from 'public/icons/home/comment.svg';
 import shareIcon from 'public/icons/home/share.svg';
 import CommentBottomSheet from '../comment/CommentBottomSheet';
@@ -12,10 +13,13 @@ import LikeButton from './button/LikeButton';
 interface BottomBarProps {
   /* 댓글 개수 */
   commentsCount: number;
+  /* 좋아요 리스트 여부 - true일 경우 리스트, false일 경우 클릭 형태 */
+  isLikeList: boolean;
 }
 
-function BottomBar({ commentsCount }: BottomBarProps) {
+function BottomBar({ commentsCount, isLikeList }: BottomBarProps) {
   const [commentOpen, setCommentOpen] = useState(false);
+  const [likeOpen, setLikeOpen] = useState(false);
   const [like, setLike] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
 
@@ -50,14 +54,22 @@ function BottomBar({ commentsCount }: BottomBarProps) {
   return (
     <BarContainer>
       <ButtonsContainer>
-        <LikeButton
-          like={like}
-          toggleLike={toggleLike}
-          likesCount={likesCount}
-        />
+        {isLikeList ? (
+          <LikeButton
+            like={true}
+            onClick={() => setLikeOpen(true)}
+            likesCount={likesCount}
+          />
+        ) : (
+          <LikeButton
+            like={like}
+            onClick={toggleLike}
+            likesCount={likesCount}
+          />
+        )}
         <CommentButton onClick={() => setCommentOpen(true)}>
           <Icon src={commentIcon} alt='comment' />
-          <ButtonText>댓글달기 {commentsCount}</ButtonText>
+          <ButtonText>댓글 {commentsCount}</ButtonText>
         </CommentButton>
       </ButtonsContainer>
       <ShareButton onClick={handleShare}>
@@ -66,6 +78,7 @@ function BottomBar({ commentsCount }: BottomBarProps) {
       </ShareButton>
       <AnimatePresence>
         {commentOpen && <CommentBottomSheet setOpen={setCommentOpen} />}
+        {likeOpen && <LikeBottomSheet setOpen={setLikeOpen} />}
       </AnimatePresence>
     </BarContainer>
   );

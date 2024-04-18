@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 import searchIcon from 'public/icons/header/search-icon.svg';
+import { wellDummy } from '@data/dummyData/wellDummy';
 import WellItem from './WellItem';
 
 function WellList() {
@@ -17,12 +18,9 @@ function WellList() {
         </InputWrapper>
       </ListTitleBar>
       <WellWrapper>
-        <WellItem />
-        <WellItem />
-        <WellItem />
-        <WellItem />
-        <WellItem />
-        <WellItem />
+        {wellDummy.map((data) => {
+          return <WellItem key={data.id} data={data} />;
+        })}
       </WellWrapper>
     </Content>
   );

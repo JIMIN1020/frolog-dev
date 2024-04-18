@@ -1,26 +1,24 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { modalBackgroundVariants } from '@styles/framer-motion/modalBackground';
 import Cancel from 'public/icons/popUp/Cancel.svg';
+import wellIcon from 'public/icons/well/well-icon.svg';
 import styled from 'styled-components';
 import useClickOutside from '../../../hooks/useClickOutside';
 
-type WellPopUpProps = {
+interface ImgChangePopUpProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  wellId: number;
-};
+  setWellIcon: (v: string) => void;
+}
 
-function WellPopUp({ setOpen, setEdit, wellId }: WellPopUpProps) {
+function ImgChangePopUp({ setOpen, setWellIcon }: ImgChangePopUpProps) {
   const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
-  const [openDelete, setOpenDelete] = useState<boolean>(false); // 우물 삭제 팝업
 
   /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
   useClickOutside(ref, () => setOpen(false));
-  console.log(wellId);
 
   return (
     <Background
@@ -35,29 +33,11 @@ function WellPopUp({ setOpen, setEdit, wellId }: WellPopUpProps) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 30 }}
       >
-        {/* 기본 팝업 */}
-        {!openDelete && (
-          <>
-            <MenuItem onClick={() => setEdit(true)}>편집하기</MenuItem>
-            <MenuItem
-              onClick={() => setOpenDelete(true)}
-              style={{ color: 'red' }}
-            >
-              삭제
-            </MenuItem>
-          </>
-        )}
-        {/* 삭제 팝업 */}
-        {openDelete && (
-          <>
-            <DeleteWarning>
-              이 우물이 삭제됩니다. 이 동작은 취소할 수 없습니다.
-            </DeleteWarning>
-            <MenuItem style={{ color: 'red' }} onClick={() => setOpen(false)}>
-              우물 삭제
-            </MenuItem>
-          </>
-        )}
+        <MenuItem>앨범에서 사진 선택</MenuItem>
+        <MenuItem onClick={() => setWellIcon(wellIcon)}>
+          기본 이미지로 변경
+        </MenuItem>
+
         <CancelBtn onClick={() => setOpen(false)}>
           <Image src={Cancel} alt='cancel' />
           취소
@@ -67,7 +47,7 @@ function WellPopUp({ setOpen, setEdit, wellId }: WellPopUpProps) {
   );
 }
 
-export default WellPopUp;
+export default ImgChangePopUp;
 
 const Background = styled(motion.div)`
   width: 100%;

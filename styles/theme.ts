@@ -9,6 +9,7 @@ const colors: Colors = {
   bg_popup: '#80808076',
   text_white: '#fff',
   text_black: '#000',
+  text_darkgray: '#404040',
   text_gray: '#818181',
   text_lightgray: '#B1B1B1',
   text_red: '#F00',
