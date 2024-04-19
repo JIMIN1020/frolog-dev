@@ -115,10 +115,3 @@ const CancelBtn = styled.button`
     height: 22px;
   }
 `;
-
-const DeleteWarning = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.text_gray};
-  font-weight: 400;
-  padding: 25px 0 10px 0;
-`;

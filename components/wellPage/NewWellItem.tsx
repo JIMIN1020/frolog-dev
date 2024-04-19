@@ -53,9 +53,7 @@ export default function NewWellItem({ data }: NewWellItemProp) {
         {imgChange && (
           <ImgChangePopUp
             setOpen={setImgChange}
-            setWellIcon={(value) =>
-              setValue((prev) => ({ ...prev, wellIcon: value }))
-            }
+            setWellIcon={(v) => setValue((prev) => ({ ...prev, wellIcon: v }))}
           />
         )}
       </AnimatePresence>

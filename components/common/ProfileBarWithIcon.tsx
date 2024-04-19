@@ -73,19 +73,19 @@ const UserNickname = styled.div`
   line-height: normal;
 `;
 
-const EditIcon = styled.button`
-  width: fit-content;
-  height: fit-content;
-`;
+// const EditIcon = styled.button`
+//   width: fit-content;
+//   height: fit-content;
+// `;
 
-const Button = styled.button`
-  width: fit-content;
-  height: fit-content;
-  background: none;
-  border: none;
-`; // 자연스럽게 오른쪽으로 정렬되도록 레이아웃 수정됨
+// const Button = styled.button`
+//   width: fit-content;
+//   height: fit-content;
+//   background: none;
+//   border: none;
+// `; // 자연스럽게 오른쪽으로 정렬되도록 레이아웃 수정됨
 
-const MenuIcon = styled(Image)`
-  width: 22px;
-  height: 22px;
-`;
+// const MenuIcon = styled(Image)`
+//   width: 22px;
+//   height: 22px;
+// `;
