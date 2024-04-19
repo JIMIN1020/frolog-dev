@@ -11,7 +11,7 @@ import WellPopUp from '@components/common/popUp/WellPopUp';
 
 interface WellItemProps {
   data: WellDataType;
-  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function WellItem({ data, setEdit }: WellItemProps) {
@@ -32,7 +32,7 @@ export default function WellItem({ data, setEdit }: WellItemProps) {
       </WellInfoBox>
       <BottomBar commentsCount={12} isLikeList={true} />
       <AnimatePresence>
-        {open && (
+        {setEdit && open && (
           <WellPopUp wellId={data.id} setEdit={setEdit} setOpen={setOpen} />
         )}
       </AnimatePresence>
