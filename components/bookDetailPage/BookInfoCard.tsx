@@ -30,11 +30,7 @@ function BookInfoCard() {
           정건우가 있다. 정건우가 있다. 정건우가 있다. 정건우가 있다. 정건우가
           있다
         </ReviewText>
-        <LikeButton
-          like={like}
-          toggleLike={toggleLike}
-          likesCount={likesCount}
-        />
+        <LikeButton like={like} onClick={toggleLike} likesCount={likesCount} />
       </Content>
     </Container>
   );
