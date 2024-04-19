@@ -25,13 +25,13 @@ function SearchPage() {
       {searchValue.length > 0 ? (
         <SearchResultList handleClick={handleBookClick} />
       ) : (
-        <>
+        <Wrapper>
           <AdContainer>
             <AdBanner />
           </AdContainer>
           <BookRecommendation />
           <FrologPick />
-        </>
+        </Wrapper>
       )}
     </Container>
   );
@@ -43,8 +43,17 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: ${({ theme }) => theme.colors.key_color_light};
+  padding-bottom: 8px;
+`;
+
 const AdContainer = styled.div`
   width: 100%;
   padding: 16px 18px;
-  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;

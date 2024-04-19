@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { recommendBookDummy } from '@data/dummyData/recommendDummy';
-import BookCardHorizontal from '../common/BookCardHorizontal';
+import BookCardWithBtn from '@components/common/BookCardWithBtn';
 
 function BookRecommendation() {
   const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -21,7 +21,7 @@ function BookRecommendation() {
           dragElastic={0.2}
         >
           {recommendBookDummy.map((data) => {
-            return <BookCardHorizontal key={data.id} bookData={data} />;
+            return <BookCardWithBtn key={data.id} bookData={data} />;
           })}
         </Wrapper>
       </BookContainer>
@@ -33,15 +33,15 @@ export default BookRecommendation;
 
 const Container = styled.div`
   width: 100%;
-  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
-  padding: 16px;
-  padding-bottom: 40px;
+  padding: 16px 0px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const Title = styled.h3`
+  padding: 0 16px;
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 500;
   color: ${({ theme }) => theme.colors.text_black};
@@ -50,7 +50,7 @@ const Title = styled.h3`
 const BookContainer = styled.div`
   display: flex;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -61,4 +61,5 @@ const Wrapper = styled(motion.div)`
   display: flex;
   width: fit-content;
   gap: 20px;
+  padding: 0 16px;
 `;

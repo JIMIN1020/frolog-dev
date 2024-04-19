@@ -68,4 +68,6 @@ export const BestReviewList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  background-color: ${({ theme }) => theme.colors.key_color_light};
 `;

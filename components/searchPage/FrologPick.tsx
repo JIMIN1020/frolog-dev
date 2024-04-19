@@ -32,8 +32,8 @@ export default FrologPick;
 
 const Container = styled.div`
   width: 100%;
-  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
-  padding: 16px;
+  background-color: ${({ theme }) => theme.colors.bg_white};
+  padding: 16px 0px;
   padding-bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -41,6 +41,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h3`
+  padding: 0px 16px;
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 500;
   color: ${({ theme }) => theme.colors.text_black};
@@ -60,4 +61,5 @@ const Wrapper = styled(motion.div)`
   display: flex;
   width: fit-content;
   gap: 50px;
+  padding: 0px 16px;
 `;

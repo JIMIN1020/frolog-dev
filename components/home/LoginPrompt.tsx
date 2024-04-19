@@ -32,7 +32,7 @@ const PromptContainer = styled.div`
   flex-shrink: 0;
   padding: 16px;
   padding-bottom: 20px;
-  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;
 
 const FrogLogo = styled(Image)`
