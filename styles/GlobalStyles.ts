@@ -24,7 +24,7 @@ export const fadeUp = keyframes`
 
 export const StyledButton = styled.button<{
   disabled: boolean;
-  $color: string;
+  $color?: string;
 }>`
   width: 288px;
   height: 44px;
@@ -38,5 +38,5 @@ export const StyledButton = styled.button<{
   cursor: pointer;
 
   background-color: ${({ theme, disabled, $color }) =>
-    disabled ? theme.colors.button_gray : theme.colors[$color]};
+    disabled ? theme.colors.button_gray : theme.colors[$color || 'key_color']};
 `;
