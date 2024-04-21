@@ -1,6 +1,5 @@
 'use client';
 
-import ProfileBar from '@components/common/ProfileBar';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -9,13 +8,16 @@ import BadgeBar from '@components/myPage/BadgeBar';
 import OneLineMessage from '@components/myPage/OneLineMessage';
 import Dashboard from '@components/myPage/Dashboard';
 import ButtonContainer from '@components/myPage/ButtonContainer';
+import MyPageProfile from '@components/myPage/MyPageProfile';
+import frogImg from 'public/icons/mypage/frog.svg';
+import ChangeClothesBtn from '@components/myPage/ChangeClothesBtn';
 
 function MyPage() {
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
   return (
     <Container>
-      <ProfileBar
+      <MyPageProfile
         user={{
           id: 'user1',
           name: '김혜나',
@@ -23,13 +25,15 @@ function MyPage() {
           profilePicture:
             'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
         }}
-        edit={true}
         isEdit={isEdit}
         onClickEdit={() => setIsEdit((prev) => !prev)}
       />
       <Wrapper>
         <OneLineMessage isEdit={isEdit} />
-        <MyPageIcon src='' alt='임시' />
+        <FrogWrapper>
+          <MyPageIcon src={frogImg} alt='임시' />
+          {isEdit && <ChangeClothesBtn />}
+        </FrogWrapper>
         <TempAndBadge>
           <ReadingTemp temp={72.8} />
           <BadgeBar />
@@ -60,10 +64,14 @@ const Wrapper = styled.div`
   padding: 0 50px;
 `;
 
+const FrogWrapper = styled.div`
+  position: relative;
+`;
+
 const MyPageIcon = styled(Image)`
   width: 200px;
   height: 200px;
-  background-color: lightgray;
+  padding-top: 40px;
 `;
 
 const TempAndBadge = styled.div`

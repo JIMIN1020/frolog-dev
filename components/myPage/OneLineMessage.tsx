@@ -20,6 +20,7 @@ export default function OneLineMessage({ isEdit }: OneLineMessageProps) {
           <MessageInput
             type='text'
             value={message}
+            maxLength={20}
             onChange={(e) => setMessage(e.target.value)}
           />
           <Image src={editIcon} alt='edit' />
@@ -47,7 +48,7 @@ const InputWrapper = styled.div`
   width: 100%;
   display: flex;
   border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
-  padding: 5px;
+  padding-bottom: 4px;
 `;
 
 const MessageInput = styled.input`

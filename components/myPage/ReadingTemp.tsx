@@ -61,6 +61,7 @@ const TempBar = styled.div<{ $temp: number }>`
 const Temp = styled.h4`
   width: 50px;
   text-align: end;
+  padding-left: 12px;
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 900;
   color: ${({ theme }) => theme.colors.key_color};

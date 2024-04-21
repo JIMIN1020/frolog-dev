@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   border-radius: 12px;
-  padding: 0 25px;
+  padding: 0 22px;
   gap: 14px;
   background-color: ${({ theme }) => theme.colors.key_color_light};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
