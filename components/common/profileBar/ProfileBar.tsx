@@ -6,7 +6,7 @@ import { UserProfile } from '@data/dummyData/homeDummy';
 import Image from 'next/image';
 import { AnimatePresence } from 'framer-motion';
 import menuIcon from 'public/icons/home/menu.svg';
-import FeedPopUp from './popUp/FeedPopUp';
+import FeedPopUp from '../popUp/FeedPopUp';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
@@ -85,11 +85,6 @@ const UserNickname = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: 400;
   line-height: normal;
-`;
-
-const EditIcon = styled.button`
-  width: fit-content;
-  height: fit-content;
 `;
 
 const Button = styled.button`

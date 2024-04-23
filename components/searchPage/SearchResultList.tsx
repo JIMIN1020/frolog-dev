@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import BookCardHorizontal from '../common/BookCardHorizontal';
+import BookCardHorizontal from '../common/bookCard/BookCardHorizontal';
 import {
   BookDataType,
   recommendBookDummy,

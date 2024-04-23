@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,7 +14,12 @@ export default function ReadingTemp({ temp }: ReadingTempProps) {
       <Title>독서 온도</Title>
       <Bar>
         <InnerBar>
-          <TempBar $temp={temp} />
+          <TempBar
+            $temp={temp}
+            initial={{ width: 0 }}
+            animate={{ width: `${temp}%` }}
+            transition={{ duration: 0.7 }}
+          />
         </InnerBar>
       </Bar>
       <Temp>{temp}°C</Temp>
@@ -48,7 +56,7 @@ const InnerBar = styled.div`
   background-color: ${({ theme }) => theme.colors.input_gray};
 `;
 
-const TempBar = styled.div<{ $temp: number }>`
+const TempBar = styled(motion.div)<{ $temp: number }>`
   width: ${({ $temp }) => $temp}%;
   height: 95%;
   border-radius: 16px;

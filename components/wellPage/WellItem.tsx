@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import wellIcon from 'public/icons/well/well-icon.svg';
 import BottomBar from '@components/common/BottomBar';

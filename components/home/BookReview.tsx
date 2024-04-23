@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from '@styles/components/home/bookReview';
 import { BookReviewData } from '@data/dummyData/homeDummy';
-import ProfileBar from '../common/ProfileBar';
+import ProfileBar from '../common/profileBar/ProfileBar';
 import Content from './Content';
 import BottomBar from '../common/BottomBar';
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { BookDataType } from '@data/dummyData/recommendDummy';
 import Image from 'next/image';
 import styled from 'styled-components';
-import Rating from './Rating';
+import Rating from '../Rating';
 
 interface BookCardHorizontalProps {
   bookData: BookDataType;

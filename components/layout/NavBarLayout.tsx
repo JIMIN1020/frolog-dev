@@ -7,7 +7,7 @@ import StyledComponentsRegistry from '@lib/registry';
 import { GlobalStyles } from '@styles/GlobalStyles';
 import { theme } from '@styles/theme';
 import NavigationBar from '../common/NavigationBar';
-import Header from '../common/Header';
+import Header from '../common/header/Header';
 
 export default function NavBarLayout({
   children,

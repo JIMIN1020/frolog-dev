@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { recommendBookDummy } from '@data/dummyData/recommendDummy';
-import BookCardWithBtn from '@components/common/BookCardWithBtn';
+import BookCardWithBtn from '@components/common/bookCard/BookCardWithBtn';
 
 function BookRecommendation() {
   const sliderRef = useRef<HTMLDivElement | null>(null);

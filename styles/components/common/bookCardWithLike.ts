@@ -5,8 +5,9 @@ import styled from 'styled-components';
 
 export const BookContainer = styled.div`
   display: flex;
-  gap: 20px;
   align-items: center;
+  width: fit-content;
+  gap: 20px;
 `;
 
 export const BookImg = styled(Image)`
@@ -43,4 +44,21 @@ export const Summary = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+`;
+
+export const Icon = styled.button`
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+`;
+
+export const Card = styled.div`
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
+
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 `;

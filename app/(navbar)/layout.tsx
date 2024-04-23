@@ -1,5 +1,4 @@
 import NavBarLayout from '@components/layout/NavBarLayout';
-import '../global.css';
 
 export default function NavBarLayouts({
   children,

@@ -2,7 +2,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 // 컴포넌트 불러오기
-import ProfileBar from '../../components/common/ProfileBar';
+import ProfileBar from '../../components/common/profileBar/ProfileBar';
 
 const meta = {
   title: 'Common/ProfileBar',

@@ -6,7 +6,7 @@ import * as S from '@styles/layout';
 import StyledComponentsRegistry from '@lib/registry';
 import { GlobalStyles } from '@styles/GlobalStyles';
 import { theme } from '@styles/theme';
-import Header from '../common/Header';
+import Header from '../common/header/Header';
 import NavigationBar from '../common/NavigationBar';
 
 export default function MainLayout({

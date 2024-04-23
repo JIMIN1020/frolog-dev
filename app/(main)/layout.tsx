@@ -1,5 +1,4 @@
 import MainLayout from '@components/layout/MainLayout';
-import '../global.css';
 
 export default function MainLayouts({
   children,

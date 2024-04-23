@@ -1,4 +1,4 @@
-import ProfileBar from '@components/common/ProfileBar';
+import ProfileBar from '@components/common/profileBar/ProfileBar';
 import WellButton from '@components/wellPage/WellButton';
 import WellList from '@components/wellPage/WellList';
 import React from 'react';

@@ -1,4 +1,8 @@
+'use client';
+
+import { getRouteByLabel } from '@data/navData';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -13,8 +17,16 @@ export default function DashboardItem({
   title,
   count,
 }: DashboardItemProps) {
+  const router = useRouter();
+
+  /* ----- 클릭 시 상세페이지로 이동 함수 ----- */
+  const handleClick = () => {
+    const route = getRouteByLabel(title);
+    router.push(route!);
+  };
+
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <Image src={iconUrl} alt='icon' />
       <Content>
         <h5>{title}</h5>

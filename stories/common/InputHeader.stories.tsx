@@ -1,5 +1,5 @@
 // 기본 세팅
-import InputHeader from '@components/common/InputHeader';
+import InputHeader from '@components/common/header/InputHeader';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

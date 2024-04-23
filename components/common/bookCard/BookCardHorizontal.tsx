@@ -1,7 +1,7 @@
 import React from 'react';
-import * as S from '@styles/components/searchPage/bookCardHorizontal';
+import * as S from '@styles/components/common/bookCardHorizontal';
 import { BookDataType } from '@data/dummyData/recommendDummy';
-import Rating from './Rating';
+import Rating from '../Rating';
 
 interface BookCardHorizontalProps {
   bookData: BookDataType;

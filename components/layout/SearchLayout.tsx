@@ -4,7 +4,7 @@ import React, { createContext, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import styled, { ThemeProvider } from 'styled-components';
 import NavigationBar from '@components/common/NavigationBar';
-import InputHeader from '@components/common/InputHeader';
+import InputHeader from '@components/common/header/InputHeader';
 import StyledComponentsRegistry from '@lib/registry';
 import { theme } from '@styles/theme';
 import { GlobalStyles } from '@styles/GlobalStyles';

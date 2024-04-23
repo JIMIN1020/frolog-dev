@@ -3,7 +3,7 @@ import wellIconImg from 'public/icons/well/well-icon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
 import editIcon from 'public/icons/mypage/edit-message.svg';
-import changeIcon from 'public/icons/well/change-icon.svg';
+import changeIcon from 'public/icons/common/change-icon.svg';
 import { WellDataType } from '@data/dummyData/wellDummy';
 import { AnimatePresence } from 'framer-motion';
 import ImgChangePopUp from '@components/common/popUp/ImgChangePopUp';

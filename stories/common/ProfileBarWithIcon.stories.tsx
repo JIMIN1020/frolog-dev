@@ -1,5 +1,5 @@
 // 기본 세팅
-import ProfileBarWithIcon from '@components/common/ProfileBarWithIcon';
+import ProfileBarWithIcon from '@components/common/profileBar/ProfileBarWithIcon';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

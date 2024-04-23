@@ -1,4 +1,3 @@
-import '../global.css';
 import DefaultLayout from '@components/layout/DefaultLayout';
 
 export default function DefaultLayouts({

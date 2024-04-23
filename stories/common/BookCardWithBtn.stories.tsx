@@ -2,16 +2,16 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 // 컴포넌트 불러오기
-import BookCardHorizontal from '@components/common/bookCard/BookCardHorizontal';
+import BookCardWithBtn from '@components/common/bookCard/BookCardWithBtn';
 
 const meta = {
-  title: 'Common/BookCardHorizontal',
-  component: BookCardHorizontal,
+  title: 'Common/BookCardWithBtn',
+  component: BookCardWithBtn,
   tags: ['autodocs'],
   parameters: {
-    componentSubtitle: '가로 형태의 도서 컴포넌트',
+    componentSubtitle: '가로 형태의 도서 컴포넌트 with 리뷰 쓰기 버튼',
   },
-} satisfies Meta<typeof BookCardHorizontal>;
+} satisfies Meta<typeof BookCardWithBtn>;
 
 export default meta;
 

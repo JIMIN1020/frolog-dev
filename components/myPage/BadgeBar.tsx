@@ -1,11 +1,15 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import BadgeBottomSheet from './BadgeBottomSheet';
 
 export default function BadgeBar() {
+  const [open, setOpen] = useState(false);
   return (
     <Container>
       <Title>배지</Title>
-      <BadgeBox>
+      <BadgeBox onClick={() => setOpen(true)}>
         <BadgeWrapper>
           <Badge />
           <Badge />
@@ -13,6 +17,7 @@ export default function BadgeBar() {
         </BadgeWrapper>
         <Count>4개</Count>
       </BadgeBox>
+      {open && <BadgeBottomSheet setOpen={setOpen} />}
     </Container>
   );
 }
@@ -66,4 +71,5 @@ const Count = styled.h5`
   color: ${({ theme }) => theme.colors.key_color};
   font-weight: 700;
   font-size: ${({ theme }) => theme.fontSize.lg};
+  cursor: default;
 `;
