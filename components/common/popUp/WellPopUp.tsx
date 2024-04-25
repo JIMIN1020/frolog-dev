@@ -3,6 +3,7 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { modalBackgroundVariants } from '@styles/framer-motion/modalBackground';
 import Cancel from 'public/icons/popUp/Cancel.svg';
 import styled from 'styled-components';
@@ -10,11 +11,11 @@ import useClickOutside from '../../../hooks/useClickOutside';
 
 type WellPopUpProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEdit: React.Dispatch<React.SetStateAction<boolean>>;
   wellId: number;
 };
 
-function WellPopUp({ setOpen, setEdit, wellId }: WellPopUpProps) {
+function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
+  const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
   const [openDelete, setOpenDelete] = useState<boolean>(false); // 우물 삭제 팝업
 
@@ -38,7 +39,9 @@ function WellPopUp({ setOpen, setEdit, wellId }: WellPopUpProps) {
         {/* 기본 팝업 */}
         {!openDelete && (
           <>
-            <MenuItem onClick={() => setEdit(true)}>편집하기</MenuItem>
+            <MenuItem onClick={() => router.push('/well-edit?new=false')}>
+              편집하기
+            </MenuItem>
             <MenuItem
               onClick={() => setOpenDelete(true)}
               style={{ color: 'red' }}
@@ -53,7 +56,10 @@ function WellPopUp({ setOpen, setEdit, wellId }: WellPopUpProps) {
             <DeleteWarning>
               이 우물이 삭제됩니다. 이 동작은 취소할 수 없습니다.
             </DeleteWarning>
-            <MenuItem style={{ color: 'red' }} onClick={() => setOpen(false)}>
+            <MenuItem
+              style={{ color: 'red' }}
+              onClick={() => router.push('/well')}
+            >
               우물 삭제
             </MenuItem>
           </>

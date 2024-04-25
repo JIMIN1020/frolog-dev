@@ -1,19 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-import arrowLeft from 'public/icons/notice/arrow-left.svg';
+
 import { usePathname } from 'next/navigation';
 import { getLabelByRoute } from '@data/navData';
+import BackButton from '../button/BackButton';
 
 function TitleHeader() {
   const pathname = usePathname();
   return (
     <Header>
-      <BackBtn onClick={() => window.history.back()}>
-        <Image src={arrowLeft} alt='back' />
-      </BackBtn>
+      <BackButton />
       <h1>{getLabelByRoute(pathname)}</h1>
     </Header>
   );
@@ -39,12 +37,4 @@ const Header = styled.header`
     letter-spacing: -0.07px;
     text-align: center;
   }
-`;
-
-const BackBtn = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0px;
-  cursor: pointer;
 `;

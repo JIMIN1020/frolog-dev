@@ -1,15 +1,15 @@
 // 기본 세팅
-import Header from '@components/common/header/Header';
+import SelectBook from '@components/wellPage/SelectBook';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/Header',
-  component: Header,
+  title: 'WellPage/SelectBook',
+  component: SelectBook,
   tags: ['autodocs'],
   parameters: {
-    componentSubtitle: '메인 헤더 컴포넌트',
+    componentSubtitle: '우물 도서 추가 페이지의 도서 컴포넌트',
   },
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof SelectBook>;
 
 export default meta;
 

@@ -3,7 +3,7 @@ import InputHeader from '@components/common/header/InputHeader';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/InputHeader',
+  title: 'Common/Headers/InputHeader',
   component: InputHeader,
   tags: ['autodocs'],
   parameters: {

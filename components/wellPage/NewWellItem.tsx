@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import wellIconImg from 'public/icons/well/well-icon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
-import editIcon from 'public/icons/mypage/edit-message.svg';
+import deleteIcon from 'public/icons/well/delete-icon.svg';
 import changeIcon from 'public/icons/common/change-icon.svg';
 import { WellDataType } from '@data/dummyData/wellDummy';
 import { AnimatePresence } from 'framer-motion';
@@ -19,6 +19,7 @@ export default function NewWellItem({ data }: NewWellItemProp) {
     title: data.title,
     description: data.description,
   });
+
   return (
     <Container>
       <IconWrapper onClick={() => setImgChange(true)}>
@@ -34,8 +35,13 @@ export default function NewWellItem({ data }: NewWellItemProp) {
             onChange={(e) =>
               setValue((prev) => ({ ...prev, title: e.target.value }))
             }
+            placeholder='제목을 추가해보세요'
           />
-          <Image src={editIcon} alt='edit' />
+          <DeleteBtn
+            onClick={() => setValue((prev) => ({ ...prev, title: '' }))}
+          >
+            <Image src={deleteIcon} alt='delete' />
+          </DeleteBtn>
         </InputWrapper>
         <InputWrapper>
           <StyledInput
@@ -45,8 +51,13 @@ export default function NewWellItem({ data }: NewWellItemProp) {
             onChange={(e) =>
               setValue((prev) => ({ ...prev, description: e.target.value }))
             }
+            placeholder='우물을 멋지게 묘사해보세요'
           />
-          <Image src={editIcon} alt='edit' />
+          <DeleteBtn
+            onClick={() => setValue((prev) => ({ ...prev, description: '' }))}
+          >
+            <Image src={deleteIcon} alt='delete' />
+          </DeleteBtn>
         </InputWrapper>
       </InfoText>
       <AnimatePresence>
@@ -110,6 +121,10 @@ const StyledInput = styled.input<{ $class: string }>`
   &:focus {
     outline: none;
   }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text_lightgray};
+  }
 `;
 
 const InfoText = styled.div`
@@ -131,4 +146,10 @@ const InfoText = styled.div`
     font-size: ${({ theme }) => theme.fontSize.md};
     font-weight: 300;
   }
+`;
+
+const DeleteBtn = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
 `;

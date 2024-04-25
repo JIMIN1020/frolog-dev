@@ -22,6 +22,5 @@ export const Primary: Story = {
       title: '소설 모음',
       description: '내가 책을 덮으면서 느낀 감정을 한마디로..',
     },
-    setEdit: () => {},
   },
 };

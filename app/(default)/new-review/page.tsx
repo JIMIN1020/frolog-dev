@@ -59,7 +59,7 @@ function NewReviewPage() {
           {step === 1 && (
             <ReviewStep1Page selectedBook={selectedBook} setStep={setStep} />
           )}
-          {step === 2 && <ReviewStep2Page setStep={setStep} />}
+          {step === 2 && <ReviewStep2Page />}
         </S.Form>
       </FormProvider>
     </S.PageContainer>

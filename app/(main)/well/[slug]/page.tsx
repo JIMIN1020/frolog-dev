@@ -1,11 +1,12 @@
 'use client';
 
-import NewWellItem from '@components/wellPage/NewWellItem';
 import WellItem from '@components/wellPage/WellItem';
 import { wellDummy } from '@data/dummyData/wellDummy';
-import { StyledButton } from '@styles/GlobalStyles';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import settingIcon from 'public/icons/well/setting.svg';
+import WellPopUp from '@components/common/popUp/WellPopUp';
 
 // export async function generateStaticParams() {
 //   const slugs = wellDummy.map((well) => ({
@@ -21,36 +22,17 @@ interface WellDetailPageProps {
 }
 
 export default function WellDetailPage({ params }: WellDetailPageProps) {
-  const [edit, setEdit] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const { slug } = params;
   const data = wellDummy.filter((well) => well.id === +slug)[0];
 
   return (
     <Container>
       <WellInfoWrapper>
-        {edit ? (
-          <>
-            <NewWellItem data={data} />
-            <ButtonContainer>
-              <StyledButton
-                disabled={false}
-                $color='key_color'
-                onClick={() => setEdit(false)}
-              >
-                수정하기
-              </StyledButton>
-              <StyledButton
-                disabled={false}
-                $color='button_gray'
-                onClick={() => setEdit(false)}
-              >
-                취소하기
-              </StyledButton>
-            </ButtonContainer>
-          </>
-        ) : (
-          <WellItem data={data} setEdit={setEdit} />
-        )}
+        <WellItem data={data} />
+        <Setting onClick={() => setOpen(true)}>
+          설정 <Image src={settingIcon} alt='setting' />
+        </Setting>
       </WellInfoWrapper>
       <BookContainer>
         <Book $margin='0px 0px 0px 30px'>
@@ -66,6 +48,7 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
           <span>노르웨이의 숲</span>
         </Book>
       </BookContainer>
+      {open && <WellPopUp wellId={data.id} setOpen={setOpen} />}
     </Container>
   );
 }
@@ -83,6 +66,7 @@ const WellInfoWrapper = styled.div`
   width: 100%;
   height: fit-content;
   padding: 20px 10px 0 10px;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -96,15 +80,6 @@ const BookContainer = styled.div`
   align-items: center;
   justify-content: end;
   background-color: ${({ theme }) => theme.colors.bg_white};
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 0;
 `;
 
 const Book = styled.div<{ $margin: string }>`
@@ -125,4 +100,19 @@ const Book = styled.div<{ $margin: string }>`
     height: 170px;
     text-align: center;
   }
+`;
+
+const Setting = styled.button`
+  background-color: ${({ theme }) => theme.colors.key_color};
+  color: ${({ theme }) => theme.colors.text_white};
+  display: flex;
+  border: none;
+  align-items: center;
+  padding: 6px;
+  border-radius: 8px;
+  gap: 6px;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  float: right;
+  margin: 12px 0;
+  cursor: pointer;
 `;
