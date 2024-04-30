@@ -2,10 +2,12 @@ import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 import clothesIcon from 'public/icons/mypage/clothes-icon.svg';
+import { useRouter } from 'next/navigation';
 
 function ChangeClothesBtn() {
+  const router = useRouter();
   return (
-    <Container>
+    <Container onClick={() => router.push('/change-frog')}>
       <ButtonText>외형 변경</ButtonText>
       <Image src={clothesIcon} alt='clothes' />
     </Container>

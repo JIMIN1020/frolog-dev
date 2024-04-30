@@ -2,17 +2,22 @@
 
 import React from 'react';
 import styled from 'styled-components';
-
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { getLabelByRoute } from '@data/navData';
 import BackButton from '../button/BackButton';
 
-function TitleHeader() {
+interface TitleHeaderProps {
+  button?: boolean;
+}
+
+function TitleHeader({ button = false }: TitleHeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
   return (
     <Header>
       <BackButton />
       <h1>{getLabelByRoute(pathname)}</h1>
+      {button && <DoneBtn onClick={() => router.push('/myPage')}>완료</DoneBtn>}
     </Header>
   );
 }
@@ -37,4 +42,19 @@ const Header = styled.header`
     letter-spacing: -0.07px;
     text-align: center;
   }
+`;
+
+const DoneBtn = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  width: fit-content;
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.key_color};
+  font-size: ${({ theme }) => theme.fontSize.xxxl};
+  cursor: pointer;
+  font-weight: 500;
 `;
