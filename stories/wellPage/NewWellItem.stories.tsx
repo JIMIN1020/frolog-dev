@@ -16,11 +16,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-    data: {
-      id: 1,
-      title: '소설 모음',
-      description: '내가 책을 덮으면서 느낀 감정을 한마디로..',
-    },
-  },
+  args: {},
 };

@@ -4,68 +4,47 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import deleteIcon from 'public/icons/well/delete-icon.svg';
 import changeIcon from 'public/icons/common/change-icon.svg';
-import { WellDataType } from '@data/dummyData/wellDummy';
 import { AnimatePresence } from 'framer-motion';
 import ImgChangePopUp from '@components/common/popUp/ImgChangePopUp';
+import { useFormContext } from 'react-hook-form';
 
-interface NewWellItemProp {
-  data: WellDataType;
-}
-
-export default function NewWellItem({ data }: NewWellItemProp) {
+export default function NewWellItem() {
   const [imgChange, setImgChange] = useState(false);
-  const [value, setValue] = useState({
-    wellIcon: wellIconImg,
-    title: data.title,
-    description: data.description,
-  });
+  const { register, setValue } = useFormContext();
 
   return (
     <Container>
       <IconWrapper onClick={() => setImgChange(true)}>
-        <WellIcon src={value.wellIcon} alt='well' />
+        <WellIcon src={wellIconImg} alt='well' />
         <ImgChangeIcon src={changeIcon} alt='change' />
       </IconWrapper>
       <InfoText>
         <InputWrapper>
           <StyledInput
             type='text'
-            value={value.title}
             $class='title'
-            onChange={(e) =>
-              setValue((prev) => ({ ...prev, title: e.target.value }))
-            }
             placeholder='제목을 추가해보세요'
+            {...register('title')}
           />
-          <DeleteBtn
-            onClick={() => setValue((prev) => ({ ...prev, title: '' }))}
-          >
+          <DeleteBtn onClick={() => setValue('title', '')}>
             <Image src={deleteIcon} alt='delete' />
           </DeleteBtn>
         </InputWrapper>
         <InputWrapper>
           <StyledInput
             type='text'
-            value={value.description}
             $class='desc'
-            onChange={(e) =>
-              setValue((prev) => ({ ...prev, description: e.target.value }))
-            }
+            {...register('description')}
             placeholder='우물을 멋지게 묘사해보세요'
           />
-          <DeleteBtn
-            onClick={() => setValue((prev) => ({ ...prev, description: '' }))}
-          >
+          <DeleteBtn onClick={() => setValue('description', '')}>
             <Image src={deleteIcon} alt='delete' />
           </DeleteBtn>
         </InputWrapper>
       </InfoText>
       <AnimatePresence>
         {imgChange && (
-          <ImgChangePopUp
-            setOpen={setImgChange}
-            setWellIcon={(v) => setValue((prev) => ({ ...prev, wellIcon: v }))}
-          />
+          <ImgChangePopUp setOpen={setImgChange} setWellIcon={() => {}} />
         )}
       </AnimatePresence>
     </Container>

@@ -1,12 +1,15 @@
 'use client';
 
 import WellItem from '@components/wellPage/WellItem';
-import { wellDummy } from '@data/dummyData/wellDummy';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import settingIcon from 'public/icons/well/setting.svg';
 import WellPopUp from '@components/common/popUp/WellPopUp';
+import { useMockData } from 'mock/MockData';
+import WellBook from '@components/wellPage/WellBook';
+import { motion } from 'framer-motion';
+import { bookContainerVariants } from '@styles/framer-motion/variants';
 
 // export async function generateStaticParams() {
 //   const slugs = wellDummy.map((well) => ({
@@ -23,8 +26,9 @@ interface WellDetailPageProps {
 
 export default function WellDetailPage({ params }: WellDetailPageProps) {
   const [open, setOpen] = useState<boolean>(false);
+  const { getWell } = useMockData();
   const { slug } = params;
-  const data = wellDummy.filter((well) => well.id === +slug)[0];
+  const data = getWell(slug);
 
   return (
     <Container>
@@ -34,19 +38,18 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
           설정 <Image src={settingIcon} alt='setting' />
         </Setting>
       </WellInfoWrapper>
-      <BookContainer>
-        <Book $margin='0px 0px 0px 30px'>
-          <span>노르웨이의 숲</span>
-        </Book>
-        <Book $margin='0px 20px 0px 0px'>
-          <span>노르웨이의 숲</span>
-        </Book>
-        <Book $margin='0px 0px 0px 0px'>
-          <span>노르웨이의 숲</span>
-        </Book>
-        <Book $margin='0px 30px 0px 0px'>
-          <span>노르웨이의 숲</span>
-        </Book>
+      <BookContainer
+        variants={bookContainerVariants}
+        initial='in'
+        animate='show'
+      >
+        {data.books ? (
+          data.books.map((book: any) => {
+            return <WellBook key={book.id} bookData={book} />;
+          })
+        ) : (
+          <></>
+        )}
       </BookContainer>
       {open && <WellPopUp wellId={data.id} setOpen={setOpen} />}
     </Container>
@@ -72,34 +75,14 @@ const WellInfoWrapper = styled.div`
   left: 0;
 `;
 
-const BookContainer = styled.div`
+const BookContainer = styled(motion.div)`
   width: 80%;
   min-height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: end;
   background-color: ${({ theme }) => theme.colors.bg_white};
-`;
-
-const Book = styled.div<{ $margin: string }>`
-  width: 180px;
-  height: 40px;
-  display: flex;
-  margin: ${({ $margin }) => $margin};
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  background-color: ${({ theme }) => theme.colors.key_color};
-
-  & span {
-    writing-mode: vertical-lr;
-    text-orientation: upright;
-    transform: rotate(270deg);
-    font-size: ${({ theme }) => theme.fontSize.base};
-    height: 170px;
-    text-align: center;
-  }
 `;
 
 const Setting = styled.button`

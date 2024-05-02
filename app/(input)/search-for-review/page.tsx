@@ -15,7 +15,6 @@ function SearchForReviewPage() {
   const handleBookClick = (bookData: BookDataType) => {
     // query에 책 정보를 포함시켜서 NewReviwPage로 전달
     router.push(`/new-review?selectedBook=${JSON.stringify(bookData)}`);
-    console.log(bookData.id);
   };
 
   return (

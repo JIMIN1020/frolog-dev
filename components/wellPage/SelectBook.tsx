@@ -4,16 +4,39 @@ import Rating from '@components/common/Rating';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import checkIcon from 'public/icons/common/checked.svg';
-import uncheckIcon from 'public/icons/common/unchecked.svg';
+import checkIcon from 'public/icons/well/checked.svg';
+import uncheckIcon from 'public/icons/well/unchecked.svg';
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import { BookType } from '@data/dummyData/bookDummy';
 
-function SelectBook() {
+interface SelectBookProps {
+  bookData: BookType;
+}
+
+function SelectBook({ bookData }: SelectBookProps) {
   const [checked, setChecked] = useState<boolean>(false);
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'books',
+  });
+
+  const handleClick = () => {
+    if (checked) {
+      const idx = fields.findIndex((f) => f.id === bookData.id);
+      remove(idx);
+      setChecked(false);
+    } else {
+      append({ id: `review-id-${Date.now()}`, name: bookData.name });
+      setChecked(true);
+    }
+  };
+
   return (
     <Container>
       <ImgWrapper>
         <BookImg src='' alt='' />
-        <CheckButton onClick={() => setChecked((prev) => !prev)}>
+        <CheckButton type='button' onClick={handleClick}>
           {checked ? (
             <Image src={checkIcon} alt='check' />
           ) : (
@@ -22,8 +45,10 @@ function SelectBook() {
         </CheckButton>
       </ImgWrapper>
       <Content>
-        <TitleAndAuthor>노르웨이의 숲 / 무라카미 하루키</TitleAndAuthor>
-        <Rating rating={5} starSize={12} gap={4} fontSize={10} />
+        <TitleAndAuthor>
+          {bookData.name} / {bookData.author}
+        </TitleAndAuthor>
+        <Rating rating={bookData.rating} starSize={12} gap={4} fontSize={10} />
       </Content>
     </Container>
   );

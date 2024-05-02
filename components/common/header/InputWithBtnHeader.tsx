@@ -4,13 +4,18 @@ import React from 'react';
 import styled from 'styled-components';
 import searchIcon from 'public/icons/header/search-icon.svg';
 import Image from 'next/image';
-import Link from 'next/link';
-import BackButton from '../button/BackButton';
+import arrowLeft from 'public/icons/notice/arrow-left.svg';
 
-function InputWithBtnHeader() {
+interface InputWithBtnHeaderProps {
+  handleDone: () => void;
+}
+
+function InputWithBtnHeader({ handleDone }: InputWithBtnHeaderProps) {
   return (
     <HeaderContainer>
-      <BackButton />
+      <BackBtn type='button' onClick={handleDone}>
+        <Image src={arrowLeft} alt='back' />
+      </BackBtn>
       <InputWrapper>
         <SearchIcon src={searchIcon} alt='search' />
         <SearchInput
@@ -18,7 +23,9 @@ function InputWithBtnHeader() {
           placeholder='책 제목, 작가 이름 등으로 검색해보세요!'
         />
       </InputWrapper>
-      <DoneBtn href='/well/1'>완료</DoneBtn>
+      <DoneBtn type='button' onClick={handleDone}>
+        완료
+      </DoneBtn>
     </HeaderContainer>
   );
 }
@@ -77,7 +84,7 @@ const SearchIcon = styled(Image)`
   z-index: 10;
 `;
 
-const DoneBtn = styled(Link)`
+const DoneBtn = styled.button`
   background: none;
   border: none;
   text-decoration: none;
@@ -85,4 +92,12 @@ const DoneBtn = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.xxxl};
   cursor: pointer;
   font-weight: 500;
+`;
+
+const BackBtn = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0px;
+  cursor: pointer;
 `;

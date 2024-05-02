@@ -3,7 +3,7 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { modalBackgroundVariants } from '@styles/framer-motion/modalBackground';
+import { modalBackgroundVariants } from '@styles/framer-motion/variants';
 import Cancel from 'public/icons/popUp/Cancel.svg';
 import styled from 'styled-components';
 import { reportData } from '../../../data/reportData';

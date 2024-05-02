@@ -2,18 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-interface HeaderWithBtnProps {
-  /* 우물 생성 단계인지에 대한 여부 */
-  isNew: boolean;
-}
-
-function HeaderWithBtn({ isNew }: HeaderWithBtnProps) {
+function HeaderWithBtn() {
   return (
     <HeaderContainer>
       <Link href='/' style={{ textDecoration: 'none' }}>
         <Logo>Frolog</Logo>
       </Link>
-      <DoneBtn href={isNew ? '/well' : '/well/1'}>완료</DoneBtn>
+      <DoneBtn type='submit'>완료</DoneBtn>
     </HeaderContainer>
   );
 }
@@ -48,7 +43,7 @@ const Logo = styled.h1`
   cursor: pointer;
 `;
 
-const DoneBtn = styled(Link)`
+const DoneBtn = styled.button`
   background: none;
   border: none;
   text-decoration: none;

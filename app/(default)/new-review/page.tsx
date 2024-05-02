@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { userTestData } from 'mock/testData/user';
+import { useMockData } from 'mock/MockData';
 import * as S from '@styles/pages/newReviewPage';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -20,6 +22,7 @@ function NewReviewPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedBook = JSON.parse(searchParams?.get('selectedBook') as string);
+  const { updateReview } = useMockData();
   const [step, setStep] = useState(1); // 리뷰 작성 단계 관리를 위한 step
 
   /* ----- react-hook-form을 이용한 form 생성 ----- */
@@ -39,8 +42,20 @@ function NewReviewPage() {
   };
 
   /* ----- 폼 제출 처리 ----- */
-  const onSubmit = () => {
+  const onSubmit = (data: any) => {
     // 서버로 데이터 전송 로직 구현
+
+    const newReviewData = {
+      id: `my-review-${Date.now()}`,
+      user: userTestData,
+      bookImage: selectedBook.img,
+      bookName: selectedBook.name,
+      bookAuthor: selectedBook.author,
+      ...data,
+      commentsCount: 3,
+    };
+
+    updateReview(newReviewData);
     router.push('/review-finish');
   };
 

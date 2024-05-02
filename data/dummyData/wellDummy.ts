@@ -1,5 +1,6 @@
 export interface WellDataType {
   id: number;
+  wellIcon?: string;
   title: string;
   description: string;
 }

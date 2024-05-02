@@ -22,3 +22,13 @@ export const consData: ProsAndConsType[] = [
   { id: 6, content: '지루해요' },
   { id: 7, content: '흠...' },
 ];
+
+export const getProTagById = (id: number) => {
+  const data = prosData.find((tag) => tag.id === id);
+  return data;
+};
+
+export const getConTagById = (id: number) => {
+  const data = consData.find((tag) => tag.id === id);
+  return data;
+};

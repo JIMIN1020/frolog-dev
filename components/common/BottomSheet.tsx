@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { motion, useAnimation, useDragControls } from 'framer-motion';
-import { modalBackgroundVariants } from '@styles/framer-motion/modalBackground';
+import { modalBackgroundVariants } from '@styles/framer-motion/variants';
 import Line from 'public/icons/bottomSheet/Line.svg';
 import { fadeUp } from '@styles/GlobalStyles';
 import useClickOutside from '@hooks/useClickOutside';

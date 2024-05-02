@@ -3,15 +3,14 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { modalBackgroundVariants } from '@styles/framer-motion/modalBackground';
+import { modalBackgroundVariants } from '@styles/framer-motion/variants';
 import Cancel from 'public/icons/popUp/Cancel.svg';
-import wellIcon from 'public/icons/well/well-icon.svg';
 import styled from 'styled-components';
 import useClickOutside from '../../../hooks/useClickOutside';
 
 interface ImgChangePopUpProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setWellIcon: (v: string) => void;
+  setWellIcon: () => void;
 }
 
 function ImgChangePopUp({ setOpen, setWellIcon }: ImgChangePopUpProps) {
@@ -34,9 +33,7 @@ function ImgChangePopUp({ setOpen, setWellIcon }: ImgChangePopUpProps) {
         exit={{ opacity: 0, y: 30 }}
       >
         <MenuItem>앨범에서 사진 선택</MenuItem>
-        <MenuItem onClick={() => setWellIcon(wellIcon)}>
-          기본 이미지로 변경
-        </MenuItem>
+        <MenuItem onClick={() => setWellIcon()}>기본 이미지로 변경</MenuItem>
 
         <CancelBtn onClick={() => setOpen(false)}>
           <Image src={Cancel} alt='cancel' />
