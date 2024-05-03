@@ -30,7 +30,7 @@ const Header = styled.header`
   padding: 14px 0;
   position: relative;
   border-bottom: 8px solid ${({ theme }) => theme.colors.key_color};
-  height: 80px;
+  height: 70px;
 
   & h1 {
     width: 100%;

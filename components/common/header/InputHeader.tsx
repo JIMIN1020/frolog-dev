@@ -24,8 +24,6 @@ function InputHeader({ searchValue, setSearchValue }: InputHeaderProps) {
       <CancelIcon onClick={() => setSearchValue('')}>
         <Image src={inputCancel} alt='cancel' />
       </CancelIcon>
-
-      <BottomBar />
     </HeaderContainer>
   );
 }
@@ -34,7 +32,7 @@ export default InputHeader;
 
 const HeaderContainer = styled.header`
   width: 100%;
-  height: 80px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,14 +79,4 @@ const CancelIcon = styled.button`
   cursor: pointer;
   background: none;
   border: none;
-`;
-
-const BottomBar = styled.div`
-  width: 100%;
-  height: 8px;
-  flex-shrink: 0;
-  background: ${({ theme }) => theme.colors.key_color};
-  position: absolute;
-  left: 0;
-  bottom: 0;
 `;

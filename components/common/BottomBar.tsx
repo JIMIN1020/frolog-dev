@@ -107,6 +107,6 @@ const Icon = styled(Image)`
 `;
 
 const ButtonText = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.xs};
+  font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.text_gray};
 `;

@@ -17,14 +17,14 @@ export const ButtonContainer = styled.div`
   gap: 25px;
 `;
 
-export const Button = styled.button<{ type: string }>`
+export const Button = styled.button`
   width: 288px;
   height: 44px;
   border-radius: 50px;
-  background: ${({ theme, type }) =>
-    type === 'submit' ? theme.colors.key_color : theme.colors.button_gray};
+  background: ${({ theme }) => theme.colors.key_color};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   color: ${({ theme }) => theme.colors.text_white};
   font-weight: 600;
   font-size: ${({ theme }) => theme.fontSize.lg};
+  cursor: pointer;
 `;

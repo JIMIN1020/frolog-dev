@@ -21,11 +21,6 @@ function BookCardWithBtn({ bookData }: BookCardHorizontalProps) {
         <Author>{author}</Author>
         <Summary>{summary}</Summary>
       </Content>
-      <ReviewButton>
-        리뷰
-        <br />
-        쓰기
-      </ReviewButton>
     </BookContainer>
   );
 }
@@ -40,20 +35,6 @@ export const BookContainer = styled.div`
   padding: 12px;
   position: relative;
   background-color: ${({ theme }) => theme.colors.key_color_light};
-`;
-
-const ReviewButton = styled.button`
-  width: 44px;
-  height: 44px;
-  background-color: ${({ theme }) => theme.colors.key_color};
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: ${({ theme }) => theme.colors.text_white};
-  font-size: ${({ theme }) => theme.fontSize.base};
-  position: absolute;
-  top: 0;
-  right: 0;
 `;
 
 export const BookImg = styled(Image)`

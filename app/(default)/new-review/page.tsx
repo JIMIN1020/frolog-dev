@@ -32,18 +32,15 @@ function NewReviewPage() {
       rating: 0,
       oneLiner: '',
       review: '',
+      pros: [],
+      cons: [],
     },
   });
-  const { handleSubmit } = methods;
-
-  /* ----- 폼 제출 시 에러 처리 ----- */
-  const onError = (error: any) => {
-    console.log(error);
-  };
 
   /* ----- 폼 제출 처리 ----- */
-  const onSubmit = (data: any) => {
+  const onSubmit = () => {
     // 서버로 데이터 전송 로직 구현
+    const data = methods.getValues();
 
     const newReviewData = {
       id: `my-review-${Date.now()}`,
@@ -69,12 +66,12 @@ function NewReviewPage() {
       </S.Header>
       {/* react-hook-form의 FormProvider */}
       <FormProvider {...methods}>
-        <S.Form onSubmit={handleSubmit(onSubmit, onError)}>
+        <S.Form>
           {/* 단계별로 표시될 컴포넌트들 조건부 렌더링 */}
           {step === 1 && (
             <ReviewStep1Page selectedBook={selectedBook} setStep={setStep} />
           )}
-          {step === 2 && <ReviewStep2Page />}
+          {step === 2 && <ReviewStep2Page onSubmit={onSubmit} />}
         </S.Form>
       </FormProvider>
     </S.PageContainer>

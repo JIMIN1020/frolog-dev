@@ -28,6 +28,7 @@ export default BookImage;
 const BookImageContainer = styled.div`
   display: flex;
   margin: 35px auto;
+  margin-bottom: 0px;
   width: 160px;
   height: 250px;
   flex-direction: column;

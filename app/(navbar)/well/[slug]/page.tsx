@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import settingIcon from 'public/icons/well/setting.svg';
 import WellPopUp from '@components/common/popUp/WellPopUp';
+import ProfileHeader from '@components/common/header/ProfileHeader';
 import { useMockData } from 'mock/MockData';
 import WellBook from '@components/wellPage/WellBook';
 import { motion } from 'framer-motion';
@@ -32,6 +33,7 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
 
   return (
     <Container>
+      <ProfileHeader />
       <WellInfoWrapper>
         <WellItem data={data} />
         <Setting onClick={() => setOpen(true)}>
@@ -58,10 +60,11 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
 
 const Container = styled.div`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.input_gray};
 `;
 
@@ -71,13 +74,13 @@ const WellInfoWrapper = styled.div`
   padding: 20px 10px 0 10px;
 
   position: absolute;
-  top: 0;
+  top: 60px;
   left: 0;
 `;
 
 const BookContainer = styled(motion.div)`
   width: 80%;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;

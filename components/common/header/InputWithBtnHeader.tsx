@@ -34,7 +34,7 @@ export default InputWithBtnHeader;
 
 const HeaderContainer = styled.header`
   width: 100%;
-  height: 80px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,7 +42,6 @@ const HeaderContainer = styled.header`
   padding-left: 40px;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg_white};
-  border-bottom: 8px solid ${({ theme }) => theme.colors.key_color};
 
   position: -webkit-sticky;
   position: sticky;

@@ -16,9 +16,12 @@ function BookSelectionPage({ handleDone }: BookSelectionPageProps) {
       <InputWithBtnHeader handleDone={handleDone} />
       <BookContainer>
         <Wrapper>
-          {bookDummy.map((book) => {
-            return <SelectBook key={book.id} bookData={book} />;
-          })}
+          <p>내가 리뷰 쓴 도서 리스트</p>
+          <BookWrapper>
+            {bookDummy.map((book) => {
+              return <SelectBook key={book.id} bookData={book} />;
+            })}
+          </BookWrapper>
         </Wrapper>
       </BookContainer>
     </Container>
@@ -39,12 +42,26 @@ const Container = styled.div`
 
 const BookContainer = styled.div`
   width: 100%;
-  padding: 30px;
+  padding: 0 30px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  & p {
+    width: 100%;
+    font-size: ${({ theme }) => theme.fontSize.md};
+    color: ${({ theme }) => theme.colors.text_lightgray};
+    font-weight: 300;
+  }
+`;
+
+const BookWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;

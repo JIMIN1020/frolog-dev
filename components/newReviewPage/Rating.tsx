@@ -29,7 +29,10 @@ function Rating() {
 
   return (
     <RatingContainer>
-      <RatingText>{rating}점</RatingText>
+      <RatingText>
+        <h4>{rating}점</h4>
+        <span>별점을 남겨주세요</span>
+      </RatingText>
       <StarContainer>
         {Array.from({ length: 5 }, (_, index) => {
           let src;
@@ -79,11 +82,23 @@ const Star = styled(Image)`
   }
 `;
 
-const RatingText = styled.h4`
-  text-align: center;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.key_color};
-  font-size: ${({ theme }) => theme.fontSize.rating};
+const RatingText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  & h4 {
+    text-align: center;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.key_color};
+    font-size: ${({ theme }) => theme.fontSize.rating};
+  }
+
+  & span {
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    color: ${({ theme }) => theme.colors.text_gray};
+    font-weight: 400;
+  }
 `;
 
 const StarContainer = styled.div`

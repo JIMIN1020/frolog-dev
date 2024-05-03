@@ -35,7 +35,7 @@ function TagContainer({ tagData, type }: TagContainerProps) {
     <Container>
       <SectionContainer $type={type}>
         <h2>{type === 'pros' ? '장점' : '단점'}</h2>
-        <span> * 최대 5개까지 선택가능해요</span>
+        <span> * 최소 1개 이상 최대 5개까지 골라주세요.</span>
       </SectionContainer>
       <TagWrapper>
         {tagData.map((item) => (
@@ -77,6 +77,7 @@ const SectionContainer = styled.div<{ $type: string }>`
   & span {
     color: ${({ theme }) => theme.colors.text_lightgray};
     font-size: ${({ theme }) => theme.fontSize.lg};
+    font-weight: 300;
   }
 `;
 

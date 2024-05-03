@@ -4,8 +4,8 @@ import Rating from '@components/common/Rating';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import checkIcon from 'public/icons/well/checked.svg';
-import uncheckIcon from 'public/icons/well/unchecked.svg';
+import checkIcon from 'public/icons/common/checked.svg';
+import uncheckIcon from 'public/icons/common/unchecked.svg';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { BookType } from '@data/dummyData/bookDummy';
 

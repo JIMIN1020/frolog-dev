@@ -54,6 +54,6 @@ const Wrapper = styled.div`
 
 const AdContainer = styled.div`
   width: 100%;
-  padding: 16px 18px;
+  padding: 0px 18px 16px 18px;
   background-color: ${({ theme }) => theme.colors.bg_white};
 `;

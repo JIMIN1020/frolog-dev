@@ -15,7 +15,7 @@ function LoginPrompt() {
           로그인을 하고
           <br />더 많은 기능을 체험해보세요!
         </PromptText>
-        <LoginButton href='/login'>로그인하러가기</LoginButton>
+        <LoginButton href='/login'>Frolog 로그인</LoginButton>
       </TextAndButtonContainer>
     </PromptContainer>
   );
@@ -46,12 +46,13 @@ const TextAndButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-left: 40px;
+  gap: 6px;
 `;
 
 const PromptText = styled.p`
   color: ${({ theme }) => theme.colors.text_black};
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSize.sm}; //너무 작은 것 같아요...!
+  font-size: ${({ theme }) => theme.fontSize.md};
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -60,13 +61,14 @@ const PromptText = styled.p`
 `;
 
 const LoginButton = styled(Link)`
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colors.key_color_deep};
+  border-radius: 50px;
+  background: ${({ theme }) => theme.colors.key_color};
   flex-shrink: 0;
   text-align: center;
-  padding: 8px 28px;
+  padding: 10px 40px;
   color: ${({ theme }) => theme.colors.text_white};
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-size: ${({ theme }) => theme.fontSize.md};
+  font-weight: 500;
 
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;

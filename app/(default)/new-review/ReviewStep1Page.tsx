@@ -40,12 +40,16 @@ function ReviewStep1Page({ selectedBook, setStep }: ReviewStep1PageProps) {
 
   return (
     <S.Container>
-      {selectedBook && (
-        <BookImage
-          imageUrl={selectedBook.img}
-          onChangeClick={() => router.push('/search-for-review')}
-        />
-      )}
+      <S.BookWrapper>
+        {selectedBook && (
+          <BookImage
+            imageUrl={selectedBook.img}
+            onChangeClick={() => router.push('/search-for-review')}
+          />
+        )}
+        <h2>{selectedBook.name}</h2>
+        <span>{selectedBook.author}</span>
+      </S.BookWrapper>
       <Rating />
       <OneLiner />
       <Review />

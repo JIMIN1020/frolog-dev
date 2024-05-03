@@ -1,7 +1,11 @@
+'use client';
+
+import Image from 'next/image';
 import React from 'react';
+import menuIcon from 'public/icons/common/menu-bar.svg';
 import styled from 'styled-components';
 
-function HeaderWithBtn() {
+function ProfileHeader() {
   return (
     <HeaderContainer>
       <LeftSection>
@@ -14,12 +18,14 @@ function HeaderWithBtn() {
           <UserNickname>느긋한 돌멩이</UserNickname>
         </UserInfo>
       </LeftSection>
-      <DoneBtn type='submit'>완료</DoneBtn>
+      <MenuBtn>
+        <Image src={menuIcon} alt='menu' />
+      </MenuBtn>
     </HeaderContainer>
   );
 }
 
-export default HeaderWithBtn;
+export default ProfileHeader;
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -76,12 +82,8 @@ const UserNickname = styled.div`
   line-height: normal;
 `;
 
-const DoneBtn = styled.button`
+const MenuBtn = styled.button`
   background: none;
   border: none;
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.text_lightgray};
-  font-size: ${({ theme }) => theme.fontSize.xxxl};
   cursor: pointer;
-  font-weight: 500;
 `;

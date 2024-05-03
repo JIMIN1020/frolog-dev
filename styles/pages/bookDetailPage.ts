@@ -16,7 +16,6 @@ export const BookContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 8px solid ${({ theme }) => theme.colors.key_color_light};
   border-bottom: 8px solid ${({ theme }) => theme.colors.key_color_light};
 `;
 
