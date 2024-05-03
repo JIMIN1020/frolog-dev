@@ -30,5 +30,6 @@ declare module 'styled-components' {
     xxxl: string;
     title: string;
     rating: string;
+    login: string;
   }
 }

@@ -30,6 +30,7 @@ const fontSize: Font = {
   xxxl: '24px',
   title: '28px',
   rating: '40px',
+  login: '64px',
 };
 
 export const theme = {
