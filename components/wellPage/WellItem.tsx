@@ -16,6 +16,9 @@ interface WellItemProps {
 
 export default function WellItem({ data }: WellItemProps) {
   const [likeOpen, setLikeOpen] = useState<boolean>(false);
+
+  if (!data) return <></>;
+
   return (
     <Container>
       <Wrapper href={`/well/${data.id}`}>

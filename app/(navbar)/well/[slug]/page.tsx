@@ -45,7 +45,7 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
         initial='in'
         animate='show'
       >
-        {data.books ? (
+        {data ? (
           data.books.map((book: any) => {
             return <WellBook key={book.id} bookData={book} />;
           })
@@ -71,16 +71,17 @@ const Container = styled.div`
 const WellInfoWrapper = styled.div`
   width: 100%;
   height: fit-content;
-  padding: 20px 10px 0 10px;
+  padding: 24px 10px 0 10px;
 
   position: absolute;
   top: 60px;
   left: 0;
+  z-index: 10;
 `;
 
 const BookContainer = styled(motion.div)`
   width: 80%;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;

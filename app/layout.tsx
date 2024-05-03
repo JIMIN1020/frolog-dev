@@ -13,7 +13,8 @@ const notoSansKR = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: 'Frolog',
   description: 'Web site created with Next.js.',
-  viewport: 'width=device-width, initial-scale=1, user-scalable=no',
+  viewport:
+    'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
   themeColor: '#ffffff',
 };
 

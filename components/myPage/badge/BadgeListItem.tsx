@@ -5,13 +5,18 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import listIcon from 'public/icons/mypage/list-icon.svg';
 import { BadgeType } from '@data/dummyData/badgeDummy';
+import { DraggableProvided } from 'react-beautiful-dnd';
 
 interface BadgeListItemProps {
   /** 배지 정보 */
   badgeData: BadgeType;
+  provided: DraggableProvided;
 }
 
-export default function BadgeListItem({ badgeData }: BadgeListItemProps) {
+export default function BadgeListItem({
+  badgeData,
+  provided,
+}: BadgeListItemProps) {
   return (
     <BarContainer>
       <LeftSection>
@@ -21,7 +26,9 @@ export default function BadgeListItem({ badgeData }: BadgeListItemProps) {
           <Desc>{badgeData.desc}</Desc>
         </Content>
       </LeftSection>
-      <Image src={listIcon} alt='item' />
+      <div {...provided.dragHandleProps}>
+        <Image src={listIcon} alt='item' />
+      </div>
     </BarContainer>
   );
 }
@@ -30,7 +37,7 @@ const BarContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 8px 16px 16px;
+  padding: 18px;
 `;
 
 const LeftSection = styled.div`

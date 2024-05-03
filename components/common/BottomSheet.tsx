@@ -28,6 +28,7 @@ function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
   const closeBottomsheet = () => {
     controls.start({ y: sheetHeight + 1000 }); // BottomSheet를 애니메이션하여 화면 밖으로 내보냄
     setTimeout(() => setOpen(false), 300); // BottomSheet를 완전히 닫음
+    document.body.style.overflow = 'auto';
   };
 
   /* ----- 바텀시트 바깥 클릭 시 닫힘 hook ----- */
@@ -38,6 +39,7 @@ function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
     if (ref.current) {
       setSheetHeight(ref.current.offsetHeight);
     }
+    document.body.style.overflow = 'hidden';
   }, []);
 
   /* ----- 바텀시트 drag 함수 (drag 속도 기반) ----- */
@@ -136,9 +138,10 @@ const Header = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   border: none;
   background-color: ${({ theme }) => theme.colors.bg_white};
+  border-radius: 18px 18px 0 0;
   color: ${({ theme }) => theme.colors.text_black};
 `;
 

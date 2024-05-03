@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import ReadingTemp from '@components/myPage/ReadingTemp';
-import BadgeBar from '@components/myPage/BadgeBar';
+import BadgeBar from '@components/myPage/badge/BadgeBar';
 import OneLineMessage from '@components/myPage/OneLineMessage';
 import Dashboard from '@components/myPage/Dashboard';
 import ButtonContainer from '@components/myPage/ButtonContainer';

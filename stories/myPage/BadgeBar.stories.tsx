@@ -1,5 +1,5 @@
 // 기본 세팅
-import BadgeBar from '@components/myPage/BadgeBar';
+import BadgeBar from '@components/myPage/badge/BadgeBar';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

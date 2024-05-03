@@ -16,6 +16,11 @@ body {
   overflow: auto;
 }
 
+[data-rbd-draggable-id] {
+  top: auto !important;
+  left: auto !important;
+}
+
 img {
   -webkit-user-drag: none;
   -khtml-user-drag: none;

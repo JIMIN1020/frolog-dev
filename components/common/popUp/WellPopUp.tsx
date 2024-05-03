@@ -26,8 +26,9 @@ function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
 
   /* ----- 우물 삭제 핸들러 ----- */
   const onDeleteWell = () => {
-    deleteWell(wellId);
     router.push('/well');
+    setOpen(false);
+    deleteWell(wellId);
   };
 
   return (

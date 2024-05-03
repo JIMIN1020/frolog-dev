@@ -7,6 +7,7 @@ import WellItem from './WellItem';
 
 function WellList() {
   const { well } = useMockData();
+
   return (
     <S.Content>
       <S.ListTitle>내 우물 리스트</S.ListTitle>
