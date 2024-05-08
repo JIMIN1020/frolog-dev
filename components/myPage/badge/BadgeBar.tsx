@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 import styled from 'styled-components';
-import BadgeBottomSheet from './BadgeBottomSheet';
 
 export default function BadgeBar() {
-  const [open, setOpen] = useState(false);
+  const router = useRouter();
   return (
     <Container>
-      <Title>배지</Title>
-      <BadgeBox onClick={() => setOpen(true)}>
+      <Title>업적</Title>
+      <BadgeBox onClick={() => router.push('/achievement')}>
         <BadgeWrapper>
           <Badge />
           <Badge />
@@ -17,7 +17,6 @@ export default function BadgeBar() {
         </BadgeWrapper>
         <Count>4개</Count>
       </BadgeBox>
-      {open && <BadgeBottomSheet setOpen={setOpen} />}
     </Container>
   );
 }

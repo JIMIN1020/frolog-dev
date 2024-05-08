@@ -30,9 +30,8 @@ const Container = styled.button`
   align-items: center;
   gap: 6px;
   position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0px;
+  right: -40px;
   cursor: pointer;
 `;
 

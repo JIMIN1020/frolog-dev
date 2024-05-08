@@ -42,7 +42,7 @@ function BottomBar({ commentsCount }: BottomBarProps) {
       });
     } catch (err: any) {
       if (!err.toString().includes('cancel')) {
-        alert('Sharing is not supported.');
+        alert('공유 기능이 지원되지 않는 환경입니다.');
       }
     }
   };

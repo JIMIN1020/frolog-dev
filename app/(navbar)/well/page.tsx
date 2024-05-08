@@ -2,12 +2,12 @@ import WellButton from '@components/wellPage/WellButton';
 import WellList from '@components/wellPage/WellList';
 import React from 'react';
 import * as S from '@styles/pages/wellPage';
-import ProfileHeader from '@components/common/header/ProfileHeader';
+import ProfileHeaderWithRank from '@components/common/header/profileHeader/ProfileHeaderWithRank';
 
 function WellPage() {
   return (
     <S.Container>
-      <ProfileHeader />
+      <ProfileHeaderWithRank />
       <WellButton />
       <WellList />
     </S.Container>

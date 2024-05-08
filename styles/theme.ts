@@ -12,7 +12,7 @@ const colors: Colors = {
   text_darkgray: '#404040',
   text_gray: '#818181',
   text_lightgray: '#B1B1B1',
-  text_red: '#F00',
+  text_red: '#DD4200',
   input_gray: '#D9D9D9',
   button_gray: '#c4c4c4',
   error_red: '#DB1D18',

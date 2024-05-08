@@ -31,7 +31,7 @@ interface WellFormType {
 // 우물 정보 -> react hook form으로 관리
 export default function WellEditPage() {
   const router = useRouter();
-  const [isSelecting, setIsSelecting] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false); // 책 선택 중인지 여부
   const { getWell, addWell, editWell } = useMockData();
   const isNew = useSearchParams().get('new') === 'true'; // 생성 페이지인지에 대한 여부
   const wellId = useSearchParams().get('wellId');
@@ -47,6 +47,12 @@ export default function WellEditPage() {
       books: wellData ? wellData.books : [],
     },
   });
+
+  // if (isSelecting) {
+  //   document.body.style.overflow = 'hidden';
+  // } else {
+  //   document.body.style.overflow = 'auto';
+  // }
 
   const { watch, handleSubmit } = methods;
   const books = watch('books');
@@ -94,17 +100,17 @@ export default function WellEditPage() {
             ))}
           </BookContainer>
         </Wrapper>
-        {isSelecting && (
-          <BookSelectionPage handleDone={() => setIsSelecting(false)} />
-        )}
       </FormContainer>
+      {isSelecting && (
+        <BookSelectionPage handleDone={() => setIsSelecting(false)} />
+      )}
     </FormProvider>
   );
 }
 
 const FormContainer = styled.form`
   width: 100%;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100 - 70px);
   display: flex;
   flex-direction: column;
   position: relative;

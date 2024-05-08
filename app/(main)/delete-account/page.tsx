@@ -1,98 +1,96 @@
 'use client';
 
-import { StyledButton } from '@styles/GlobalStyles';
-import React, { useState } from 'react';
+import Image from 'next/image';
+import React from 'react';
 import styled from 'styled-components';
+import frogIcon from 'public/icons/mypage/frog.svg';
+import { statDummy } from '@data/dummyData/statDummy';
+import { StyledButton } from '@styles/GlobalStyles';
+import { useRouter } from 'next/navigation';
 
-export default function DeleteAccountPage() {
-  const [email, setEmail] = useState<string>('');
+function DeleteAccountPage() {
+  const router = useRouter();
   return (
     <Container>
-      <Wrapper>
-        <Message>
-          탈퇴 후에는 동일 아이디로 다시 가입할 수 없으며 아이디와 데이터는
-          복구할 수 없습니다. 게시판 서비스에 남아있는 게시글은 탈퇴 후 삭제할
-          수 없습니다. 또한 프롤로그 계정으로 관련 서비스들을 이용할 수 없게
-          됩니다.
-        </Message>
-        <InputWrapper>
-          <span>계정탈퇴 확인을 위해 이메일 주소를 다시 입력해주세요.</span>
-          <EmailInput
-            type='text'
-            value={email}
-            placeholder='이메일을 입력해주세요'
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </InputWrapper>
-      </Wrapper>
-      <ButtonWrapper>
-        <span>안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
-        <StyledButton disabled={email.trim().length === 0}>
-          회원 탈퇴
+      <Image src={frogIcon} alt='frog' />
+      <Message>
+        탈퇴 후에는 ‘유저’ 님께서 열심히 획득하신 아래 업적들이 모두 삭제되어
+        조회 및 사용할 수 없게 됩니다. 그래도 삭제하시겠습니까?
+      </Message>
+      <StatContainer>
+        {statDummy.map((data) => {
+          return (
+            <Stat key={data.id}>
+              <span>{data.name} :</span>
+              <h5>{data.value}</h5>
+            </Stat>
+          );
+        })}
+      </StatContainer>
+      <BtnContainer>
+        <StyledButton disabled={false} onClick={() => router.push('/myPage')}>
+          취소
         </StyledButton>
-      </ButtonWrapper>
+        <StyledButton
+          disabled={false}
+          $color='button_gray'
+          onClick={() => router.push('/delete-account/confirm')}
+        >
+          회원탈퇴
+        </StyledButton>
+      </BtnContainer>
     </Container>
   );
 }
 
+export default DeleteAccountPage;
+
 const Container = styled.div`
   width: 100%;
-  height: 100%;
   padding: 60px;
+  gap: 36px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-`;
-
-const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
 `;
 
 const Message = styled.p`
-  color: red;
+  color: ${({ theme }) => theme.colors.text_red};
   font-size: ${({ theme }) => theme.fontSize.base};
   line-height: 180%;
   letter-spacing: -0.408px;
 `;
 
-const InputWrapper = styled.div`
+const StatContainer = styled.div`
   width: 100%;
+  padding: 0 30px;
+  gap: 12px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+`;
+
+const Stat = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: ${({ theme }) => theme.colors.text_black};
 
   & span {
-    color: #0038ff;
-    font-size: ${({ theme }) => theme.fontSize.base};
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    font-weight: 400;
+  }
+
+  & h5 {
+    font-size: ${({ theme }) => theme.fontSize.lg};
+    font-weight: 600;
   }
 `;
 
-const ButtonWrapper = styled.div`
+const BtnContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-
-  & span {
-    color: ${({ theme }) => theme.colors.text_gray};
-    font-size: ${({ theme }) => theme.fontSize.base};
-  }
-`;
-
-const EmailInput = styled.input`
-  width: 100%;
-  border: 1px solid #79797b;
-  font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.text_black};
-  padding: 8px 10px;
-  border-radius: 4px;
-
-  &:focus {
-    outline: none;
-  }
+  gap: 16px;
 `;

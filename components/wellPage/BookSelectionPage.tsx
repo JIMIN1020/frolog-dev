@@ -32,20 +32,27 @@ export default BookSelectionPage;
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 999;
   background-color: ${({ theme }) => theme.colors.bg_white};
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const BookContainer = styled.div`
   width: 100%;
+  flex: 1;
   padding: 0 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const Wrapper = styled.div`

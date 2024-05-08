@@ -1,16 +1,14 @@
 'use client';
 
 import WellItem from '@components/wellPage/WellItem';
-import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import settingIcon from 'public/icons/well/setting.svg';
 import WellPopUp from '@components/common/popUp/WellPopUp';
-import ProfileHeader from '@components/common/header/ProfileHeader';
 import { useMockData } from 'mock/MockData';
 import WellBook from '@components/wellPage/WellBook';
 import { motion } from 'framer-motion';
 import { bookContainerVariants } from '@styles/framer-motion/variants';
+import ProfileHeaderInWell from '@components/common/header/profileHeader/ProfileHeaderInWell';
 
 // export async function generateStaticParams() {
 //   const slugs = wellDummy.map((well) => ({
@@ -31,14 +29,28 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
   const { slug } = params;
   const data = getWell(slug);
 
+  /* ----- 우물 공유 함수 ----- */
+  const handleShare = async () => {
+    try {
+      await window.navigator.share({
+        title: 'Well Title', // 실제 값으로 대체 필요
+        url: '',
+      });
+    } catch (err: any) {
+      if (!err.toString().includes('cancel')) {
+        alert('공유 기능이 지원되지 않는 환경입니다.');
+      }
+    }
+  };
+
   return (
     <Container>
-      <ProfileHeader />
+      <ProfileHeaderInWell
+        onClickEdit={() => setOpen(true)}
+        onClickShare={handleShare}
+      />
       <WellInfoWrapper>
         <WellItem data={data} />
-        <Setting onClick={() => setOpen(true)}>
-          설정 <Image src={settingIcon} alt='setting' />
-        </Setting>
       </WellInfoWrapper>
       <BookContainer
         variants={bookContainerVariants}
@@ -60,7 +72,7 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100 - 70px);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -87,19 +99,4 @@ const BookContainer = styled(motion.div)`
   align-items: center;
   justify-content: end;
   background-color: ${({ theme }) => theme.colors.bg_white};
-`;
-
-const Setting = styled.button`
-  background-color: ${({ theme }) => theme.colors.key_color};
-  color: ${({ theme }) => theme.colors.text_white};
-  display: flex;
-  border: none;
-  align-items: center;
-  padding: 6px;
-  border-radius: 8px;
-  gap: 6px;
-  font-size: ${({ theme }) => theme.fontSize.lg};
-  float: right;
-  margin: 12px 0;
-  cursor: pointer;
 `;

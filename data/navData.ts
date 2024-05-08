@@ -4,6 +4,7 @@ export const navData = [
   { route: '/like-book', label: '좋아요한 책' },
   { route: '/like-well', label: '좋아요한 우물' },
   { route: '/change-frog', label: '외형 변경' },
+  { route: '/achievement', label: '내가 모은 업적' },
 ];
 
 export const getLabelByRoute = (route: string) => {

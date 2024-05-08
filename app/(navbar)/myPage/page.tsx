@@ -8,26 +8,16 @@ import BadgeBar from '@components/myPage/badge/BadgeBar';
 import OneLineMessage from '@components/myPage/OneLineMessage';
 import Dashboard from '@components/myPage/Dashboard';
 import ButtonContainer from '@components/myPage/ButtonContainer';
-import MyPageProfile from '@components/myPage/MyPageProfile';
 import frogImg from 'public/icons/mypage/frog.svg';
 import ChangeClothesBtn from '@components/myPage/ChangeClothesBtn';
+import ProfileHeader from '@components/common/header/profileHeader/ProfileHeaderWithMenu';
 
 function MyPage() {
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
   return (
     <Container>
-      <MyPageProfile
-        user={{
-          id: 'user1',
-          name: '김혜나',
-          nickname: '느긋한 돌맹이',
-          profilePicture:
-            'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-        }}
-        isEdit={isEdit}
-        onClickEdit={() => setIsEdit((prev) => !prev)}
-      />
+      <ProfileHeader setIsEdit={setIsEdit} />
       <Wrapper>
         <OneLineMessage isEdit={isEdit} />
         <FrogWrapper>
@@ -37,6 +27,7 @@ function MyPage() {
         <TempAndBadge>
           <ReadingTemp temp={72.8} />
           <BadgeBar />
+          <MemoButton>내 메모</MemoButton>
         </TempAndBadge>
         <Dashboard />
         <ButtonContainer />
@@ -49,11 +40,10 @@ export default MyPage;
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 8px solid ${({ theme }) => theme.colors.key_color_light};
 `;
 
 const Wrapper = styled.div`
@@ -61,7 +51,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 50px;
+  padding: 50px;
 `;
 
 const FrogWrapper = styled.div`
@@ -71,7 +61,7 @@ const FrogWrapper = styled.div`
 const MyPageIcon = styled(Image)`
   width: 200px;
   height: 200px;
-  padding-top: 40px;
+  padding: 40px 0 20px 0;
 `;
 
 const TempAndBadge = styled.div`
@@ -80,4 +70,20 @@ const TempAndBadge = styled.div`
   flex-direction: column;
   gap: 16px;
   margin: 30px 0;
+`;
+
+const MemoButton = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.key_color};
+  border-radius: 12px;
+  padding: 16px 0;
+  margin-top: 8px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  color: ${({ theme }) => theme.colors.text_white};
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-weight: 500;
+  cursor: pointer;
 `;

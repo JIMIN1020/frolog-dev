@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -19,6 +20,7 @@ export const ListTitle = styled.h2`
 
 export const WellWrapper = styled.div`
   width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 18px;

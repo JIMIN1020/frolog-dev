@@ -1,19 +1,15 @@
 'use client';
 
-import BottomSheet from '@components/common/BottomSheet';
-import styled from 'styled-components';
+import BadgeList from '@components/myPage/badge/BadgeList';
+import ChallengeList from '@components/myPage/badge/ChallengeList';
 import React, { useState } from 'react';
-import BadgeList from './BadgeList';
-import ChallengeList from './ChallengeList';
+import styled from 'styled-components';
 
-interface BadgeBottomSheetProps {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function BadgeBottomSheet({ setOpen }: BadgeBottomSheetProps) {
+function AchievementPage() {
   const [tap, setTap] = useState<number>(0);
+
   return (
-    <BottomSheet title='내가 모은 업적' setOpen={setOpen}>
+    <Container>
       <TapBar>
         <TapWrapper>
           <TapButton $type='left' onClick={() => setTap(0)}>
@@ -26,43 +22,59 @@ function BadgeBottomSheet({ setOpen }: BadgeBottomSheetProps) {
             {tap === 0 ? '달성 업적' : '도전 업적'}
           </CurrentTap>
         </TapWrapper>
-        <Count>
+        <TextBox>
           {tap === 0 ? (
-            <>
+            <Count>
               <h5>달성 업적 수 :</h5>
               <span>5</span>
-            </>
+            </Count>
           ) : (
-            <></>
+            <CurrentHit>달성도 :</CurrentHit>
           )}
-        </Count>
+        </TextBox>
       </TapBar>
       {tap === 0 ? <BadgeList /> : <ChallengeList />}
-    </BottomSheet>
+    </Container>
   );
 }
 
-export default BadgeBottomSheet;
+export default AchievementPage;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0;
+`;
 
 const TapBar = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 0 20px;
   gap: 16px;
 `;
 
 const Count = styled.div`
-  height: 16px;
+  height: 100%;
   display: flex;
   gap: 20px;
   color: ${({ theme }) => theme.colors.key_color};
   font-size: ${({ theme }) => theme.fontSize.md};
+  font-weight: 500;
 `;
 
 const TapWrapper = styled.div`
   position: relative;
+`;
+
+const TextBox = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 `;
 
 const TapButton = styled.button<{ $type: string }>`
@@ -93,4 +105,12 @@ const CurrentTap = styled.div<{ $cur: number }>`
   top: 0;
   left: ${({ $cur }) => ($cur === 0 ? '0px' : '120px')};
   transition: all 0.3s ease-in;
+`;
+
+const CurrentHit = styled.span`
+  width: 100%;
+  text-align: end;
+  color: ${({ theme }) => theme.colors.key_color};
+  font-size: ${({ theme }) => theme.fontSize.md};
+  font-weight: 500;
 `;

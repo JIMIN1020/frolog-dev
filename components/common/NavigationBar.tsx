@@ -86,7 +86,7 @@ const NavigationBarContainer = styled.nav`
   position: sticky;
   bottom: 0;
   left: 0;
-  z-index: 800;
+  z-index: 500;
 `;
 
 const NavItem = styled(Link)`

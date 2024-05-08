@@ -74,6 +74,6 @@ const Desc = styled.span`
 
 const Status = styled.span`
   display: flex;
-  color: ${({ theme }) => theme.colors.key_color};
+  color: ${({ theme }) => theme.colors.text_gray};
   font-size: ${({ theme }) => theme.fontSize.xxl};
 `;

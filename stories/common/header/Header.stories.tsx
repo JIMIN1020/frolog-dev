@@ -1,9 +1,10 @@
 // 기본 세팅
+
 import Header from '@components/common/header/Header';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/Headers/Header',
+  title: 'Common/Header',
   component: Header,
   tags: ['autodocs'],
   parameters: {

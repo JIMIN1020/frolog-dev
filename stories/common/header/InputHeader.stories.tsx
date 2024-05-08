@@ -1,9 +1,10 @@
 // 기본 세팅
+
 import InputHeader from '@components/common/header/InputHeader';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'Common/Headers/InputHeader',
+  title: 'Common/InputHeader',
   component: InputHeader,
   tags: ['autodocs'],
   parameters: {

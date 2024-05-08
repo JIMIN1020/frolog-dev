@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useMemo, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import styled, { ThemeProvider } from 'styled-components';
 import NavigationBar from '@components/common/NavigationBar';
@@ -19,6 +19,15 @@ function SearchLayout({ children }: { children: React.ReactNode }) {
 
   // input context
   const contextValue = useMemo(() => ({ searchValue }), [searchValue]);
+
+  const setScreenSize = () => {
+    const vh = window.innerHeight * 0.01; // 하단 bar 제외 높이 -> 100등분 (1vh 구하기 위함)
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  useEffect(() => {
+    setScreenSize();
+  }, []);
 
   return (
     <StyledComponentsRegistry>
