@@ -55,10 +55,10 @@ function NavigationBar() {
         />
         <Label>우물</Label>
       </NavItem>
-      <NavItem href='/myPage'>
+      <NavItem href='/my-page'>
         <Icon
           src={
-            pathname?.startsWith('/myPage')
+            pathname?.startsWith('/my-page')
               ? ProfileClickedIcon
               : ProfileDefaultIcon
           }

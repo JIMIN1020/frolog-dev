@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import wellIconImg from 'public/icons/well/well-icon.svg';
 import Image from 'next/image';

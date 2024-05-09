@@ -7,7 +7,7 @@ import styled from 'styled-components';
 function WellButton() {
   const router = useRouter();
   return (
-    <WellBtnContainer onClick={() => router.push('/well-edit?new=true')}>
+    <WellBtnContainer onClick={() => router.push('/well/edit?new=true')}>
       <WellImg src='' alt='임시' />
       <WellAddButton>우물 새로 파기</WellAddButton>
     </WellBtnContainer>

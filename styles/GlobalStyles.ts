@@ -40,12 +40,9 @@ export const GapContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.key_color_light};
 `;
 
-/* ----- 공통 버튼 스타일 ----- */
-// disabled: disabled 여부 값 -> disabled 이면 회색으로 클릭 안됨
-// color: disabled는 아니지만 색이 달라야 할 때 theme에 있는 키 값 전달
 export const StyledButton = styled.button<{
-  disabled: boolean;
-  $color?: string;
+  disabled: boolean; // disabled 여부 값 -> disabled 이면 회색으로 클릭 안됨
+  $color?: string; // color: disabled는 아니지만 색이 달라야 할 때 theme에 있는 키 값 전달
 }>`
   width: 288px;
   height: 44px;

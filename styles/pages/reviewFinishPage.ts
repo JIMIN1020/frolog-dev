@@ -12,6 +12,7 @@ export const Container = styled.div`
   padding: 70px 0;
   width: 100%;
   height: 100vh;
+  position: relative;
   box-sizing: border-box;
 `;
 
@@ -50,26 +51,4 @@ export const Logo = styled(Image)`
   width: 160px;
   height: 202px;
   flex-shrink: 0;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-`;
-
-export const Button = styled.button`
-  width: 288px;
-  height: 44px;
-  flex-shrink: 0;
-  border-radius: 50px;
-  background: ${({ theme }) => theme.colors.key_color};
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: ${({ theme }) => theme.colors.text_white};
-  font-size: ${({ theme }) => theme.fontSize.lg};
-  transition: background-color 0.3s;
-
-  &:active {
-    box-shadow: none;
-  }
 `;

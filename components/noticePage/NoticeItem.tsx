@@ -9,6 +9,7 @@ interface NoticeItemProps {
 }
 
 function NoticeItem({ noticeData }: NoticeItemProps) {
+  // TODO: 클릭 시 알림 확인 처리 -> api
   return (
     <Container>
       <ProfileImg />

@@ -48,12 +48,6 @@ export default function WellEditPage() {
     },
   });
 
-  // if (isSelecting) {
-  //   document.body.style.overflow = 'hidden';
-  // } else {
-  //   document.body.style.overflow = 'auto';
-  // }
-
   const { watch, handleSubmit } = methods;
   const books = watch('books');
 

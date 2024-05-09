@@ -49,7 +49,7 @@ function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
           <>
             <MenuItem
               onClick={() =>
-                router.push(`/well-edit?new=false&wellId=${wellId}`)
+                router.push(`/well/edit?new=false&wellId=${wellId}`)
               }
             >
               편집하기
