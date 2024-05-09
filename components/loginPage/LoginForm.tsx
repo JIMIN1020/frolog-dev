@@ -3,36 +3,52 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import styled from 'styled-components';
 
-interface LoginFormProps {
-  onSubmit: (data: {
-    username: string;
-    password: string;
-    rememberMe: boolean;
-  }) => void;
-  onError: (error: string) => void;
+interface FormValues {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
 }
 
-interface FormValues {
-  username: string;
-  password: string;
-  rememberMe: boolean;
-}
-function LoginForm({ onSubmit, onError }: LoginFormProps) {
+// 이메일 유효성 검사를 위한 스키마
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .required('이메일을 입력해주세요')
+      .email('이메일 형식이 아닙니다.'),
+    password: yup.string().required('비밀번호를 입력해주세요'),
+    rememberMe: yup.boolean(),
+  })
+  .required();
+
+function LoginForm() {
   const router = useRouter();
   const [generalError, setGeneralError] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(false); // 나중에 변경해야 할 것임. 로그인 성공 상태 관리해서 페이지 이동해보기.
-  const { register, handleSubmit } = useForm<FormValues>({ mode: 'onSubmit' });
+  const [loginSuccess, setLoginSuccess] = useState(false); // TODO: 나중에 이부분 관련해서 수정해야 함. 로그인 성공시, 실패시 화면 다르게 보이도록.
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({ resolver: yupResolver(schema), mode: 'onSubmit' });
 
   const onSubmitHandler = async (data: FormValues) => {
     try {
-      // TODO: API 로그인 호출
-      await onSubmit(data);
-      setLoginSuccess(true);
+      // TODO: 백엔드 API 호출 구현 예정
+      // 로그인 시뮬레이션: 더미 데이터로 체크함.
+      if (
+        data.email === 'frolog@naver.com' &&
+        data.password === 'frolog1234!'
+      ) {
+        setLoginSuccess(true);
+      } else {
+        throw new Error('로그인 실패.');
+      }
     } catch (error) {
-      setGeneralError('아이디/비밀번호를 확인해주세요');
-      onError('아이디/비밀번호를 확인해주세요');
+      setGeneralError('이메일 또는 비밀번호를 확인해주세요');
     }
   };
 
@@ -45,17 +61,28 @@ function LoginForm({ onSubmit, onError }: LoginFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <InputContainer>
-        <StyledInput id='username' type='text' placeholder='아이디' />
-        <StyledInput id='password' type='password' placeholder='비밀번호' />
+        <StyledInput
+          id='email'
+          type='email'
+          placeholder='이메일'
+          {...register('email')}
+        />
+        {errors.email && <ErrorMessage1>{errors.email.message}</ErrorMessage1>}
+        <StyledInput
+          id='password'
+          type='password'
+          placeholder='비밀번호'
+          {...register('password')}
+        />
+        {errors.password && (
+          <ErrorMessage1>{errors.password.message}</ErrorMessage1>
+        )}
       </InputContainer>
       <LabelContainer>
-        <label htmlFor='rememberMe'>
-          <input type='checkbox' id='rememberMe' {...register('rememberMe')} />
-          자동 로그인
-        </label>
+        <Checkbox type='checkbox' id='rememberMe' {...register('rememberMe')} />
+        <label htmlFor='rememberMe'>자동 로그인</label>
       </LabelContainer>
-
-      {generalError && <ErrorMessage>{generalError}</ErrorMessage>}
+      {generalError && <ErrorMessage2>{generalError}</ErrorMessage2>}
       <LoginButton type='submit'>로그인</LoginButton>
     </form>
   );
@@ -74,8 +101,10 @@ const InputContainer = styled.div`
 
 const LabelContainer = styled.div`
   display: flex;
+  align-items: center;
   color: ${({ theme }) => theme.colors.text_black};
   font-size: ${({ theme }) => theme.fontSize.base};
+  margin-bottom: 10px;
 `;
 const StyledInput = styled.input`
   width: 288px;
@@ -95,9 +124,41 @@ const LoginButton = styled.button`
   margin-top: 53px;
 `;
 
-const ErrorMessage = styled.small`
+const Checkbox = styled.input`
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.text_lightgray};
+  border-radius: 3px;
+  background-color: ${({ theme }) => theme.colors.bg_white};
+  margin-right: 7px;
+
+  &:checked {
+    background-color: ${({ theme }) => theme.colors.key_color};
+    border-color: ${({ theme }) => theme.colors.key_color};
+  }
+
+  &:checked::after {
+    content: '✔';
+    color: ${({ theme }) => theme.colors.bg_white};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+`;
+
+const ErrorMessage1 = styled.small`
   display: block;
   color: red;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  font-size: ${({ theme }) => theme.fontSize.md};
+`;
+
+const ErrorMessage2 = styled.small`
+  display: flex;
+  justify-content: center;
+  color: red;
+  margin-top: 30px;
+  margin-bottom: -30px;
+  font-size: ${({ theme }) => theme.fontSize.md};
 `;

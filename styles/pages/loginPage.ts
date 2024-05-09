@@ -32,7 +32,7 @@ export const LinksContainer = styled.div`
   margin-top: 20px;
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled.div`
   color: ${({ theme }) => theme.colors.text_gray};
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: 600;
@@ -42,6 +42,7 @@ export const StyledLink = styled.a`
 export const Divider = styled.div`
   width: 2px;
   height: 12px;
+  justify-content: center;
   background-color: ${({ theme }) => theme.colors.text_gray};
 `;
 
