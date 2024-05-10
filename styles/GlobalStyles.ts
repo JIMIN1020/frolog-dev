@@ -56,5 +56,7 @@ export const StyledButton = styled.button<{
   cursor: pointer;
 
   background-color: ${({ theme, disabled, $color }) =>
-    disabled ? theme.colors.button_gray : theme.colors[$color || 'key_color']};
+    disabled
+      ? theme.colors.button_gray
+      : theme.colors[($color as keyof typeof theme.colors) || 'key_color']};
 `;

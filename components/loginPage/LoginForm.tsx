@@ -80,10 +80,13 @@ function LoginForm() {
       </InputContainer>
       <LabelContainer>
         <Checkbox type='checkbox' id='rememberMe' {...register('rememberMe')} />
-        <label htmlFor='rememberMe'>자동 로그인</label>
+        <label htmlFor='rememberMe'>로그인 상태 유지</label>
       </LabelContainer>
       {generalError && <ErrorMessage2>{generalError}</ErrorMessage2>}
-      <LoginButton type='submit'>로그인</LoginButton>
+      <ButtonContainer>
+        <LoginButton type='submit'>로그인</LoginButton>
+        <GuestButton type='submit'>게스트 로그인</GuestButton>
+      </ButtonContainer>
     </form>
   );
 }
@@ -106,6 +109,7 @@ const LabelContainer = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
   margin-bottom: 10px;
 `;
+
 const StyledInput = styled.input`
   width: 288px;
   height: 44px;
@@ -122,6 +126,18 @@ const LoginButton = styled.button`
   color: ${({ theme }) => theme.colors.text_white};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-top: 53px;
+`;
+
+const GuestButton = styled.button`
+  width: 288px;
+  height: 44px;
+  border-radius: 50px;
+  margin-top: 20px;
+  background: ${({ theme }) => theme.colors.button_gray};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  color: ${({ theme }) => theme.colors.text_white};
+  font-size: ${({ theme }) => theme.fontSize.lg};
 `;
 
 const Checkbox = styled.input`
@@ -146,6 +162,13 @@ const Checkbox = styled.input`
     align-items: center;
     height: 100%;
   }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
 const ErrorMessage1 = styled.small`
