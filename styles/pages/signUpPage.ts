@@ -32,3 +32,7 @@ export const Description = styled.p`
   text-align: center;
   margin-bottom: 40px;
 `;
+
+export const Form = styled.form`
+  padding: 10px 30px;
+`;
