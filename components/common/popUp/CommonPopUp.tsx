@@ -3,28 +3,53 @@
 import { StyledButton } from '@styles/GlobalStyles';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import cancelIcon from 'public/icons/common/cancel-x.svg';
+import useClickOutside from '@hooks/useClickOutside';
+import { modalBackgroundVariants } from '@styles/framer-motion/variants';
 
 interface CommonPopUpProps {
   title: string;
   text: React.ReactNode; // <>제목<> 형태로 전달 -> 중간에 <br/> 태그로 줄바꿈 해야하는 경우가 있기 때문
   btnText: string;
-  handleClick: () => void;
+  closePopup: () => void; // 팝업 닫힘 함수
+  handleClick: () => void; // 팝업 버튼 클릭 핸들러 함수
 }
 
-function CommonPopUp({ title, text, btnText, handleClick }: CommonPopUpProps) {
+function CommonPopUp({
+  title,
+  text,
+  btnText,
+  closePopup,
+  handleClick,
+}: CommonPopUpProps) {
+  const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
+
+  /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
+  useClickOutside(ref, () => closePopup());
+
   return (
-    <Background>
-      <PopUp>
+    <Background
+      variants={modalBackgroundVariants}
+      initial='initial'
+      animate='animate'
+      exit='exit'
+    >
+      <PopUp
+        ref={ref}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0 }}
+        transition={{ duration: 0.3, type: 'spring' }}
+      >
         <Icon src='' alt='' />
-        <CancelButton>
+        <CancelButton type='button' onClick={() => closePopup()}>
           <Image src={cancelIcon} alt='cancel' />
         </CancelButton>
         <Title>{title}</Title>
         <Text>{text}</Text>
-        <StyledButton disabled={false} onClick={handleClick}>
+        <StyledButton type='button' disabled={false} onClick={handleClick}>
           {btnText}
         </StyledButton>
       </PopUp>
@@ -90,6 +115,7 @@ const Title = styled.h4`
 const Text = styled.p`
   font-size: ${({ theme }) => theme.fontSize.md};
   line-height: 140%;
+  text-align: center;
 `;
 
 const CancelButton = styled.button`

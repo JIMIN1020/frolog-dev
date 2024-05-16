@@ -9,6 +9,7 @@ import FrologPick from '@components/searchPage/FrologPick';
 import SearchResultList from '@components/searchPage/SearchResultList';
 import { BookDataType } from '@data/dummyData/recommendDummy';
 import { useRouter } from 'next/navigation';
+import BookRegister from '@components/searchPage/BookRegister';
 
 function SearchPage() {
   const router = useRouter();
@@ -22,9 +23,11 @@ function SearchPage() {
 
   return (
     <Container>
-      {searchValue.length > 0 ? (
+      {searchValue.length > 0 && searchValue.length < 10 && (
         <SearchResultList handleClick={handleBookClick} />
-      ) : (
+      )}
+      {searchValue.length >= 10 && <BookRegister />}
+      {searchValue.length === 0 && (
         <Wrapper>
           <AdContainer>
             <AdBanner />
@@ -41,6 +44,8 @@ export default SearchPage;
 
 const Container = styled.div`
   width: 100%;
+  height: fit-content;
+  min-height: calc(var(--vh, 1vh) * 100 - 140px);
 `;
 
 const Wrapper = styled.div`

@@ -85,3 +85,16 @@ export const StyledCheckbox = styled.input`
     color: ${({ theme }) => theme.colors.bg_white};
   }
 `;
+
+export const StyledInput = styled.input`
+  width: 100%;
+  height: 44px;
+  border-radius: 50px;
+  border: 2px solid ${({ theme }) => theme.colors.text_lightgray};
+  padding: 0 20px;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text_lightgray};
+  }
+`;

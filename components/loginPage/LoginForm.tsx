@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import styled from 'styled-components';
-import { StyledCheckbox } from '@styles/GlobalStyles';
+import { StyledCheckbox, StyledInput } from '@styles/GlobalStyles';
 
 interface FormValues {
   email: string;
@@ -99,6 +99,7 @@ function LoginForm() {
 export default LoginForm;
 
 const InputContainer = styled.div`
+  width: 290px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -113,14 +114,6 @@ const LabelContainer = styled.div`
   color: ${({ theme }) => theme.colors.text_black};
   font-size: ${({ theme }) => theme.fontSize.base};
   margin-bottom: 10px;
-`;
-
-const StyledInput = styled.input`
-  width: 288px;
-  height: 44px;
-  border-radius: 50px;
-  border: 1px solid ${({ theme }) => theme.colors.text_lightgray};
-  padding: 0 20px;
 `;
 
 const LoginButton = styled.button`
