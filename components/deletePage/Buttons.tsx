@@ -1,23 +1,33 @@
 'use client';
 
 import { StyledButton } from '@styles/GlobalStyles';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
 
 function DeleteButtons() {
+  const [pathname] = usePathname().split('/').slice(-1);
   const router = useRouter();
   return (
     <BtnContainer>
-      <StyledButton disabled={false} onClick={() => router.push('/myPage')}>
+      <StyledButton
+        disabled={false}
+        onClick={() => router.push('/myPage/test-user')}
+      >
         취소
       </StyledButton>
       <StyledButton
         disabled={false}
         $color='button_gray'
-        onClick={() => router.push('/delete-account/confirm')}
+        onClick={() =>
+          router.push(
+            pathname === 'step1'
+              ? '/delete-account/step2'
+              : '/delete-account/confirm'
+          )
+        }
       >
-        회원탈퇴
+        계속
       </StyledButton>
     </BtnContainer>
   );

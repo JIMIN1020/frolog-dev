@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
-import * as S from '@styles/pages/deleteAccountPage';
+import * as S from '@styles/pages/deleteStep1Page';
 import frogIcon from 'public/icons/mypage/frog.svg';
 import { statDummy } from '@data/dummyData/statDummy';
-import DeleteButtons from '@components/deletePage/DeleteButtons';
+import Buttons from '@components/deletePage/Buttons';
 
 function DeleteAccountPage() {
   return (
@@ -23,7 +23,7 @@ function DeleteAccountPage() {
           );
         })}
       </S.StatContainer>
-      <DeleteButtons />
+      <Buttons />
     </S.Container>
   );
 }

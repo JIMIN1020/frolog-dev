@@ -22,18 +22,18 @@ export default function DeleteConfirmPage() {
           <EmailInput
             type='text'
             value={email}
-            placeholder='이메일을 입력해주세요'
+            placeholder='ex. abc@frolog.com'
             onChange={(e) => setEmail(e.target.value)}
           />
         </InputWrapper>
       </Wrapper>
       <ButtonWrapper>
-        <span>안내 사항을 모두 확인하였으며, 이에 동의합니다.</span>
+        <span>영구적으로 계정이 삭제됩니다. 이 동작은 취소할 수 없습니다.</span>
         <StyledButton
           onClick={() => router.push('/delete-account/confirm')}
           disabled={email.trim().length === 0}
         >
-          회원 탈퇴
+          탈퇴하기
         </StyledButton>
       </ButtonWrapper>
     </Container>
@@ -43,7 +43,7 @@ export default function DeleteConfirmPage() {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 60px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,12 +54,13 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 60px 40px;
   gap: 60px;
 `;
 
 const Message = styled.p`
   color: ${({ theme }) => theme.colors.text_red};
-  font-size: ${({ theme }) => theme.fontSize.base};
+  font-size: ${({ theme }) => theme.fontSize.md};
   line-height: 180%;
   letter-spacing: -0.408px;
 `;
@@ -72,7 +73,7 @@ const InputWrapper = styled.div`
 
   & span {
     color: #0038ff;
-    font-size: ${({ theme }) => theme.fontSize.base};
+    font-size: ${({ theme }) => theme.fontSize.md};
   }
 `;
 
@@ -82,16 +83,19 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  border-top: 1px solid ${({ theme }) => theme.colors.key_color};
+  padding: 16px 0;
 
   & span {
     color: ${({ theme }) => theme.colors.text_gray};
     font-size: ${({ theme }) => theme.fontSize.base};
+    font-weight: 300;
   }
 `;
 
 const EmailInput = styled.input`
   width: 100%;
-  border: 1px solid #79797b;
+  border: 1px solid ${({ theme }) => theme.colors.text_lightgray};
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.text_black};
   padding: 8px 10px;

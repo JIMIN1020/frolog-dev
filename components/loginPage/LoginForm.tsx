@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import styled from 'styled-components';
+import { StyledCheckbox } from '@styles/GlobalStyles';
 
 interface FormValues {
   email: string;
@@ -79,7 +80,11 @@ function LoginForm() {
         )}
       </InputContainer>
       <LabelContainer>
-        <Checkbox type='checkbox' id='rememberMe' {...register('rememberMe')} />
+        <StyledCheckbox
+          type='checkbox'
+          id='rememberMe'
+          {...register('rememberMe')}
+        />
         <label htmlFor='rememberMe'>로그인 상태 유지</label>
       </LabelContainer>
       {generalError && <ErrorMessage2>{generalError}</ErrorMessage2>}
@@ -138,30 +143,6 @@ const GuestButton = styled.button`
   flex-shrink: 0;
   color: ${({ theme }) => theme.colors.text_white};
   font-size: ${({ theme }) => theme.fontSize.lg};
-`;
-
-const Checkbox = styled.input`
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.text_lightgray};
-  border-radius: 3px;
-  background-color: ${({ theme }) => theme.colors.bg_white};
-  margin-right: 7px;
-
-  &:checked {
-    background-color: ${({ theme }) => theme.colors.key_color};
-    border-color: ${({ theme }) => theme.colors.key_color};
-  }
-
-  &:checked::after {
-    content: '✔';
-    color: ${({ theme }) => theme.colors.bg_white};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
 `;
 
 const ButtonContainer = styled.div`

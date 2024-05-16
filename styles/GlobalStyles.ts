@@ -60,3 +60,28 @@ export const StyledButton = styled.button<{
       ? theme.colors.button_gray
       : theme.colors[($color as keyof typeof theme.colors) || 'key_color']};
 `;
+
+export const StyledCheckbox = styled.input`
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.text_black};
+  border-radius: 2px;
+  background-color: ${({ theme }) => theme.colors.bg_white};
+  margin-right: 7px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
+
+  &:checked {
+    background-color: ${({ theme }) => theme.colors.key_color};
+  }
+
+  &:checked::after {
+    content: '✓';
+    font-size: 20px;
+    color: ${({ theme }) => theme.colors.bg_white};
+  }
+`;

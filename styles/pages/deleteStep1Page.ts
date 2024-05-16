@@ -13,8 +13,8 @@ export const Container = styled.div`
 `;
 
 export const Message = styled.p`
-  color: ${({ theme }) => theme.colors.text_red};
-  font-size: ${({ theme }) => theme.fontSize.base};
+  color: ${({ theme }) => theme.colors.text_black};
+  font-size: ${({ theme }) => theme.fontSize.md};
   line-height: 180%;
   letter-spacing: -0.408px;
 `;
@@ -22,7 +22,7 @@ export const Message = styled.p`
 export const StatContainer = styled.div`
   width: 100%;
   padding: 0 30px;
-  gap: 12px;
+  gap: 16px;
   display: flex;
   flex-direction: column;
 `;

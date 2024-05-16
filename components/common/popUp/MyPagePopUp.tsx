@@ -38,7 +38,7 @@ function MyPagePopUp({ setOpen, onClickEdit }: MyPagePopUpProps) {
         <MenuItem onClick={() => router.push(`/login`)}>로그아웃</MenuItem>
         <MenuItem
           style={{ color: 'red' }}
-          onClick={() => router.push('/delete-account')}
+          onClick={() => router.push('/delete-account/step1')}
         >
           회원탈퇴
         </MenuItem>
