@@ -3,7 +3,7 @@ import { reviews } from '@data/dummyData/homeDummy';
 import { GapContainer } from '@styles/GlobalStyles';
 import React from 'react';
 
-function page() {
+function LikedReviewPage() {
   return (
     <GapContainer>
       {reviews.map((data) => (
@@ -13,4 +13,4 @@ function page() {
   );
 }
 
-export default page;
+export default LikedReviewPage;

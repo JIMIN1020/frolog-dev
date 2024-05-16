@@ -6,27 +6,29 @@ import editIcon from 'public/icons/mypage/edit-message.svg';
 import Image from 'next/image';
 
 interface OneLineMessageProps {
+  message: string;
   isEdit: boolean;
 }
 
-export default function OneLineMessage({ isEdit }: OneLineMessageProps) {
-  const [message, setMessage] = useState<string>(
-    '내가 책을 덮으면서 느낀 감정을 한마디로..'
-  );
+export default function OneLineMessage({
+  isEdit,
+  message,
+}: OneLineMessageProps) {
+  const [curMessage, setCurMessage] = useState<string>(message);
   return (
     <Message>
       {isEdit ? (
         <InputWrapper>
           <MessageInput
             type='text'
-            value={message}
+            value={curMessage}
             maxLength={20}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => setCurMessage(e.target.value)}
           />
           <Image src={editIcon} alt='edit' />
         </InputWrapper>
       ) : (
-        <span>{message}</span>
+        <span>{curMessage}</span>
       )}
     </Message>
   );

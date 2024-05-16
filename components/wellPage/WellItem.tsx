@@ -21,16 +21,16 @@ export default function WellItem({ data }: WellItemProps) {
 
   return (
     <Container>
-      <Wrapper href={`/well/${data.id}`}>
+      <Wrapper href={`/well/${data.owner.id}/${data.id}`}>
         <WellIcon src={wellIcon} alt='well' />
         <InfoText>
-          <h3>{data.title}</h3>
-          <span>{data.description}</span>
+          <h3>{data.name}</h3>
+          <span>{data.desc}</span>
         </InfoText>
       </Wrapper>
       <Button onClick={() => setLikeOpen(true)}>
         <Image src={likeIcon} alt='like' />
-        <span>1,200</span>
+        <span>{data.stat.like_cnt}</span>
       </Button>
       <AnimatePresence>
         {likeOpen && <LikeBottomSheet setOpen={setLikeOpen} />}

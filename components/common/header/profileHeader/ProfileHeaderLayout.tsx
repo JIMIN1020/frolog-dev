@@ -1,7 +1,15 @@
 import React from 'react';
 import * as S from '@styles/components/common/profileHeader';
 
-function ProfileHeaderLayout({ children }: { children: React.ReactNode }) {
+interface ProfileHeaderLayoutProps {
+  children: React.ReactNode;
+  userInfo: {
+    userName: string;
+    achievement: string;
+  };
+}
+
+function ProfileHeaderLayout({ children, userInfo }: ProfileHeaderLayoutProps) {
   return (
     <S.HeaderContainer>
       <S.LeftSection>
@@ -10,8 +18,8 @@ function ProfileHeaderLayout({ children }: { children: React.ReactNode }) {
           alt={`user's profile`}
         />
         <S.UserInfo>
-          <S.UserName>김혜나</S.UserName>
-          <S.UserNickname>느긋한 돌멩이</S.UserNickname>
+          <S.UserName>{userInfo.userName}</S.UserName>
+          <S.UserNickname>{userInfo.achievement}</S.UserNickname>
         </S.UserInfo>
       </S.LeftSection>
       {children}

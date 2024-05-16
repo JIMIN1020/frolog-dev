@@ -7,25 +7,12 @@ import { StyledButton } from '@styles/GlobalStyles';
 import { useMockData } from 'mock/MockData';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
-import wellIconImg from 'public/icons/well/well-icon.svg';
 import { FormProvider, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import BookSelectionPage from '@components/wellPage/BookSelectionPage';
 import { motion } from 'framer-motion';
 import { bookContainerVariants } from '@styles/framer-motion/variants';
-
-interface WellFormType {
-  id: string;
-  title: string;
-  wellIcon: string;
-  description: string;
-  books: [
-    {
-      id: string;
-      name: string;
-    },
-  ];
-}
+import { WellDataType } from '@data/dummyData/wellDummy';
 
 // 우물 생성 혹은 편집 페이지. 쿼리 스트링 값에 따라 편집 혹은 생성 페이지로 사용될 예정
 // 우물 정보 -> react hook form으로 관리
@@ -38,12 +25,22 @@ export default function WellEditPage() {
   const wellData = wellId ? getWell(wellId) : null;
 
   // react hook form
-  const methods = useForm<WellFormType>({
+  const methods = useForm<WellDataType>({
     defaultValues: {
       id: wellId || `well-${Date.now()}`,
-      title: wellData ? wellData.title : '',
-      wellIcon: wellIconImg,
-      description: wellData ? wellData.description : '',
+      owner: {
+        id: 'test-user',
+        username: '테스트',
+        profile_url:
+          'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
+        achievement: '나는 프롤로그 테스터',
+      },
+      name: wellData ? wellData.name : '',
+      desc: wellData ? wellData.desc : '',
+      is_default: false,
+      stat: {
+        like_cnt: wellData ? wellData.stat.like_cnt : 0,
+      },
       books: wellData ? wellData.books : [],
     },
   });
@@ -60,7 +57,7 @@ export default function WellEditPage() {
       editWell(wellId, data);
     }
     // 네비게이팅
-    router.push(isNew ? '/well' : `/well/${wellId}`);
+    router.push(isNew ? '/well/test-user' : `/well/test-user/${wellId}`);
   };
 
   return (

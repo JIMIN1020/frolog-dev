@@ -7,36 +7,59 @@ import ReadingTemp from '@components/myPage/ReadingTemp';
 import BadgeBar from '@components/myPage/badge/BadgeBar';
 import OneLineMessage from '@components/myPage/OneLineMessage';
 import Dashboard from '@components/myPage/Dashboard';
-import ButtonContainer from '@components/myPage/ButtonContainer';
 import frogImg from 'public/icons/mypage/frog.svg';
 import ChangeClothesBtn from '@components/myPage/ChangeClothesBtn';
 import ProfileHeader from '@components/common/header/profileHeader/ProfileHeaderWithMenu';
+import { userDummy } from '@data/dummyData/userDummyData';
+import { useRouter } from 'next/navigation';
 
-function MyPage() {
-  const [isEdit, setIsEdit] = useState<boolean>(false);
+function ProfilePage({
+  params,
+}: {
+  params: {
+    slug: string;
+  };
+}) {
+  const [isEdit, setIsEdit] = useState<boolean>(false); // TODO: edit page 따로 만들것
+  const router = useRouter();
+  const { slug } = params;
+  const data = userDummy.find((data) => data.id === slug)!;
+  const isMyPage = slug === 'test-user'; // TODO: 추후 contextAPI로 유저 id와 직접 비교
+
+  const handleClickBtn = () => {
+    if (isMyPage) {
+      router.push('/memo');
+    } else {
+      router.push(`/well/${slug}`);
+    }
+  };
 
   return (
     <Container>
-      <ProfileHeader setIsEdit={setIsEdit} />
+      <ProfileHeader
+        userInfo={{ userName: data.username, achievement: data.achievement }}
+        setIsEdit={setIsEdit}
+      />
       <Wrapper>
-        <OneLineMessage isEdit={isEdit} />
+        <OneLineMessage message={data.message} isEdit={isEdit} />
         <FrogWrapper>
           <MyPageIcon src={frogImg} alt='임시' />
           {isEdit && <ChangeClothesBtn />}
         </FrogWrapper>
         <TempAndBadge>
-          <ReadingTemp temp={72.8} />
+          <ReadingTemp temp={data.temperature} />
           <BadgeBar />
-          <MemoButton>내 메모</MemoButton>
+          <MemoButton onClick={handleClickBtn}>
+            {isMyPage ? '내 메모' : '우물 놀러가기'}
+          </MemoButton>
         </TempAndBadge>
-        <Dashboard />
-        <ButtonContainer />
+        <Dashboard data={data.stat} />
       </Wrapper>
     </Container>
   );
 }
 
-export default MyPage;
+export default ProfilePage;
 
 const Container = styled.div`
   width: 100%;

@@ -9,10 +9,17 @@ import MyPagePopUp from '../../popUp/MyPagePopUp';
 import ProfileHeaderLayout from './ProfileHeaderLayout';
 
 interface ProfileHeaderWithMenuProps {
+  userInfo: {
+    userName: string;
+    achievement: string;
+  };
   setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ProfileHeaderWithMenu({ setIsEdit }: ProfileHeaderWithMenuProps) {
+function ProfileHeaderWithMenu({
+  setIsEdit,
+  userInfo,
+}: ProfileHeaderWithMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickEdit = () => {
@@ -21,7 +28,7 @@ function ProfileHeaderWithMenu({ setIsEdit }: ProfileHeaderWithMenuProps) {
   };
 
   return (
-    <ProfileHeaderLayout>
+    <ProfileHeaderLayout userInfo={userInfo}>
       <MenuBtn onClick={() => setIsOpen(true)}>
         <Image src={menuIcon} alt='menu' />
       </MenuBtn>

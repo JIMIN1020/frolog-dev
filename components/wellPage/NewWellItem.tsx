@@ -26,9 +26,9 @@ export default function NewWellItem() {
             type='text'
             $class='title'
             placeholder='제목을 추가해보세요'
-            {...register('title')}
+            {...register('name')}
           />
-          <DeleteBtn onClick={() => setValue('title', '')}>
+          <DeleteBtn onClick={() => setValue('name', '')}>
             <Image src={deleteIcon} alt='delete' />
           </DeleteBtn>
         </InputWrapper>
@@ -36,10 +36,10 @@ export default function NewWellItem() {
           <StyledInput
             type='text'
             $class='desc'
-            {...register('description')}
+            {...register('desc')}
             placeholder='우물을 멋지게 묘사해보세요'
           />
-          <DeleteBtn onClick={() => setValue('description', '')}>
+          <DeleteBtn onClick={() => setValue('desc', '')}>
             <Image src={deleteIcon} alt='delete' />
           </DeleteBtn>
         </InputWrapper>

@@ -2,7 +2,7 @@
 
 import { getRouteByLabel } from '@data/navData';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,11 +18,12 @@ export default function DashboardItem({
   count,
 }: DashboardItemProps) {
   const router = useRouter();
+  const pathname = usePathname().split('/').slice(-1);
 
   /* ----- 클릭 시 상세페이지로 이동 함수 ----- */
   const handleClick = () => {
     const route = getRouteByLabel(title);
-    router.push(route!);
+    router.push(`${route}/${pathname}`);
   };
 
   return (

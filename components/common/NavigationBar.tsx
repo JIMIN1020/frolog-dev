@@ -45,24 +45,26 @@ function NavigationBar() {
           style={{ width: '39px', height: '39px' }}
         />
       </NavItem>
-      <NavItem href='/well'>
+      <NavItem href='/well/test-user'>
         <Icon
           src={
-            pathname?.startsWith('/well') ? WellClickedIcon : WellDefaultIcon
+            pathname?.startsWith('/well/test-user')
+              ? WellClickedIcon
+              : WellDefaultIcon
           }
           alt='well'
           style={{ width: '20px', height: '18px' }}
         />
         <Label>우물</Label>
       </NavItem>
-      <NavItem href='/my-page'>
+      <NavItem href='/profile/test-user'>
         <Icon
           src={
-            pathname?.startsWith('/my-page')
+            pathname?.startsWith('/profile/test-user')
               ? ProfileClickedIcon
               : ProfileDefaultIcon
           }
-          alt='myPage'
+          alt='profile'
           style={{ width: '24px', height: '24px' }}
         />
         <Label>내 정보</Label>

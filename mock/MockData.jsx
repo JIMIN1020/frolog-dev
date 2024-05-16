@@ -1,6 +1,5 @@
 'use client';
 
-import wellIconImg from 'public/icons/well/well-icon.svg';
 import React, {
   createContext,
   useState,
@@ -70,9 +69,19 @@ export const useMockData = () => useContext(DataContext);
 const wellData = [
   {
     id: 'well-1',
-    title: '소설 모음',
-    wellIcon: wellIconImg,
-    description: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    name: '소설 모음',
+    owner: {
+      id: 'test-user',
+      username: '테스트',
+      profile_url:
+        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
+      achievement: '나는 프롤로그 테스터',
+    },
+    is_default: false,
+    desc: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    stat: {
+      like_cnt: 279,
+    },
     books: [
       {
         id: 'review-id-1',
@@ -90,9 +99,19 @@ const wellData = [
   },
   {
     id: 'well-2',
-    title: '에세이 모음',
-    wellIcon: wellIconImg,
-    description: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    name: '에세이 모음',
+    owner: {
+      id: 'test-user',
+      username: '테스트',
+      profile_url:
+        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
+      achievement: '나는 프롤로그 테스터',
+    },
+    is_default: false,
+    desc: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    stat: {
+      like_cnt: 229,
+    },
     books: [
       {
         id: 'review-id-5',
@@ -106,9 +125,19 @@ const wellData = [
   },
   {
     id: 'well-3',
-    title: '시집 모음',
-    wellIcon: wellIconImg,
-    description: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    name: '시집 모음',
+    owner: {
+      id: 'test-user',
+      username: '테스트',
+      profile_url:
+        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
+      achievement: '나는 프롤로그 테스터',
+    },
+    is_default: false,
+    desc: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    stat: {
+      like_cnt: 179,
+    },
     books: [
       {
         id: 'review-id-8',
@@ -118,9 +147,20 @@ const wellData = [
   },
   {
     id: 'well-4',
-    title: '만화 모음',
-    wellIcon: wellIconImg,
-    description: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    name: '소설 모음',
+    owner: {
+      id: 'test-user',
+      username: '테스트',
+      profile_url:
+        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
+      achievement: '나는 프롤로그 테스터',
+    },
+    is_default: false,
+    desc: '내가 책을 덮으면서 느낀 감정을 한마디로..',
+    stat: {
+      like_cnt: 29,
+    },
+    books: [],
   },
 ];
 

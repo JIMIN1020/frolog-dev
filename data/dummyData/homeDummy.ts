@@ -1,13 +1,8 @@
-export interface UserProfile {
-  id: string;
-  name: string;
-  nickname: string;
-  profilePicture: string;
-}
+import { User, userDummy } from './userDummyData';
 
 export interface BookReviewData {
   id: string;
-  user: UserProfile;
+  user: User;
   bookImage: string;
   bookName: string;
   bookAuthor: string;
@@ -20,13 +15,7 @@ export interface BookReviewData {
 export const reviews: BookReviewData[] = [
   {
     id: 'review1',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '느긋한 돌맹이',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user1')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791162540640.jpg',
     bookName: '아주 작은 습관의 힘',
@@ -39,13 +28,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review2',
-    user: {
-      id: 'user1',
-      name: '김별나',
-      nickname: '종강종강돌을던지자',
-      profilePicture:
-        'https://i.pinimg.com/564x/08/3d/a7/083da742e1c9e220603ba98e8a123ccf.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user2')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791167851109.jpg',
     bookName: '어떤 개발자가 되고 싶니?',
@@ -58,13 +41,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review3',
-    user: {
-      id: 'user1',
-      name: '김달나',
-      nickname: '감자탕속당근의 마음을',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user3')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/480D160813350.jpg',
     bookName: 'Harry Potter and the Chamber of Secrets',
@@ -78,13 +55,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review4',
-    user: {
-      id: 'user1',
-      name: '봉구스',
-      nickname: '냉장고속샤인머스켓의마음',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user4')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791188850303.jpg',
     bookName: '진정한 나로 살아갈 용기',
@@ -97,13 +68,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review5',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '마루는강쥐',
-      profilePicture:
-        'https://i.pinimg.com/564x/f0/e0/9c/f0e09cba73d689fc2c0ef01bbbbeae1a.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user2')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788932473901.jpg',
     bookName: '이기적 유전자',
@@ -116,13 +81,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review6',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '메아리가 울리는 바다~',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user1')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788932473376.jpg',
     bookName: '감정조절',
@@ -135,13 +94,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review7',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '메롱이다',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user3')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791197647673.jpg',
     bookName: '한 번쭌인 인생은 어떻게 살아야 하는가',
@@ -154,13 +107,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review8',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '메롱이다',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user4')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788932323190.jpg',
     bookName: '상대성이론의 결정적 순간들',
@@ -173,13 +120,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review9',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '메롱이다',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user3')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791166891533.jpg',
     bookName: '공자가 죽어야 나라가 산다',
@@ -192,13 +133,7 @@ export const reviews: BookReviewData[] = [
   },
   {
     id: 'review10',
-    user: {
-      id: 'user1',
-      name: '김혜나',
-      nickname: '메롱이다',
-      profilePicture:
-        'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
-    },
+    user: userDummy.find((user) => user.id === 'user1')!,
     bookImage:
       'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791196798611.jpg',
     bookName: '어린왕자',

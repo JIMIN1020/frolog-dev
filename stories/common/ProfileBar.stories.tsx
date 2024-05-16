@@ -22,10 +22,19 @@ export const Primary: Story = {
   args: {
     user: {
       id: 'user1',
-      name: '김혜나',
-      nickname: '느긋한 돌맹이',
-      profilePicture:
+      username: '김혜나',
+      message: 'message 1',
+      temperature: 72,
+      achievement: '느긋한 돌멩이',
+      character: '',
+      profile_url:
         'https://i.pinimg.com/736x/34/95/a8/3495a8d78c2227931f35fcbc966365ec.jpg',
+      stat: {
+        my_review: 13,
+        liked_review: 2,
+        liked_book: 32,
+        liked_well: 12,
+      },
     },
     popUp: true,
   },

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { UserProfile } from '@data/dummyData/homeDummy';
+import { User } from '@data/dummyData/userDummyData';
 import Image from 'next/image';
 import { AnimatePresence } from 'framer-motion';
 import menuIcon from 'public/icons/home/menu.svg';
@@ -10,23 +11,25 @@ import FeedPopUp from '../popUp/FeedPopUp';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
-  user: UserProfile;
+  user: User;
   /** 팝업 메뉴 여부 (피드, 우물페이지) */
   popUp?: boolean;
 }
 
 function ProfileBar({ user, popUp = false }: ProfileBarProps) {
+  const router = useRouter();
   const [openPopup, setOpenPopup] = useState<boolean>(false);
+
   return (
     <BarContainer>
-      <LeftSection>
+      <LeftSection onClick={() => router.push(`/profile/${user.id}`)}>
         <ProfileImage
-          src={user.profilePicture}
-          alt={`${user.name}'s profile`}
+          src={user.profile_url}
+          alt={`${user.username}'s profile`}
         />
         <UserInfo>
-          <UserName>{user.name}</UserName>
-          <UserNickname>{user.nickname}</UserNickname>
+          <UserName>{user.username}</UserName>
+          <UserNickname>{user.achievement}</UserNickname>
         </UserInfo>
       </LeftSection>
       {popUp && (
@@ -55,6 +58,7 @@ const LeftSection = styled.div`
   align-items: center;
   flex-grow: 1;
   margin-top: 5px;
+  cursor: pointer;
 `;
 
 const ProfileImage = styled.img`

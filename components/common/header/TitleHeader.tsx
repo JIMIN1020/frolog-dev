@@ -12,12 +12,20 @@ interface TitleHeaderProps {
 
 function TitleHeader({ button = false }: TitleHeaderProps) {
   const pathname = usePathname();
+  const route = pathname
+    .split('/')
+    .slice(0, pathname.split('/').length - 1)
+    .join('/');
   const router = useRouter();
   return (
     <Header>
       <BackButton />
-      <h1>{getLabelByRoute(pathname)}</h1>
-      {button && <DoneBtn onClick={() => router.push('/myPage')}>완료</DoneBtn>}
+      <h1>{getLabelByRoute(route)}</h1>
+      {button && (
+        <DoneBtn onClick={() => router.push(`/profile/test-user`)}>
+          완료
+        </DoneBtn>
+      )}
     </Header>
   );
 }

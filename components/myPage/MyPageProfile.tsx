@@ -2,15 +2,15 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { UserProfile } from '@data/dummyData/homeDummy';
 import Image from 'next/image';
 import editIcon from 'public/icons/mypage/edit-icon.svg';
 import editDone from 'public/icons/mypage/edit-done.svg';
 import changeIcon from 'public/icons/common/change-icon.svg';
+import { User } from '@data/dummyData/userDummyData';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
-  user: UserProfile;
+  user: User;
   /** edit 중인지 여부 (마이페이지) */
   isEdit: boolean;
   /** edit 버튼 클릭 시 핸들러 (마이페이지) */
@@ -23,8 +23,8 @@ function MyPageProfile({ user, isEdit, onClickEdit }: ProfileBarProps) {
       <LeftSection>
         <ImageWrapper>
           <ProfileImage
-            src={user.profilePicture}
-            alt={`${user.name}'s profile`}
+            src={user.profile_url}
+            alt={`${user.username}'s profile`}
             width={44}
             height={44}
           />
@@ -32,8 +32,8 @@ function MyPageProfile({ user, isEdit, onClickEdit }: ProfileBarProps) {
         </ImageWrapper>
 
         <UserInfo>
-          <UserName>{user.name}</UserName>
-          <UserNickname>{user.nickname}</UserNickname>
+          <UserName>{user.username}</UserName>
+          <UserNickname>{user.achievement}</UserNickname>
         </UserInfo>
       </LeftSection>
       <EditIcon onClick={onClickEdit}>

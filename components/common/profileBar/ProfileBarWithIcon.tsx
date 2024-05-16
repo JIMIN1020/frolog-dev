@@ -2,13 +2,13 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { UserProfile } from '@data/dummyData/homeDummy';
 import Image from 'next/image';
 import WellIcon from 'public/icons/common/well-mini-icon.svg';
+import { User } from '@data/dummyData/userDummyData';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
-  user: UserProfile;
+  user: User;
 }
 
 export default function ProfileBarWithIcon({ user }: ProfileBarProps) {
@@ -16,12 +16,12 @@ export default function ProfileBarWithIcon({ user }: ProfileBarProps) {
     <BarContainer>
       <LeftSection>
         <ProfileImage
-          src={user.profilePicture}
-          alt={`${user.name}'s profile`}
+          src={user.profile_url}
+          alt={`${user.username}'s profile`}
         />
         <UserInfo>
-          <UserName>{user.name}</UserName>
-          <UserNickname>{user.nickname}</UserNickname>
+          <UserName>{user.username}</UserName>
+          <UserNickname>{user.achievement}</UserNickname>
         </UserInfo>
       </LeftSection>
       <Image src={WellIcon} alt='well' />
