@@ -3,8 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import WellIcon from 'public/icons/common/well-mini-icon.svg';
 import { User } from '@data/dummyData/userDummyData';
+import { ICONS } from 'constants/icon';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
@@ -24,7 +24,7 @@ export default function ProfileBarWithIcon({ user }: ProfileBarProps) {
           <UserNickname>{user.achievement}</UserNickname>
         </UserInfo>
       </LeftSection>
-      <Image src={WellIcon} alt='well' />
+      <Image src={ICONS.common.wellMini} alt='well' width={36} height={36} />
     </BarContainer>
   );
 }

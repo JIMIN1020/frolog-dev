@@ -3,9 +3,8 @@
 import React, { useState } from 'react';
 import * as S from '@styles/components/common/bookCardWithLike';
 import { BookDataType } from '@data/dummyData/recommendDummy';
+import { ICONS } from 'constants/icon';
 import Image from 'next/image';
-import likeDefault from 'public/icons/bottomSheet/LikeDefault.svg';
-import likeClicked from 'public/icons/bottomSheet/LikeClicked.svg';
 import Rating from '../Rating';
 
 interface BookCardHorizontalProps {
@@ -27,7 +26,12 @@ function BookCardWithLike({ bookData }: BookCardHorizontalProps) {
           <S.Summary>{summary}</S.Summary>
         </S.Content>
         <S.Icon onClick={() => setLike((prev) => !prev)}>
-          <Image src={like ? likeClicked : likeDefault} alt='like' />
+          <Image
+            src={like ? ICONS.common.like.clicked : ICONS.common.like.default}
+            alt='like'
+            width={20}
+            height={20}
+          />
         </S.Icon>
       </S.BookContainer>
     </S.Card>

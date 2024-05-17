@@ -2,13 +2,18 @@ import React from 'react';
 import LoginForm from '@components/loginPage/LoginForm';
 import * as S from '@styles/pages/loginPage';
 import Link from 'next/link';
-import frologLogo from 'public/icons/home/frologlogo.svg';
+import { ICONS } from 'constants/icon';
 
 function Page() {
   return (
     <S.Container>
       <S.Title>Frolog</S.Title>
-      <S.LogoImg src={frologLogo} alt='Frolog Logo' />
+      <S.LogoImg
+        src={ICONS.home.frologLogo}
+        alt='Frolog Logo'
+        width={109}
+        height={139}
+      />
       <LoginForm />
       <S.LinksContainer>
         <Link href='/signup' passHref>

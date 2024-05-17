@@ -4,9 +4,9 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { useMockData } from 'mock/MockData';
 import { motion } from 'framer-motion';
+import { ICONS } from 'constants/icon';
 import { useRouter } from 'next/navigation';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
-import Cancel from 'public/icons/popUp/Cancel.svg';
 import styled from 'styled-components';
 import useClickOutside from '../../../hooks/useClickOutside';
 
@@ -74,7 +74,7 @@ function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
           </>
         )}
         <CancelBtn onClick={() => setOpen(false)}>
-          <Image src={Cancel} alt='cancel' />
+          <Image src={ICONS.popUp.cancel} alt='cancel' width={24} height={24} />
           취소
         </CancelBtn>
       </PopUp>

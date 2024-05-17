@@ -3,9 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import LikeClicked from 'public/icons/bottomSheet/LikeClicked.svg';
-import LikeDefault from 'public/icons/bottomSheet/LikeDefault.svg';
 import { CommentType } from '@data/dummyData/commentDummy';
+import { ICONS } from 'constants/icon';
 
 interface ReplyItemProps {
   data: CommentType;
@@ -28,7 +27,12 @@ function ReplyItem({ data }: ReplyItemProps) {
       </Content>
       <LikeBox>
         <LikeButton onClick={() => setLike((prev) => !prev)}>
-          <Image src={like ? LikeClicked : LikeDefault} alt='like' />
+          <Image
+            src={like ? ICONS.common.like.clicked : ICONS.common.like.default}
+            alt='like'
+            width={20}
+            height={20}
+          />
         </LikeButton>
         <span>{data.like}</span>
       </LikeBox>

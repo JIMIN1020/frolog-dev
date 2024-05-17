@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import * as S from '@styles/components/common/header';
-import BellIcon from 'public/icons/header/notification-bell.svg';
+import { ICONS } from 'constants/icon';
 
 function Header() {
   return (
@@ -11,7 +11,12 @@ function Header() {
       </Link>
 
       <Link href='/notice'>
-        <S.NotificationIcon src={BellIcon} alt='Notifications' />
+        <S.NotificationIcon
+          src={ICONS.header.notification}
+          alt='Notifications'
+          width={24}
+          height={24}
+        />
       </Link>
 
       <S.BottomBar />

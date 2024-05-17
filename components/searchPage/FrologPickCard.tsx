@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from '@styles/components/searchPage/frologPickCard';
-import { FrologPickType } from '../../data/dummyData/frologPickDummy';
+import { FrologPickType } from '@data/dummyData/frologPickDummy';
 
 interface FrologPickCardProps {
   bookData: FrologPickType;

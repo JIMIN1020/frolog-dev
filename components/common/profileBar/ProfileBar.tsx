@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { User } from '@data/dummyData/userDummyData';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 import { AnimatePresence } from 'framer-motion';
-import menuIcon from 'public/icons/home/menu.svg';
 import FeedPopUp from '../popUp/FeedPopUp';
 
 interface ProfileBarProps {
@@ -34,7 +34,7 @@ function ProfileBar({ user, popUp = false }: ProfileBarProps) {
       </LeftSection>
       {popUp && (
         <Button onClick={() => setOpenPopup(true)}>
-          <MenuIcon src={menuIcon} alt='menu' />
+          <MenuIcon src={ICONS.home.menu} alt='menu' width={22} height={22} />
         </Button>
       )}
       <AnimatePresence>

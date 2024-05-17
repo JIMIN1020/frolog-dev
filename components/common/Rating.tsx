@@ -1,8 +1,6 @@
 import React, { useCallback } from 'react';
 import * as S from '@styles/components/common/rating';
-import star from 'public/icons/home/star.svg';
-import halfstar from 'public/icons/home/halfstar.svg';
-import nostar from 'public/icons/home/nostar.svg';
+import { ICONS } from 'constants/icon';
 
 export interface RatingProps {
   /** 별점 */
@@ -23,22 +21,38 @@ function Rating({ rating, starSize, gap, fontSize }: RatingProps) {
     for (let i = 0; i < 5; i += 1) {
       if (currentRating >= 1) {
         stars.push(
-          <S.StarIcon $starSize={starSize} src={star} alt='star' key={i} />
+          <S.StarIcon
+            $starSize={starSize}
+            src={ICONS.home.star}
+            alt='star'
+            key={i}
+            width={starSize}
+            height={starSize}
+          />
         );
         currentRating -= 1;
       } else if (currentRating > 0) {
         stars.push(
           <S.StarIcon
             $starSize={starSize}
-            src={halfstar}
+            src={ICONS.home.halfstar}
             alt='half star'
             key={i}
+            width={starSize}
+            height={starSize}
           />
         );
         currentRating = 0;
       } else {
         stars.push(
-          <S.StarIcon $starSize={starSize} src={nostar} alt='no star' key={i} />
+          <S.StarIcon
+            $starSize={starSize}
+            src={ICONS.home.nostar}
+            alt='no star'
+            key={i}
+            width={starSize}
+            height={starSize}
+          />
         );
       }
     }

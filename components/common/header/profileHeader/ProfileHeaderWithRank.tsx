@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import rankIcon from 'public/icons/header/rank-icon.svg';
+import { ICONS } from 'constants/icon';
 import { userDummy } from '@data/dummyData/userDummyData';
 import styled from 'styled-components';
 import ProfileHeaderLayout from './ProfileHeaderLayout';
@@ -17,7 +17,7 @@ function ProfileHeaderWithRank({ userId }: { userId: string }) {
       }}
     >
       <MenuBtn>
-        <Image src={rankIcon} alt='menu' />
+        <Image src={ICONS.header.rank} alt='menu' width={32} height={32} />
       </MenuBtn>
     </ProfileHeaderLayout>
   );

@@ -1,14 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import wellIconImg from 'public/icons/well/well-icon.svg';
 import Image from 'next/image';
 import styled from 'styled-components';
-import deleteIcon from 'public/icons/well/delete-icon.svg';
-import changeIcon from 'public/icons/common/change-icon.svg';
 import { AnimatePresence } from 'framer-motion';
 import ImgChangePopUp from '@components/common/popUp/ImgChangePopUp';
 import { useFormContext } from 'react-hook-form';
+import { ICONS } from 'constants/icon';
 
 export default function NewWellItem() {
   const [imgChange, setImgChange] = useState(false);
@@ -17,8 +15,13 @@ export default function NewWellItem() {
   return (
     <Container>
       <IconWrapper onClick={() => setImgChange(true)}>
-        <WellIcon src={wellIconImg} alt='well' />
-        <ImgChangeIcon src={changeIcon} alt='change' />
+        <WellIcon src={ICONS.well.well} alt='well' width={59} height={59} />
+        <ImgChangeIcon
+          src={ICONS.common.change}
+          alt='change'
+          width={32}
+          height={32}
+        />
       </IconWrapper>
       <InfoText>
         <InputWrapper>
@@ -29,7 +32,12 @@ export default function NewWellItem() {
             {...register('name')}
           />
           <DeleteBtn onClick={() => setValue('name', '')}>
-            <Image src={deleteIcon} alt='delete' />
+            <Image
+              src={ICONS.well.delete}
+              alt='delete'
+              width={18}
+              height={18}
+            />
           </DeleteBtn>
         </InputWrapper>
         <InputWrapper>
@@ -40,7 +48,12 @@ export default function NewWellItem() {
             placeholder='우물을 멋지게 묘사해보세요'
           />
           <DeleteBtn onClick={() => setValue('desc', '')}>
-            <Image src={deleteIcon} alt='delete' />
+            <Image
+              src={ICONS.well.delete}
+              alt='delete'
+              width={18}
+              height={18}
+            />
           </DeleteBtn>
         </InputWrapper>
       </InfoText>

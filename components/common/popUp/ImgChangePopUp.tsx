@@ -3,8 +3,8 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ICONS } from 'constants/icon';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
-import Cancel from 'public/icons/popUp/Cancel.svg';
 import styled from 'styled-components';
 import useClickOutside from '../../../hooks/useClickOutside';
 
@@ -36,7 +36,7 @@ function ImgChangePopUp({ setOpen, setWellIcon }: ImgChangePopUpProps) {
         <MenuItem onClick={() => setWellIcon()}>기본 이미지로 변경</MenuItem>
 
         <CancelBtn onClick={() => setOpen(false)}>
-          <Image src={Cancel} alt='cancel' />
+          <Image src={ICONS.popUp.cancel} alt='cancel' width={24} height={24} />
           취소
         </CancelBtn>
       </PopUp>

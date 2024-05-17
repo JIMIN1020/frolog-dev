@@ -2,9 +2,8 @@
 
 import Image from 'next/image';
 import React from 'react';
-import shareIcon from 'public/icons/header/share-icon.svg';
-import editIcon from 'public/icons/header/well-edit-icon.svg';
 import styled from 'styled-components';
+import { ICONS } from 'constants/icon';
 import { userDummy } from '@data/dummyData/userDummyData';
 import ProfileHeaderLayout from './ProfileHeaderLayout';
 
@@ -30,11 +29,16 @@ function ProfileHeaderInWell({
       <Wrapper>
         {userId === 'test-user' && (
           <MenuBtn onClick={onClickEdit}>
-            <Image src={editIcon} alt='edit' />
+            <Image
+              src={ICONS.header.wellEdit}
+              alt='edit'
+              width={32}
+              height={32}
+            />
           </MenuBtn>
         )}
         <MenuBtn onClick={onClickShare}>
-          <Image src={shareIcon} alt='share' />
+          <Image src={ICONS.header.share} alt='share' width={32} height={32} />
         </MenuBtn>
       </Wrapper>
     </ProfileHeaderLayout>

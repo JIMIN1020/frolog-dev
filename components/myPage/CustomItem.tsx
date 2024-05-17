@@ -1,10 +1,9 @@
 'use client';
 
+import { ICONS } from 'constants/icon';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import checkedIcon from 'public/icons/common/checked.svg';
-import uncheckedIcon from 'public/icons/common/unchecked.svg';
 
 interface CustomItemProps {
   /** 해금 여부 */
@@ -29,7 +28,12 @@ function CustomItem({ isLocked }: CustomItemProps) {
         </RequireList>
       </Content>
       <CheckBtn onClick={() => setSelected((prev) => !prev)}>
-        <Image src={selected ? checkedIcon : uncheckedIcon} alt='check' />
+        <Image
+          src={selected ? ICONS.common.checked : ICONS.common.unchecked}
+          alt='check'
+          width={40}
+          height={40}
+        />
       </CheckBtn>
       {isLocked && <LockCover>해금 필요</LockCover>}
     </Container>

@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import editIcon from 'public/icons/mypage/edit-message.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 interface OneLineMessageProps {
   message: string;
@@ -25,7 +25,12 @@ export default function OneLineMessage({
             maxLength={20}
             onChange={(e) => setCurMessage(e.target.value)}
           />
-          <Image src={editIcon} alt='edit' />
+          <Image
+            src={ICONS.myPage.editMessage}
+            alt='edit'
+            width={20}
+            height={20}
+          />
         </InputWrapper>
       ) : (
         <span>{curMessage}</span>

@@ -3,15 +3,15 @@
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-import clothesIcon from 'public/icons/mypage/clothes-icon.svg';
 import { useRouter } from 'next/navigation';
+import { ICONS } from 'constants/icon';
 
 function ChangeClothesBtn() {
   const router = useRouter();
   return (
     <Container onClick={() => router.push('/change-frog')}>
       <ButtonText>외형 변경</ButtonText>
-      <Image src={clothesIcon} alt='clothes' />
+      <Image src={ICONS.myPage.clothes} alt='clothes' width={24} height={24} />
     </Container>
   );
 }

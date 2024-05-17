@@ -7,11 +7,11 @@ import ReadingTemp from '@components/myPage/ReadingTemp';
 import BadgeBar from '@components/myPage/badge/BadgeBar';
 import OneLineMessage from '@components/myPage/OneLineMessage';
 import Dashboard from '@components/myPage/Dashboard';
-import frogImg from 'public/icons/mypage/frog.svg';
 import ChangeClothesBtn from '@components/myPage/ChangeClothesBtn';
 import ProfileHeader from '@components/common/header/profileHeader/ProfileHeaderWithMenu';
 import { userDummy } from '@data/dummyData/userDummyData';
 import { useRouter } from 'next/navigation';
+import { ICONS } from 'constants/icon';
 
 function ProfilePage({
   params,
@@ -43,7 +43,12 @@ function ProfilePage({
       <Wrapper>
         <OneLineMessage message={data.message} isEdit={isEdit} />
         <FrogWrapper>
-          <MyPageIcon src={frogImg} alt='임시' />
+          <MyPageIcon
+            src={ICONS.myPage.frog}
+            alt='임시'
+            width={200}
+            height={200}
+          />
           {isEdit && <ChangeClothesBtn />}
         </FrogWrapper>
         <TempAndBadge>

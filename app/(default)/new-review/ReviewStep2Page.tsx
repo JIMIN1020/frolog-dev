@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import * as S from '@styles/pages/reviewStep2Page';
 import { ValidationError } from '@styles/pages/reviewStep1Page';
 import { useFormContext } from 'react-hook-form';
-import { consData, prosData } from '../../../data/dummyData/prosAndConsDummy';
-import TagContainer from '../../../components/newReviewPage/TagContainer';
+import { consData, prosData } from '@data/dummyData/prosAndConsDummy';
+import TagContainer from '@components/newReviewPage/TagContainer';
 
 function ReviewStep2Page({ onSubmit }: { onSubmit: () => void }) {
   const [validationError, setValidationError] = useState<string>('');

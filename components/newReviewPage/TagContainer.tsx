@@ -3,8 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
+import { ProsAndConsType } from '@data/dummyData/prosAndConsDummy';
 import Tag from './Tag';
-import { ProsAndConsType } from '../../data/dummyData/prosAndConsDummy';
 
 interface TagContainerProps {
   tagData: ProsAndConsType[];

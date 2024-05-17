@@ -3,8 +3,8 @@
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ICONS } from 'constants/icon';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
-import Cancel from 'public/icons/popUp/Cancel.svg';
 import styled from 'styled-components';
 import { reportData } from '../../../data/reportData';
 import useClickOutside from '../../../hooks/useClickOutside';
@@ -78,7 +78,12 @@ function FeedPopUp({ setOpen }: FeedPopUpProps) {
             '확인'
           ) : (
             <>
-              <Image src={Cancel} alt='cancel' />
+              <Image
+                src={ICONS.popUp.cancel}
+                alt='cancel'
+                width={24}
+                height={24}
+              />
               취소
             </>
           )}

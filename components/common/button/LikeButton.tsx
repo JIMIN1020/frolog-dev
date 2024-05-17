@@ -2,9 +2,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import likeDefault from 'public/icons/bottomSheet/LikeDefault.svg';
-import likeClicked from 'public/icons/bottomSheet/LikeClicked.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 interface LikeButtonProps {
   like: boolean;
@@ -15,7 +14,12 @@ interface LikeButtonProps {
 function LikeButton({ like, onClick, likesCount }: LikeButtonProps) {
   return (
     <Button onClick={onClick}>
-      <Icon src={like ? likeClicked : likeDefault} alt='like' />
+      <Icon
+        src={like ? ICONS.common.like.clicked : ICONS.common.like.default}
+        alt='like'
+        width={20}
+        height={20}
+      />
       <ButtonText>좋아요 {likesCount}</ButtonText>
     </Button>
   );

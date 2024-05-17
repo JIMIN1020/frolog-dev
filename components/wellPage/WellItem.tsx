@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import wellIcon from 'public/icons/well/well-icon.svg';
-import likeIcon from 'public/icons/well/like.svg';
+import { ICONS } from 'constants/icon';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
@@ -22,14 +21,14 @@ export default function WellItem({ data }: WellItemProps) {
   return (
     <Container>
       <Wrapper href={`/well/${data.owner.id}/${data.id}`}>
-        <WellIcon src={wellIcon} alt='well' />
+        <WellIcon src={ICONS.well.well} alt='well' width={59} height={59} />
         <InfoText>
           <h3>{data.name}</h3>
           <span>{data.desc}</span>
         </InfoText>
       </Wrapper>
       <Button onClick={() => setLikeOpen(true)}>
-        <Image src={likeIcon} alt='like' />
+        <Image src={ICONS.well.like} alt='like' width={26} height={26} />
         <span>{data.stat.like_cnt}</span>
       </Button>
       <AnimatePresence>

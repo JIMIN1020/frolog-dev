@@ -4,10 +4,9 @@ import Rating from '@components/common/Rating';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import checkIcon from 'public/icons/common/checked.svg';
-import uncheckIcon from 'public/icons/common/unchecked.svg';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { BookType } from '@data/dummyData/bookDummy';
+import { ICONS } from 'constants/icon';
 
 interface SelectBookProps {
   bookData: BookType;
@@ -38,9 +37,19 @@ function SelectBook({ bookData }: SelectBookProps) {
         <BookImg src='' alt='' />
         <CheckButton type='button' onClick={handleClick}>
           {checked ? (
-            <Image src={checkIcon} alt='check' />
+            <Image
+              src={ICONS.common.checked}
+              alt='check'
+              width={40}
+              height={40}
+            />
           ) : (
-            <Image src={uncheckIcon} alt='check' />
+            <Image
+              src={ICONS.common.unchecked}
+              alt='check'
+              width={40}
+              height={40}
+            />
           )}
         </CheckButton>
       </ImgWrapper>

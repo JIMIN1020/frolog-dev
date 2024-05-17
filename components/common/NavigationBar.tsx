@@ -2,16 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
-import HomeDefaultIcon from 'public/icons/navigationBar/homeDefault.svg';
-import HomeClickedIcon from 'public/icons/navigationBar/homeClicked.svg';
-import SearchDefaultIcon from 'public/icons/navigationBar/searchDefault.svg';
-import SearchClickedIcon from 'public/icons/navigationBar/searchClicked.svg';
-import AddIcon from 'public/icons/navigationBar/add.svg';
-import WellDefaultIcon from 'public/icons/navigationBar/wellDefault.svg';
-import WellClickedIcon from 'public/icons/navigationBar/wellClicked.svg';
-import ProfileDefaultIcon from 'public/icons/navigationBar/profileDefault.svg';
-import ProfileClickedIcon from 'public/icons/navigationBar/profileClicked.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 function NavigationBar() {
   const pathname = usePathname();
@@ -20,8 +12,14 @@ function NavigationBar() {
     <NavigationBarContainer>
       <NavItem href='/'>
         <Icon
-          src={pathname === '/' ? HomeClickedIcon : HomeDefaultIcon}
+          src={
+            pathname === '/'
+              ? ICONS.navigationBar.home.clicked
+              : ICONS.navigationBar.home.default
+          }
           alt='home'
+          width={24}
+          height={24}
           style={{ width: '24px', height: '24px' }}
         />
         <Label>홈</Label>
@@ -30,18 +28,22 @@ function NavigationBar() {
         <Icon
           src={
             pathname?.startsWith('/search')
-              ? SearchClickedIcon
-              : SearchDefaultIcon
+              ? ICONS.navigationBar.search.clicked
+              : ICONS.navigationBar.search.default
           }
           alt='search'
+          width={24}
+          height={24}
           style={{ width: '24px', height: '24px' }}
         />
         <Label>탐색</Label>
       </NavItem>
       <NavItem href='/search-for-review'>
         <Icon
-          src={AddIcon}
+          src={ICONS.navigationBar.add}
           alt='review'
+          width={39}
+          height={39}
           style={{ width: '39px', height: '39px' }}
         />
       </NavItem>
@@ -49,10 +51,12 @@ function NavigationBar() {
         <Icon
           src={
             pathname?.startsWith('/well/test-user')
-              ? WellClickedIcon
-              : WellDefaultIcon
+              ? ICONS.navigationBar.well.clicked
+              : ICONS.navigationBar.well.default
           }
           alt='well'
+          width={20}
+          height={18}
           style={{ width: '20px', height: '18px' }}
         />
         <Label>우물</Label>
@@ -61,10 +65,12 @@ function NavigationBar() {
         <Icon
           src={
             pathname?.startsWith('/profile/test-user')
-              ? ProfileClickedIcon
-              : ProfileDefaultIcon
+              ? ICONS.navigationBar.profile.clicked
+              : ICONS.navigationBar.profile.default
           }
           alt='profile'
+          width={24}
+          height={24}
           style={{ width: '24px', height: '24px' }}
         />
         <Label>내 정보</Label>

@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import menuIcon from 'public/icons/common/menu-bar.svg';
 import styled from 'styled-components';
+import { ICONS } from 'constants/icon';
 import MyPagePopUp from '../../popUp/MyPagePopUp';
 import ProfileHeaderLayout from './ProfileHeaderLayout';
 
@@ -30,7 +30,7 @@ function ProfileHeaderWithMenu({
   return (
     <ProfileHeaderLayout userInfo={userInfo}>
       <MenuBtn onClick={() => setIsOpen(true)}>
-        <Image src={menuIcon} alt='menu' />
+        <Image src={ICONS.common.menu} alt='menu' width={26} height={20} />
       </MenuBtn>
       <AnimatePresence>
         {isOpen && (

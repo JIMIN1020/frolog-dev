@@ -28,7 +28,7 @@ export default function DashboardItem({
 
   return (
     <Container onClick={handleClick}>
-      <Image src={iconUrl} alt='icon' />
+      <Image src={iconUrl} alt='icon' width={34} height={30} />
       <Content>
         <h5>{title}</h5>
         <span>{count}</span>

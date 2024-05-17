@@ -3,9 +3,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import listIcon from 'public/icons/mypage/list-icon.svg';
 import { BadgeType } from '@data/dummyData/badgeDummy';
 import { DraggableProvided } from 'react-beautiful-dnd';
+import { ICONS } from 'constants/icon';
 
 interface BadgeListItemProps {
   /** 배지 정보 */
@@ -27,7 +27,7 @@ export default function BadgeListItem({
         </Content>
       </LeftSection>
       <div {...provided.dragHandleProps}>
-        <Image src={listIcon} alt='item' />
+        <Image src={ICONS.myPage.list} alt='item' width={20} height={14} />
       </div>
     </BarContainer>
   );

@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import cancelIcon from 'public/icons/common/cancel-x.svg';
 import useClickOutside from '@hooks/useClickOutside';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
+import { ICONS } from 'constants/icon';
 
 interface CommonPopUpProps {
   title: string;
@@ -45,7 +45,12 @@ function CommonPopUp({
       >
         <Icon src='' alt='' />
         <CancelButton type='button' onClick={() => closePopup()}>
-          <Image src={cancelIcon} alt='cancel' />
+          <Image
+            src={ICONS.common.cancel}
+            alt='cancel'
+            width={26}
+            height={26}
+          />
         </CancelButton>
         <Title>{title}</Title>
         <Text>{text}</Text>

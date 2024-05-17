@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { userTestData } from 'mock/testData/user';
 import { useMockData } from 'mock/MockData';
 import * as S from '@styles/pages/newReviewPage';
+import { ICONS } from 'constants/icon';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FormProvider, useForm } from 'react-hook-form';
-import closeIcon from 'public/icons/newReview/close.svg';
 import ReviewStep1Page from './ReviewStep1Page';
 import ReviewStep2Page from './ReviewStep2Page';
 
@@ -60,7 +60,12 @@ function NewReviewPage() {
     <S.PageContainer>
       <S.Header>
         <S.CloseButton href='/'>
-          <S.CloseIcon src={closeIcon} alt='close' />
+          <S.CloseIcon
+            src={ICONS.newReview.close}
+            alt='close'
+            width={59}
+            height={59}
+          />
         </S.CloseButton>
         <S.Title>새 리뷰</S.Title>
       </S.Header>

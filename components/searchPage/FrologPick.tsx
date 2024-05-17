@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import { frologPickDummy } from '../../data/dummyData/frologPickDummy';
+import { frologPickDummy } from '@data/dummyData/frologPickDummy';
 import FrologPickCard from './FrologPickCard';
 
 function FrologPick() {

@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
-import commentIcon from 'public/icons/home/comment.svg';
-import shareIcon from 'public/icons/home/share.svg';
+import { ICONS } from 'constants/icon';
 import CommentBottomSheet from '../comment/CommentBottomSheet';
 import LikeButton from './button/LikeButton';
 
@@ -52,12 +51,12 @@ function BottomBar({ commentsCount }: BottomBarProps) {
       <ButtonsContainer>
         <LikeButton like={like} onClick={toggleLike} likesCount={likesCount} />
         <CommentButton onClick={() => setCommentOpen(true)}>
-          <Icon src={commentIcon} alt='comment' />
+          <Icon src={ICONS.home.comment} alt='comment' width={16} height={16} />
           <ButtonText>댓글 {commentsCount}</ButtonText>
         </CommentButton>
       </ButtonsContainer>
       <ShareButton onClick={handleShare}>
-        <Icon src={shareIcon} alt='share' />
+        <Icon src={ICONS.home.share} alt='share' width={16} height={16} />
         <ButtonText>공유하기</ButtonText>
       </ShareButton>
       <AnimatePresence>

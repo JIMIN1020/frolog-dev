@@ -3,10 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import editIcon from 'public/icons/mypage/edit-icon.svg';
-import editDone from 'public/icons/mypage/edit-done.svg';
-import changeIcon from 'public/icons/common/change-icon.svg';
 import { User } from '@data/dummyData/userDummyData';
+import { ICONS } from 'constants/icon';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
@@ -28,7 +26,14 @@ function MyPageProfile({ user, isEdit, onClickEdit }: ProfileBarProps) {
             width={44}
             height={44}
           />
-          {isEdit && <ImgEdit src={changeIcon} alt='changeIcon' />}
+          {isEdit && (
+            <ImgEdit
+              src={ICONS.common.change}
+              alt='changeIcon'
+              width={32}
+              height={32}
+            />
+          )}
         </ImageWrapper>
 
         <UserInfo>
@@ -38,9 +43,14 @@ function MyPageProfile({ user, isEdit, onClickEdit }: ProfileBarProps) {
       </LeftSection>
       <EditIcon onClick={onClickEdit}>
         {isEdit ? (
-          <Image src={editDone} alt='done' />
+          <Image
+            src={ICONS.myPage.editDone}
+            alt='done'
+            width={36}
+            height={36}
+          />
         ) : (
-          <Image src={editIcon} alt='edit' />
+          <Image src={ICONS.myPage.edit} alt='edit' width={36} height={36} />
         )}
       </EditIcon>
     </BarContainer>

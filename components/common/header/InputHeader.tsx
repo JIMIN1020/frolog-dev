@@ -2,9 +2,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import searchIcon from 'public/icons/header/search-icon.svg';
-import inputCancel from 'public/icons/header/input-cancel.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 interface InputHeaderProps {
   searchValue: string;
@@ -20,9 +19,19 @@ function InputHeader({ searchValue, setSearchValue }: InputHeaderProps) {
         placeholder='책 제목, 작가 이름 등으로 검색해보세요!'
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      <SearchIcon src={searchIcon} alt='search' />
+      <SearchIcon
+        src={ICONS.header.search}
+        alt='search'
+        width={24}
+        height={24}
+      />
       <CancelIcon onClick={() => setSearchValue('')}>
-        <Image src={inputCancel} alt='cancel' />
+        <Image
+          src={ICONS.header.inputCancel}
+          alt='cancel'
+          width={24}
+          height={24}
+        />
       </CancelIcon>
     </HeaderContainer>
   );

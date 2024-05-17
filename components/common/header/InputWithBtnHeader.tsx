@@ -2,9 +2,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import searchIcon from 'public/icons/header/search-icon.svg';
 import Image from 'next/image';
-import arrowLeft from 'public/icons/notice/arrow-left.svg';
+import { ICONS } from 'constants/icon';
 
 interface InputWithBtnHeaderProps {
   handleDone: () => void;
@@ -14,10 +13,10 @@ function InputWithBtnHeader({ handleDone }: InputWithBtnHeaderProps) {
   return (
     <HeaderContainer>
       <BackBtn type='button' onClick={handleDone}>
-        <Image src={arrowLeft} alt='back' />
+        <Image src={ICONS.notice.arrowLeft} alt='back' width={36} height={36} />
       </BackBtn>
       <InputWrapper>
-        <SearchIcon src={searchIcon} alt='search' />
+        <SearchIcon src={ICONS.header.search} alt='search' fill />
         <SearchInput
           type='text'
           placeholder='책 제목, 작가 이름 등으로 검색해보세요!'

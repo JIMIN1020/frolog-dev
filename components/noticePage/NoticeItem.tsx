@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { NoticeDummyType } from '../../data/dummyData/noticeDummy';
+import { NoticeDummyType } from '@data/dummyData/noticeDummy';
 
 interface NoticeItemProps {
   noticeData: NoticeDummyType;

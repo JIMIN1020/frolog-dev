@@ -2,8 +2,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import bookChangeIcon from 'public/icons/newReview/bookChange.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 interface BookImageProps {
   imageUrl: string;
@@ -15,9 +15,11 @@ function BookImage({ imageUrl, onChangeClick }: BookImageProps) {
     <BookImageContainer>
       <BookImg src={imageUrl} alt='Book Cover' width={160} height={235} />
       <ChangeIcon
-        src={bookChangeIcon}
+        src={ICONS.newReview.bookChange}
         alt='Change Book'
         onClick={onChangeClick}
+        width={40}
+        height={40}
       />
     </BookImageContainer>
   );

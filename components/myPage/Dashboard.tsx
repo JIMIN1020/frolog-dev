@@ -1,9 +1,6 @@
 import React from 'react';
+import { ICONS } from 'constants/icon';
 import * as S from '@styles/components/myPage/dashboard';
-import myReviewIcon from 'public/icons/mypage/my-review-icon.svg';
-import likeReviewIcon from 'public/icons/mypage/like-review-icon.svg';
-import likeBookIcon from 'public/icons/mypage/like-book-icon.svg';
-import likeWellIcon from 'public/icons/mypage/like-well-icon.svg';
 import DashboardItem from './DashboardItem';
 
 interface DashboardProps {
@@ -19,22 +16,22 @@ export default function Dashboard({ data }: DashboardProps) {
   return (
     <S.Container>
       <DashboardItem
-        iconUrl={myReviewIcon}
+        iconUrl={ICONS.myPage.myReview}
         title='작성한 리뷰'
         count={data.my_review}
       />
       <DashboardItem
-        iconUrl={likeReviewIcon}
+        iconUrl={ICONS.myPage.likeReview}
         title='좋아요한 리뷰'
         count={data.liked_review}
       />
       <DashboardItem
-        iconUrl={likeBookIcon}
+        iconUrl={ICONS.myPage.likeBook}
         title='좋아요한 책'
         count={data.liked_book}
       />
       <DashboardItem
-        iconUrl={likeWellIcon}
+        iconUrl={ICONS.myPage.likeWell}
         title='좋아요한 우물'
         count={data.liked_well}
       />

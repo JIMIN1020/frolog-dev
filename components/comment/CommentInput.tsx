@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import InputButton from 'public/icons/bottomSheet/InputButton.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 function CommentInput() {
   /* ----- keyboard focus 시 body 고정 ----- */
@@ -24,7 +24,12 @@ function CommentInput() {
       <InputWrapper>
         <StyledInput type='text' onFocus={onFocusInput} onBlur={onBlurInput} />
         <SendButton>
-          <Image src={InputButton} alt='send' />
+          <Image
+            src={ICONS.bottomSheet.enter}
+            alt='send'
+            width={40}
+            height={40}
+          />
         </SendButton>
       </InputWrapper>
     </Container>
@@ -92,9 +97,4 @@ const SendButton = styled.button`
   margin-left: 8px;
   border: none;
   background-color: ${({ theme }) => theme.colors.bg_white};
-
-  & img {
-    width: 40px;
-    height: 40px;
-  }
 `;

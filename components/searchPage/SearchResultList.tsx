@@ -2,12 +2,11 @@
 
 import React from 'react';
 import styled from 'styled-components';
-
-import BookCardHorizontal from '../common/bookCard/BookCardHorizontal';
 import {
   BookDataType,
   recommendBookDummy,
-} from '../../data/dummyData/recommendDummy';
+} from '@data/dummyData/recommendDummy';
+import BookCardHorizontal from '../common/bookCard/BookCardHorizontal';
 
 interface SearchResultListProps {
   handleClick: (book: BookDataType) => void;

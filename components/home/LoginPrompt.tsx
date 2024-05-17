@@ -1,11 +1,16 @@
 import React from 'react';
 import * as S from '@styles/components/home/loginPrompt';
-import frogLogo from 'public/icons/home/frologlogo.svg';
+import { ICONS } from 'constants/icon';
 
 function LoginPrompt() {
   return (
     <S.PromptContainer>
-      <S.FrogLogo src={frogLogo} alt='Frog Logo' />
+      <S.FrogLogo
+        src={ICONS.home.frologLogo}
+        alt='Frog Logo'
+        width={88}
+        height={112}
+      />
       <S.TextAndButtonContainer>
         <S.PromptText>
           로그인을 하고

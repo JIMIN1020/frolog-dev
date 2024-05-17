@@ -3,10 +3,8 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import starIcon from 'public/icons/home/star.svg';
-import noStarIcon from 'public/icons/home/nostar.svg';
-import halfStarIcon from 'public/icons/home/halfstar.svg';
 import Image from 'next/image';
+import { ICONS } from 'constants/icon';
 
 function Rating() {
   /* ----- form context 가져오기 ----- */
@@ -37,11 +35,11 @@ function Rating() {
         {Array.from({ length: 5 }, (_, index) => {
           let src;
           if (index + 1 <= rating) {
-            src = starIcon;
+            src = ICONS.home.star;
           } else if (index + 0.5 === rating) {
-            src = halfStarIcon;
+            src = ICONS.home.halfstar;
           } else {
-            src = noStarIcon;
+            src = ICONS.home.nostar;
           }
           return (
             <Star
@@ -49,6 +47,8 @@ function Rating() {
               src={src}
               alt='star'
               onClick={(event) => handleRating(event, index)}
+              width={32}
+              height={32}
             />
           );
         })}

@@ -5,9 +5,9 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { motion, useAnimation, useDragControls } from 'framer-motion';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
-import Line from 'public/icons/bottomSheet/Line.svg';
 import { fadeUp } from '@styles/GlobalStyles';
 import useClickOutside from '@hooks/useClickOutside';
+import { ICONS } from 'constants/icon';
 
 interface BottomSheetProps {
   /** 바텀시트 안에 담길 요소들 */
@@ -79,7 +79,12 @@ function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
           onPointerDown={(e) => dragControls.start(e)}
           onClick={closeBottomsheet}
         >
-          <Image src={Line} alt='line' />
+          <Image
+            src={ICONS.bottomSheet.line}
+            alt='line'
+            width={36}
+            height={4}
+          />
           <Title>{title}</Title>
         </Header>
         {children}
