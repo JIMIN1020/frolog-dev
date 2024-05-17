@@ -149,7 +149,6 @@ const LabelContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-
 const LoginButton = styled.button`
   width: 288px;
   height: 44px;

@@ -15,8 +15,8 @@ function FrologStartButton({ type }: FrologStartButtonProps) {
     try {
       // API 연동(해당 사용자의 type을 서버로 보내도록 구현)
       // type 변수를 나중에 사용할 계획이라서, 아래 주석을 사용하여 eslint 경고 무시
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const userType = type; // 이 변수는 나중에 API 연동 시 사용할 것임.
+      // const userType = type; // 이 변수는 나중에 API 연동 시 사용할 것임.
+      console.log(type);
 
       router.push('/');
     } catch (error) {

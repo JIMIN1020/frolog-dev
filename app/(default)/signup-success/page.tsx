@@ -2,8 +2,8 @@
 
 import React from 'react';
 import * as S from '@styles/pages/signup-successPage';
-import { useRouter } from 'next/navigation';
 import { ICONS } from 'constants/icon';
+import StartButton from '@components/signUpPage/startButton';
 
 function SignupSuccess() {
   return (
