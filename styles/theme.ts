@@ -27,6 +27,7 @@ export const theme = {
     xxl: '20px',
     xxxl: '24px',
     title: '28px',
+    title2: '30px',
     rating: '40px',
     login: '64px',
   },
