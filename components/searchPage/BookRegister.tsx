@@ -3,7 +3,6 @@
 import CommonPopUp from '@components/common/popUp/CommonPopUp';
 import { StyledButton, StyledInput } from '@styles/GlobalStyles';
 import { AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -14,7 +13,6 @@ interface BookRegisterForm {
 }
 
 function BookRegister() {
-  const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const { register, watch } = useForm<BookRegisterForm>({
     defaultValues: { title: '', author: '' },

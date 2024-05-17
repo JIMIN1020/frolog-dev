@@ -1,12 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import styled from 'styled-components';
 import { StyledCheckbox, StyledInput } from '@styles/GlobalStyles';
+import { dummyUsers } from '@data/dummyData/dummyUsers';
+import noSeepw from 'public/icons/signUp/noSeepw.svg';
+import seepw from 'public/icons/signUp/seepw.svg';
 
 interface FormValues {
   email: string;
@@ -29,7 +33,8 @@ const schema = yup
 function LoginForm() {
   const router = useRouter();
   const [generalError, setGeneralError] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(false); // TODO: 나중에 이부분 관련해서 수정해야 함. 로그인 성공시, 실패시 화면 다르게 보이도록.
+  const [loginSuccess, setLoginSuccess] = useState(false); // 로그인 성공 여부 저장.
+  const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 추가
   const {
     register,
     handleSubmit,
@@ -38,18 +43,29 @@ function LoginForm() {
 
   const onSubmitHandler = async (data: FormValues) => {
     try {
-      // TODO: 백엔드 API 호출 구현 예정
-      // 로그인 시뮬레이션: 더미 데이터로 체크함.
-      if (
-        data.email === 'frolog@naver.com' &&
-        data.password === 'frolog1234!'
-      ) {
-        setLoginSuccess(true);
-      } else {
-        throw new Error('로그인 실패.');
+      // 더미 데이터와 비교하여 로그인 처리
+      const user = dummyUsers.find(
+        (user) => user.email === data.email && user.password === data.password
+      );
+
+      if (!user) {
+        throw new Error('이메일 또는 비밀번호를 확인해주세요!');
       }
+
+      // 토큰 받아오기 (여기서는 더미 토큰을 사용)
+      const token = 'dummy-jwt-token';
+
+      // 로컬 스토리지에 토큰 저장
+      localStorage.setItem('token', token);
+
+      setLoginSuccess(true);
     } catch (error) {
-      setGeneralError('이메일 또는 비밀번호를 확인해주세요');
+      console.error('Error:', error);
+      if (error instanceof Error) {
+        setGeneralError(error.message);
+      } else {
+        setGeneralError('예상치 못한 오류가 발생했습니다');
+      }
     }
   };
 
@@ -58,6 +74,10 @@ function LoginForm() {
       router.push('/');
     }
   }, [loginSuccess, router]);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -69,22 +89,25 @@ function LoginForm() {
           {...register('email')}
         />
         {errors.email && <ErrorMessage1>{errors.email.message}</ErrorMessage1>}
-        <StyledInput
-          id='password'
-          type='password'
-          placeholder='비밀번호'
-          {...register('password')}
-        />
+        <PasswordInputContainer>
+          <StyledInput
+            id='password'
+            type={showPassword ? 'text' : 'password'}
+            placeholder='비밀번호'
+            {...register('password')}
+          />
+          <ToggleIcon
+            src={showPassword ? seepw : noSeepw}
+            alt='Toggle password visibility'
+            onClick={togglePasswordVisibility}
+          />
+        </PasswordInputContainer>
         {errors.password && (
           <ErrorMessage1>{errors.password.message}</ErrorMessage1>
         )}
       </InputContainer>
       <LabelContainer>
-        <StyledCheckbox
-          type='checkbox'
-          id='rememberMe'
-          {...register('rememberMe')}
-        />
+        <StyledCheckbox type='checkbox' />
         <label htmlFor='rememberMe'>로그인 상태 유지</label>
       </LabelContainer>
       {generalError && <ErrorMessage2>{generalError}</ErrorMessage2>}
@@ -103,6 +126,19 @@ const InputContainer = styled.div`
   justify-content: center;
   gap: 10px;
   margin-bottom: 14px;
+`;
+
+const PasswordInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const ToggleIcon = styled(Image)`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 `;
 
 const LabelContainer = styled.div`
