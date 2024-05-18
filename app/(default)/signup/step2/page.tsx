@@ -1,13 +1,13 @@
 import React from 'react';
 import SignUpFormProvider from '@components/signUpPage/SignUpProvider';
-import Step1 from '@components/signUpPage/Step1';
+import Step2 from '@components/signUpPage/Step2';
 
-function SignUpPage() {
+function Step2Page() {
   return (
     <SignUpFormProvider>
-      <Step1 />
+      <Step2 />
     </SignUpFormProvider>
   );
 }
 
-export default SignUpPage;
+export default Step2Page;

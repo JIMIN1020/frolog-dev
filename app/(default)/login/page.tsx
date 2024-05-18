@@ -1,12 +1,22 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import LoginForm from '@components/loginPage/LoginForm';
 import * as S from '@styles/pages/loginPage';
 import Link from 'next/link';
+import exit from 'public/icons/signUp/exit.svg';
 import { ICONS } from 'constants/icon';
 
 function Page() {
+  const router = useRouter();
+
+  const handleExitClick = () => {
+    router.push('/');
+  };
   return (
     <S.Container>
+      <S.ExitImg src={exit} alt='exit' onClick={handleExitClick} />
       <S.Title>Frolog</S.Title>
       <S.LogoImg
         src={ICONS.home.frologLogo}

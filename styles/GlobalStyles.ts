@@ -61,7 +61,7 @@ export const StyledButton = styled.button<{
       : theme.colors[($color as keyof typeof theme.colors) || 'key_color']};
 `;
 
-export const StyledCheckbox = styled.input`
+export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
   width: 20px;
   height: 20px;

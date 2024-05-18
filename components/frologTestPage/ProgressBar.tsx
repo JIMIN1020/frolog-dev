@@ -27,7 +27,7 @@ export default ProgressBar;
 
 const ProgressBarWrapper = styled.div`
   flex-shrink: 0;
-  width: 100%;
+  width: 110%;
   height: 20px;
   justify-content: flex-start;
   background-color: ${({ theme }) => theme.colors.input_gray};

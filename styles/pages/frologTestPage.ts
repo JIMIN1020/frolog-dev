@@ -1,5 +1,3 @@
-import { theme } from '@styles/theme';
-
 import Image from 'next/image';
 import styled from 'styled-components';
 

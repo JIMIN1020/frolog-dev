@@ -10,12 +10,19 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+export const ExitImg = styled(Image)`
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  margin-top: 40px;
+  margin-left: 350px;
+`;
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.key_color};
   font-size: ${({ theme }) => theme.fontSize.login};
   font-weight: 700;
-  margin-top: 120px;
+  margin-top: 50px;
 `;
 
 export const LogoImg = styled(Image)`
