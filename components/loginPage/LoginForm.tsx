@@ -9,8 +9,7 @@ import * as yup from 'yup';
 import styled from 'styled-components';
 import { StyledCheckbox, StyledInput } from '@styles/GlobalStyles';
 import { dummyUsers } from '@data/dummyData/dummyUsers';
-import noSeepw from 'public/icons/signUp/noSeepw.svg';
-import seepw from 'public/icons/signUp/seepw.svg';
+import { ICONS } from 'constants/icon';
 
 interface FormValues {
   email: string;
@@ -21,10 +20,7 @@ interface FormValues {
 // 이메일 유효성 검사를 위한 스키마
 const schema = yup
   .object({
-    email: yup
-      .string()
-      .required('이메일을 입력해주세요')
-      .email('이메일 형식이 아닙니다.'),
+    email: yup.string().required('이메일을 입력해주세요'),
     password: yup.string().required('비밀번호를 입력해주세요'),
     rememberMe: yup.boolean(),
   })
@@ -49,14 +45,14 @@ function LoginForm() {
       );
 
       if (!user) {
-        throw new Error('이메일 또는 비밀번호를 확인해주세요!');
+        throw new Error('이메일 또는 비밀번호를 잘못 입력했습니다');
       }
 
       // 토큰 받아오기 (여기서는 더미 토큰을 사용)
-      const token = 'dummy-jwt-token';
+      const token = 'token';
 
       // 로컬 스토리지에 토큰 저장
-      localStorage.setItem('token', token);
+      localStorage.setItem('accessToken', token);
 
       setLoginSuccess(true);
     } catch (error) {
@@ -80,52 +76,69 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <InputContainer>
-        <StyledInput
-          id='email'
-          type='email'
-          placeholder='이메일'
-          {...register('email')}
-        />
-        {errors.email && <ErrorMessage1>{errors.email.message}</ErrorMessage1>}
-        <PasswordInputContainer>
+    <FormContainer onSubmit={handleSubmit(onSubmitHandler)}>
+      <Wrapper>
+        <InputContainer>
           <StyledInput
-            id='password'
-            type={showPassword ? 'text' : 'password'}
-            placeholder='비밀번호'
-            {...register('password')}
+            id='email'
+            type='email'
+            placeholder='이메일'
+            {...register('email')}
           />
-          <ToggleIcon
-            src={showPassword ? seepw : noSeepw}
-            alt='Toggle password visibility'
-            onClick={togglePasswordVisibility}
-          />
-        </PasswordInputContainer>
-        {errors.password && (
-          <ErrorMessage1>{errors.password.message}</ErrorMessage1>
-        )}
-      </InputContainer>
-      <LabelContainer>
-        <StyledCheckbox type='checkbox' />
-        <label htmlFor='rememberMe'>로그인 상태 유지</label>
-      </LabelContainer>
-      {generalError && <ErrorMessage2>{generalError}</ErrorMessage2>}
-      <LoginButton type='submit'>로그인</LoginButton>
-    </form>
+          <PasswordInputContainer>
+            <StyledInput
+              id='password'
+              type={showPassword ? 'text' : 'password'}
+              placeholder='비밀번호'
+              {...register('password')}
+            />
+            <ToggleIcon
+              src={showPassword ? ICONS.singUp.seepw : ICONS.singUp.noSeePw}
+              alt='Toggle password visibility'
+              onClick={togglePasswordVisibility}
+              width={24}
+              height={21}
+            />
+          </PasswordInputContainer>
+        </InputContainer>
+        <LabelContainer>
+          <StyledCheckbox type='checkbox' />
+          <label htmlFor='rememberMe'>로그인 상태 유지</label>
+        </LabelContainer>
+      </Wrapper>
+      <ButtonWrapper>
+        <ErrorMessage>
+          {errors.email?.message || errors.password?.message || generalError}
+        </ErrorMessage>
+        <LoginButton type='submit'>로그인</LoginButton>
+      </ButtonWrapper>
+    </FormContainer>
   );
 }
 
 export default LoginForm;
 
+const FormContainer = styled.form`
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
 const InputContainer = styled.div`
-  width: 290px;
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 14px;
 `;
 
 const PasswordInputContainer = styled.div`
@@ -135,7 +148,7 @@ const PasswordInputContainer = styled.div`
 
 const ToggleIcon = styled(Image)`
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -146,30 +159,30 @@ const LabelContainer = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.colors.text_black};
   font-size: ${({ theme }) => theme.fontSize.base};
-  margin-bottom: 10px;
 `;
 
 const LoginButton = styled.button`
-  width: 288px;
+  width: 100%;
   height: 44px;
   border-radius: 50px;
   background: ${({ theme }) => theme.colors.key_color};
   color: ${({ theme }) => theme.colors.text_white};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 53px;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+  font-weight: 600;
+  cursor: pointer;
 `;
 
-const ErrorMessage1 = styled.small`
-  display: block;
-  color: red;
-  font-size: ${({ theme }) => theme.fontSize.md};
-`;
-
-const ErrorMessage2 = styled.small`
+const ErrorMessage = styled.span`
+  height: 14px;
   display: flex;
   justify-content: center;
-  color: red;
-  margin-top: 30px;
-  margin-bottom: -30px;
-  font-size: ${({ theme }) => theme.fontSize.md};
+  color: ${({ theme }) => theme.colors.text_red};
+  font-size: ${({ theme }) => theme.fontSize.base};
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;

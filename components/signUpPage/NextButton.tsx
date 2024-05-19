@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,10 +20,9 @@ function NextButton({ onClick, children, disabled }: NextButtonProps) {
 export default NextButton;
 
 const Button = styled.button<{ disabled?: boolean }>`
-  width: 288px;
-  height: 44px;
+  width: 100%;
+  height: 45px;
   border-radius: 50px;
-  margin-top: 120px;
   background: ${({ theme, disabled }) =>
     disabled ? theme.colors.button_gray : theme.colors.key_color};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

@@ -4,8 +4,6 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import LoginForm from '@components/loginPage/LoginForm';
 import * as S from '@styles/pages/loginPage';
-import Link from 'next/link';
-import exit from 'public/icons/signUp/exit.svg';
 import { ICONS } from 'constants/icon';
 
 function Page() {
@@ -16,7 +14,13 @@ function Page() {
   };
   return (
     <S.Container>
-      <S.ExitImg src={exit} alt='exit' onClick={handleExitClick} />
+      <S.ExitImg
+        src={ICONS.header.exit}
+        alt='exit'
+        width={28}
+        height={28}
+        onClick={handleExitClick}
+      />
       <S.Title>Frolog</S.Title>
       <S.LogoImg
         src={ICONS.home.frologLogo}
@@ -26,13 +30,13 @@ function Page() {
       />
       <LoginForm />
       <S.LinksContainer>
-        <Link href='/signup' passHref>
-          <S.StyledLink>회원가입</S.StyledLink>
-        </Link>
+        <S.StyledLink href='/signup?step=1' passHref>
+          회원가입
+        </S.StyledLink>
         <S.Divider />
-        <Link href='/reset-password' passHref>
-          <S.StyledLink>비밀번호 찾기</S.StyledLink>
-        </Link>
+        <S.StyledLink href='/reset-password' passHref>
+          비밀번호 찾기
+        </S.StyledLink>
       </S.LinksContainer>
     </S.Container>
   );

@@ -2,9 +2,7 @@ import { z } from 'zod';
 
 export const signUpFormSchema = z
   .object({
-    email: z.string().email({
-      message: '이메일 형식이 맞지 않습니다.',
-    }),
+    email: z.string(),
     password: z
       .string()
       .regex(
@@ -12,25 +10,26 @@ export const signUpFormSchema = z
         '패스워드는 암호 대소문자, 숫자, 기호 포함 8~20자 이내'
       ),
     passwordCheck: z.string(),
-    job: z.object({
-      name: z.string().min(1, '직업을 선택하세요.'),
-      isPublic: z.boolean(),
-    }),
     nickname: z
       .string()
       .min(2, '닉네임은 최소 2자 이상이어야 합니다.')
-      .max(12, '닉네임은 최대 12자 이내여야 합니다.')
-      .regex(
-        /^[가-힣a-zA-Z0-9._]{2,12}$/,
-        '닉네임은 한글, 영문 대소문자, 숫자, _ , . 만 허용됩니다.'
-      ),
-    gender: z.enum(['남자', '여자', '기타'], {
-      errorMap: () => ({ message: '성별을 체크해주세요' }),
+      .max(12, '닉네임은 최대 12자 이내여야 합니다.'),
+
+    // .regex(
+    //   /^[가-힣a-zA-Z0-9._]{2,12}$/,
+    //   '닉네임은 한글, 영문 대소문자, 숫자, _ , . 만 허용됩니다.'
+    // ),
+    job: z.object({
+      name: z.string(),
+      isPublic: z.boolean().default(true),
     }),
-    genderPublic: z.boolean().default(false),
+    gender: z.object({
+      name: z.string(),
+      isPublic: z.boolean().default(true),
+    }),
     birthDate: z.object({
-      date: z.string().min(1, '생년월일을 입력해주세요.'),
-      isPublic: z.boolean().default(false),
+      date: z.string(),
+      isPublic: z.boolean().default(true),
     }),
     terms: z.object({
       age: z.boolean(),
@@ -48,20 +47,28 @@ export const signUpFormSchema = z
 export type SignUpFormValues = z.infer<typeof signUpFormSchema>;
 export type TermsKeys = keyof SignUpFormValues['terms'];
 
+const getToday = () => {
+  const dateNow = new Date();
+  const today = dateNow.toISOString().slice(0, 10);
+  return today;
+};
+
 export const defaultValues: SignUpFormValues = {
   email: '',
   password: '',
   passwordCheck: '',
   job: {
     name: '',
-    isPublic: false,
+    isPublic: true,
   },
   nickname: '',
-  gender: '남자',
-  genderPublic: false,
+  gender: {
+    name: '남자',
+    isPublic: true,
+  },
   birthDate: {
-    date: '',
-    isPublic: false,
+    date: getToday(),
+    isPublic: true,
   },
   terms: {
     age: false,

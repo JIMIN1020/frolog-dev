@@ -2,32 +2,60 @@
 
 import React from 'react';
 import * as S from '@styles/pages/signup-successPage';
-import frologLogo from 'public/icons/home/frologlogo.svg';
-import leftq from 'public/icons/signUp/leftq.svg';
-import rightq from 'public/icons/signUp/rightq.svg';
-import StartButton from '@components/signUpPage/startButton';
+import { SignUpContainer } from '@styles/components/common/signUp';
+import { ICONS } from 'constants/icon';
+import { useRouter } from 'next/navigation';
+import NextButton from './NextButton';
 
 interface SignupSuccessProps {
   nickname: string;
 }
 
 function SignupSuccess({ nickname }: SignupSuccessProps) {
+  const router = useRouter();
+
   return (
-    <S.Container>
-      <S.Title>가입 완료!</S.Title>
-      <S.Logo src={frologLogo} alt='Frolog Logo' />
-      <S.MessageContainer>
-        <S.lQuote src={leftq} alt='Left quote' />
-        <S.Message>
-          {nickname}님 <br />
-          독서 성향을 알아보기 위해,
-          <br />
-          간단하게 7가지만 물어볼게요.
-        </S.Message>
-        <S.rQuote src={rightq} alt='Right quote' />
-      </S.MessageContainer>
-      <StartButton />
-    </S.Container>
+    <SignUpContainer>
+      <S.Blank />
+      <S.Wrapper>
+        <S.Title initial={{ scale: 0 }} animate={{ scale: 1 }}>
+          환영합니다!
+        </S.Title>
+        <S.Logo
+          src={ICONS.home.frologLogo}
+          alt='Frolog Logo'
+          width={160}
+          height={200}
+        />
+        <S.MessageContainer
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.3 }}
+        >
+          <S.lQuote
+            src={ICONS.singUp.leftq}
+            alt='Left quote'
+            width={20}
+            height={20}
+          />
+          <S.Message>
+            {nickname}님 <br />
+            독서 성향을 알아보기 위해,
+            <br />
+            간단하게 7가지만 물어볼게요.
+          </S.Message>
+          <S.rQuote
+            src={ICONS.singUp.rightq}
+            alt='Right quote'
+            width={20}
+            height={20}
+          />
+        </S.MessageContainer>
+      </S.Wrapper>
+      <NextButton onClick={() => router.push('/frolog-test?step=1')}>
+        내 독서성향 알아보기
+      </NextButton>
+    </SignUpContainer>
   );
 }
 

@@ -18,7 +18,7 @@ function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
 
   return (
     <ProgressBarWrapper>
-      <Progress prevProgress={prevProgress} progress={progress} />
+      <Progress $prevProgress={prevProgress} $progress={progress} />
     </ProgressBarWrapper>
   );
 }
@@ -27,11 +27,15 @@ export default ProgressBar;
 
 const ProgressBarWrapper = styled.div`
   flex-shrink: 0;
-  width: 110%;
-  height: 20px;
+  width: 100%;
+  height: 12px;
   justify-content: flex-start;
   background-color: ${({ theme }) => theme.colors.input_gray};
-  margin-top: 46px;
+
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
 `;
 
 const grow = (start: number, end: number) => keyframes`
@@ -43,11 +47,11 @@ const grow = (start: number, end: number) => keyframes`
   }
 `;
 
-const Progress = styled.div<{ prevProgress: number; progress: number }>`
-  width: ${({ progress }) => progress}%;
+const Progress = styled.div<{ $prevProgress: number; $progress: number }>`
+  width: ${({ $progress }) => $progress}%;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.key_color};
-  animation: ${({ prevProgress, progress }) => css`
-    ${grow(prevProgress, progress)} 0.8s ease-out;
+  animation: ${({ $prevProgress, $progress }) => css`
+    ${grow($prevProgress, $progress)} 0.8s ease-out;
   `};
 `;

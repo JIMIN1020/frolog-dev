@@ -24,6 +24,7 @@ export const ICONS = {
     search: `${BASE_PATH}/header/search-icon.svg`,
     share: `${BASE_PATH}/header/share-icon.svg`,
     wellEdit: `${BASE_PATH}/header/well-edit-icon.svg`,
+    exit: `${BASE_PATH}/header/exit.svg`,
   },
   home: {
     comment: `${BASE_PATH}/home/comment.svg`,
@@ -79,6 +80,9 @@ export const ICONS = {
   singUp: {
     leftq: `${BASE_PATH}/signUp/leftq.svg`,
     rightq: `${BASE_PATH}/signUp/rightq.svg`,
+    noSeePw: `${BASE_PATH}/signUp/noSeepw.svg`,
+    seepw: `${BASE_PATH}/signUp/seepw.svg`,
+    check: `${BASE_PATH}/signUp/check.svg`,
   },
   well: {
     delete: `${BASE_PATH}/well/delete-icon.svg`,

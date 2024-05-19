@@ -1,31 +1,34 @@
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Blank = styled.div`
+  width: 1px;
+  height: 1px;
+`;
+
+export const Title = styled(motion.h1)`
+  color: ${({ theme }) => theme.colors.key_color};
+  font-size: ${({ theme }) => theme.fontSize.rating};
+  font-weight: 600;
+`;
+
+export const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 180px;
-`;
-
-export const Title = styled.h1`
-  color: ${({ theme }) => theme.colors.key_color};
-  font-size: ${({ theme }) => theme.fontSize.rating};
-  margin-bottom: 48px;
+  gap: 20px;
 `;
 
 export const Logo = styled(Image)`
-  width: 160px;
-  height: 160px;
-  flex-shrink: 0;
-  margin-bottom: 70px;
+  margin: 20px 0;
 `;
 
-export const MessageContainer = styled.div`
+export const MessageContainer = styled(motion.div)`
   display: flex;
   align-items: center;
   text-align: center;
-  margin-bottom: 130px;
 `;
 
 export const Message = styled.p`
@@ -35,13 +38,9 @@ export const Message = styled.p`
 `;
 
 export const lQuote = styled(Image)`
-  width: 24px;
-  height: 24px;
   margin-right: 11px;
 `;
 
 export const rQuote = styled(Image)`
-  width: 24px;
-  height: 24px;
   margin-left: 11px;
 `;

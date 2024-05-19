@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -25,9 +26,18 @@ function SignUpFormProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+      <Form onSubmit={handleSubmit(onSubmit)}>{children}</Form>
     </FormProvider>
   );
 }
 
 export default SignUpFormProvider;
+
+const Form = styled.div`
+  width: 100%;
+  height: fit-content;
+  min-height: calc(var(--vh, 1vh) * 100 - 82px);
+
+  display: flex;
+  flex-direction: column;
+`;
