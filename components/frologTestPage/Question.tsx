@@ -16,12 +16,11 @@ function Question({ currentQuestion, onSelectAnswer }: QuestionProps) {
   }
 
   return (
-    <div>
+    <Container>
       <QuestionWrapper>
         <QuestionNumber>{question.number}</QuestionNumber>
         <QuestionText>{question.question}</QuestionText>
       </QuestionWrapper>
-      <Divider />
       <AnswersWrapper>
         {question.answers.map((answer, index) => (
           <AnswerBox
@@ -32,15 +31,24 @@ function Question({ currentQuestion, onSelectAnswer }: QuestionProps) {
           />
         ))}
       </AnswersWrapper>
-    </div>
+    </Container>
   );
 }
 
 export default Question;
 
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 const QuestionWrapper = styled.div`
-  margin-top: 50px;
-  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
+  padding: 30px 0;
 `;
 
 const QuestionNumber = styled.h1`
@@ -50,25 +58,18 @@ const QuestionNumber = styled.h1`
 `;
 
 const QuestionText = styled.p`
-  width: 280px;
-  margin-top: 50px;
+  width: 100%;
   font-size: ${({ theme }) => theme.fontSize.lg};
   color: ${({ theme }) => theme.colors.text_black};
   font-weight: 500;
-  flex-shrink: 0;
   text-align: left;
   line-height: normal;
-`;
-
-const Divider = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
-  width: 300px;
-  margin: 0 auto;
-  margin-bottom: 50px;
 `;
 
 const AnswersWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 0;
+  gap: 30px;
 `;

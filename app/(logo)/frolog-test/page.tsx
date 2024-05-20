@@ -2,17 +2,14 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import * as S from '@styles/pages/frologTestPage';
-import ProgressBar from '@components/frologTestPage/ProgressBar';
 import Question from '@components/frologTestPage/Question';
 import { questions } from '@data/frologQuestionData';
-import back from 'public/icons/signUp/back.svg';
+import styled from 'styled-components';
+import TestFinish from '@components/frologTestPage/TestFinish';
 
 function FrologTestPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const stepParam = searchParams.get('step');
-  const step = stepParam ? parseInt(stepParam, 10) : 1;
+  const step = parseInt(useSearchParams().get('step')!, 10);
   const totalSteps = questions.length;
 
   const [answers, setAnswers] = useState<number[]>(() => {
@@ -24,12 +21,6 @@ function FrologTestPage() {
     }
     return Array(totalSteps).fill(-1);
   });
-
-  useEffect(() => {
-    if (step > totalSteps || step < 1) {
-      router.push('/');
-    }
-  }, [step, totalSteps, router]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -46,33 +37,36 @@ function FrologTestPage() {
       const query = new URLSearchParams({
         answers: JSON.stringify(updatedAnswers),
       }).toString();
-      router.push(`/analysis-frologtest?${query}`);
+      router.push(`/frolog-test?step=8&${query}`);
     } else {
       router.push(`/frolog-test?step=${step + 1}`);
     }
   };
 
   return (
-    <S.Container>
-      <S.Header>
-        <S.BackButton
-          src={back}
-          alt='뒤로가기'
-          onClick={() => router.back()}
-          style={{ visibility: step > 1 ? 'visible' : 'hidden' }}
-        />
-        <S.TitleWrapper>
-          <S.Title>Frolog</S.Title>
-        </S.TitleWrapper>
-        <div style={{ width: 28 }} />
-      </S.Header>
-      <ProgressBar currentStep={step} totalSteps={totalSteps} />
-      <Question
-        currentQuestion={step - 1}
-        onSelectAnswer={handleAnswerSelect}
-      />
-    </S.Container>
+    <>
+      {step <= 7 ? (
+        <Container>
+          <Question
+            currentQuestion={step - 1}
+            onSelectAnswer={handleAnswerSelect}
+          />
+        </Container>
+      ) : (
+        <TestFinish />
+      )}
+    </>
   );
 }
 
 export default FrologTestPage;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  height: fit-content;
+  padding: 30px;
+`;

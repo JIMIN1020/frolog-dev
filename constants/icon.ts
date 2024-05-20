@@ -25,6 +25,7 @@ export const ICONS = {
     share: `${BASE_PATH}/header/share-icon.svg`,
     wellEdit: `${BASE_PATH}/header/well-edit-icon.svg`,
     exit: `${BASE_PATH}/header/exit.svg`,
+    backCircle: `${BASE_PATH}/header/back.svg`,
   },
   home: {
     comment: `${BASE_PATH}/home/comment.svg`,

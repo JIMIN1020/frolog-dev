@@ -1,26 +1,44 @@
-import { theme } from '@styles/theme';
 import styled from 'styled-components';
 import Image from 'next/image';
 
 export const Container = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  justify-content: space-between;
+  padding: 30px 50px 50px 30px;
+  gap: 50px;
 `;
 
 export const Logo = styled(Image)`
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   flex-shrink: 0;
   margin: 40px 0;
 `;
 
+export const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const Quotes = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 20px 0;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const lQuote = styled(Image)`
@@ -56,35 +74,34 @@ export const Subtitle = styled.h2`
   letter-spacing: 0.4px;
 `;
 
-export const Divider = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
-  width: 328px;
-  margin: 25px 0;
-`;
-
-export const Description = styled.p`
+export const Description = styled.div`
+  width: 100%;
   font-size: ${({ theme }) => theme.fontSize.lg};
   color: ${({ theme }) => theme.colors.text_black};
   text-align: center;
   font-weight: 400;
   line-height: 35px;
-  margin-bottom: 20px;
+  padding: 20px 0;
+
+  border-top: 1px solid ${({ theme }) => theme.colors.key_color};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
 `;
 
 export const Hashtag = styled.p`
   font-size: ${({ theme }) => theme.fontSize.md};
   color: ${({ theme }) => theme.colors.key_color_deep};
   text-align: center;
-  margin-bottom: 15px;
 `;
 
 export const Details = styled.ul`
-  font-size: ${({ theme }) => theme.fontSize.lg};
+  width: 100%;
+  font-size: ${({ theme }) => theme.fontSize.md};
   color: ${({ theme }) => theme.colors.text_black};
   text-align: left;
   list-style-type: disc;
   padding-left: 20px;
-  line-height: 30px;
+  line-height: 200%;
   font-weight: 300;
-  margin-bottom: 80px;
+
+  padding: 30px;
 `;

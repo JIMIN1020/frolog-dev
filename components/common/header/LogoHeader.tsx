@@ -11,18 +11,33 @@ function LogoHeader() {
   const router = useRouter();
   const step = parseInt(useSearchParams().get('step')!, 10);
   const totalSteps = usePathname().includes('signup') ? 5 : 8;
+  const pathname = usePathname();
 
   return (
     <Header>
       <Title>
+        {pathname.includes('frolog-test') && (
+          <BackIcon
+            src={ICONS.header.backCircle}
+            alt='뒤로가기'
+            onClick={() => router.back()}
+            style={{ visibility: step > 1 ? 'visible' : 'hidden' }}
+            width={28}
+            height={28}
+          />
+        )}
+
         <h1>Frolog</h1>
-        <ExitImg
-          src={ICONS.header.exit}
-          alt='exit'
-          width={28}
-          height={28}
-          onClick={() => router.push('/login')}
-        />
+
+        {pathname.includes('signup') && (
+          <ExitImg
+            src={ICONS.header.exit}
+            alt='exit'
+            width={28}
+            height={28}
+            onClick={() => router.push('/login')}
+          />
+        )}
       </Title>
       <ProgressBar currentStep={step} totalSteps={totalSteps} />
     </Header>
@@ -58,6 +73,13 @@ const Title = styled.div`
     font-weight: 700;
     color: ${({ theme }) => theme.colors.key_color};
   }
+`;
+
+const BackIcon = styled(Image)`
+  position: absolute;
+  left: 20px;
+  top: 45%;
+  transform: translateY(-50%);
 `;
 
 const ExitImg = styled(Image)`
