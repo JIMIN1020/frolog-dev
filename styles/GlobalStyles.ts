@@ -44,7 +44,7 @@ export const StyledButton = styled.button<{
   disabled: boolean; // disabled 여부 값 -> disabled 이면 회색으로 클릭 안됨
   $color?: string; // color: disabled는 아니지만 색이 달라야 할 때 theme에 있는 키 값 전달
 }>`
-  width: 288px;
+  width: 100%;
   height: 44px;
   flex-shrink: 0;
   border-radius: 50px;

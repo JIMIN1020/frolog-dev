@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
@@ -27,12 +26,6 @@ export const Logo = styled.h1`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  cursor: pointer;
-`;
-
-export const NotificationIcon = styled(Image)`
-  width: 24px;
-  height: 24px;
   cursor: pointer;
 `;
 

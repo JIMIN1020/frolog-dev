@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { StyledCheckbox, StyledInput } from '@styles/GlobalStyles';
 import { dummyUsers } from '@data/dummyData/dummyUsers';
 import { ICONS } from 'constants/icon';
+import useStore from 'store/store';
 
 interface FormValues {
   email: string;
@@ -28,12 +29,15 @@ const schema = yup
 
 function LoginForm() {
   const router = useRouter();
+  const { setUser } = useStore();
   const [generalError, setGeneralError] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false); // 로그인 성공 여부 저장.
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 추가
+  const [isSaved, setIsSaved] = useState(false); // 로그인 정보 저장 여부
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormValues>({ resolver: yupResolver(schema), mode: 'onSubmit' });
 
@@ -48,11 +52,19 @@ function LoginForm() {
         throw new Error('이메일 또는 비밀번호를 잘못 입력했습니다');
       }
 
-      // 토큰 받아오기 (여기서는 더미 토큰을 사용)
-      const token = 'token';
+      // 로그인 정보 저장 시
+      if (isSaved) {
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('password', data.password);
+      }
 
-      // 로컬 스토리지에 토큰 저장
-      localStorage.setItem('accessToken', token);
+      // zustand store에 유저 정보 저장
+      setUser({
+        id: 'test-user',
+        name: 'test',
+        accessToken: 'access',
+        refreshToken: 'refresh',
+      });
 
       setLoginSuccess(true);
     } catch (error) {
@@ -70,6 +82,14 @@ function LoginForm() {
       router.push('/');
     }
   }, [loginSuccess, router]);
+
+  useEffect(() => {
+    if (localStorage.getItem('email')) {
+      setValue('email', localStorage.getItem('email')!);
+      setValue('password', localStorage.getItem('password')!);
+      setIsSaved(true);
+    }
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -102,7 +122,11 @@ function LoginForm() {
           </PasswordInputContainer>
         </InputContainer>
         <LabelContainer>
-          <StyledCheckbox type='checkbox' />
+          <StyledCheckbox
+            type='checkbox'
+            checked={isSaved}
+            onChange={(e) => setIsSaved(e.target.checked)}
+          />
           <label htmlFor='rememberMe'>로그인 상태 유지</label>
         </LabelContainer>
       </Wrapper>

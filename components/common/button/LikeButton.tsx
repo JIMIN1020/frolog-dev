@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { ICONS } from 'constants/icon';
+import useStore from 'store/store';
 
 interface LikeButtonProps {
   like: boolean;
@@ -12,8 +13,17 @@ interface LikeButtonProps {
 }
 
 function LikeButton({ like, onClick, likesCount }: LikeButtonProps) {
+  const { user, setIsOpenLoginPopUp } = useStore();
+
+  const handleClick = () => {
+    if (user) {
+      onClick();
+    } else {
+      setIsOpenLoginPopUp(true);
+    }
+  };
   return (
-    <Button onClick={onClick}>
+    <Button onClick={handleClick}>
       <Icon
         src={like ? ICONS.common.like.clicked : ICONS.common.like.default}
         alt='like'

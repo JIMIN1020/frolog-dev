@@ -39,4 +39,5 @@ button {
   border: none;
   box-sizing: content-box;
   padding: 0;
+  cursor: pointer;
 }

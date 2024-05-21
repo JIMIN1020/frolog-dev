@@ -12,6 +12,7 @@ function Page() {
   const handleExitClick = () => {
     router.push('/');
   };
+
   return (
     <S.Container>
       <S.ExitImg

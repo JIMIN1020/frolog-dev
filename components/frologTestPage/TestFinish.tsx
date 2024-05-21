@@ -14,7 +14,7 @@ const TestFinish = () => {
   const [loading, setLoading] = useState(true);
   const [resultType, setResultType] = useState<number | null>(null);
 
-  useState(() => {
+  useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 3000);

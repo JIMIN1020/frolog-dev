@@ -1,5 +1,5 @@
 // 기본 세팅
-import NavigationBar from '@components/common/NavigationBar';
+import NavigationBar from '@components/common/navigation/NavigationBar';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {

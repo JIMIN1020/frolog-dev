@@ -3,17 +3,21 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import styled, { ThemeProvider } from 'styled-components';
-import NavigationBar from '@components/common/NavigationBar';
+import NavigationBar from '@components/common/navigation/NavigationBar';
 import InputHeader from '@components/common/header/InputHeader';
 import StyledComponentsRegistry from '@lib/registry';
 import { theme } from '@styles/theme';
 import { GlobalStyles } from '@styles/GlobalStyles';
+import useStore from 'store/store';
+import LoginSheet from '@components/common/LoginSheet';
+import { AnimatePresence } from 'framer-motion';
 
 export const InputContext = createContext({
   searchValue: '',
 });
 
 function SearchLayout({ children }: { children: React.ReactNode }) {
+  const { isOpenLoginPopUp } = useStore();
   const pathname = usePathname();
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -41,6 +45,9 @@ function SearchLayout({ children }: { children: React.ReactNode }) {
             />
             <Content>{children}</Content>
             {pathname !== '/search-for-review' && <NavigationBar />}
+            <AnimatePresence>
+              {isOpenLoginPopUp && <LoginSheet />}
+            </AnimatePresence>
           </Container>
         </InputContext.Provider>
       </ThemeProvider>

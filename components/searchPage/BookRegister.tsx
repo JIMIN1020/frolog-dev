@@ -68,6 +68,7 @@ function BookRegister() {
             btnText='다른 책 구경하기'
             closePopup={() => setOpen(false)}
             handleClick={() => window.location.reload()}
+            hasButton={true}
           />
         )}
       </AnimatePresence>

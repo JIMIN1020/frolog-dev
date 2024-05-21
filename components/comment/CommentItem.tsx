@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import useStore from 'store/store';
 import { ICONS } from 'constants/icon';
 import styled from 'styled-components';
 import { CommentType, replyDummy } from '@data/dummyData/commentDummy';
@@ -12,8 +13,18 @@ interface CommentItemProps {
 }
 
 function CommentItem({ data }: CommentItemProps) {
+  const { user, setIsOpenLoginPopUp } = useStore();
   const [like, setLike] = useState<boolean>(false);
   const [openReply, setOpenReply] = useState<boolean>(false);
+
+  const handleClickLike = () => {
+    if (user) {
+      setLike((prev) => !prev);
+    } else {
+      setIsOpenLoginPopUp(true);
+    }
+  };
+
   return (
     <Container>
       <CommentWrapper>
@@ -34,7 +45,7 @@ function CommentItem({ data }: CommentItemProps) {
           </ReplyBar>
         </Content>
         <LikeBox>
-          <LikeButton onClick={() => setLike((prev) => !prev)}>
+          <LikeButton onClick={handleClickLike}>
             <Image
               src={like ? ICONS.common.like.clicked : ICONS.common.like.default}
               alt='like'

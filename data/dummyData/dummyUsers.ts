@@ -1,6 +1,6 @@
 export const dummyUsers = [
   {
-    email: 'frolog@naver.com',
-    password: 'frolog1234!',
+    email: '1234@gmail.com',
+    password: '1234',
   },
 ];

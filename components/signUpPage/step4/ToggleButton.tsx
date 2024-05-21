@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import { SignUpFormValues } from '../form/SignupFormSchema';
 
 interface ToggleButtonProps {
-  name: Keys;
+  name: 'job' | 'gender' | 'birthDate';
 }
-
-type Keys = keyof SignUpFormValues;
 
 function ToggleButton({ name }: ToggleButtonProps) {
   const { watch, setValue } = useFormContext<SignUpFormValues>();

@@ -6,13 +6,17 @@ import * as S from '@styles/layout';
 import StyledComponentsRegistry from '@lib/registry';
 import { GlobalStyles } from '@styles/GlobalStyles';
 import { theme } from '@styles/theme';
-import NavigationBar from '../common/NavigationBar';
+import LoginSheet from '@components/common/LoginSheet';
+import { AnimatePresence } from 'framer-motion';
+import useStore from 'store/store';
+import NavigationBar from '../common/navigation/NavigationBar';
 
 export default function NavBarLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { isOpenLoginPopUp } = useStore();
   const setScreenSize = () => {
     const vh = window.innerHeight * 0.01; // 하단 bar 제외 높이 -> 100등분 (1vh 구하기 위함)
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -28,6 +32,9 @@ export default function NavBarLayout({
         <S.Container>
           <S.Content>{children}</S.Content>
           <NavigationBar />
+          <AnimatePresence>
+            {isOpenLoginPopUp && <LoginSheet />}
+          </AnimatePresence>
         </S.Container>
       </ThemeProvider>
     </StyledComponentsRegistry>

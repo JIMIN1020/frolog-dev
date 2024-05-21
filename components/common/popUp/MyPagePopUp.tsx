@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import useStore from 'store/store';
 import { motion } from 'framer-motion';
 import { ICONS } from 'constants/icon';
 import { useRouter } from 'next/navigation';
@@ -15,11 +16,20 @@ type MyPagePopUpProps = {
 };
 
 function MyPagePopUp({ setOpen, onClickEdit }: MyPagePopUpProps) {
+  const { clearStorage } = useStore.persist;
+  const { setUser } = useStore();
   const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
 
   /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
   useClickOutside(ref, () => setOpen(false));
+
+  /* ----- 로그아웃 함수 ----- */
+  const handleLogOut = () => {
+    setUser(null);
+    clearStorage();
+    router.push(`/login`);
+  };
 
   return (
     <Background
@@ -35,7 +45,7 @@ function MyPagePopUp({ setOpen, onClickEdit }: MyPagePopUpProps) {
         exit={{ opacity: 0, y: 30 }}
       >
         <MenuItem onClick={onClickEdit}>프로필 수정</MenuItem>
-        <MenuItem onClick={() => router.push(`/login`)}>로그아웃</MenuItem>
+        <MenuItem onClick={handleLogOut}>로그아웃</MenuItem>
         <MenuItem
           style={{ color: 'red' }}
           onClick={() => router.push('/delete-account/step1')}

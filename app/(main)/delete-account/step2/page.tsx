@@ -1,4 +1,4 @@
-import Buttons from '@components/deletePage/Buttons';
+import DeleteButtons from '@components/deletePage/DeleteButtons';
 import SurveyForm from '@components/deletePage/SurveyForm';
 import React from 'react';
 import * as S from '@styles/pages/deleteStep2Page';
@@ -18,7 +18,7 @@ function page() {
         </S.Message>
         <SurveyForm />
       </S.Wrapper>
-      <Buttons />
+      <DeleteButtons />
     </S.Container>
   );
 }

@@ -9,7 +9,7 @@ export default function BadgeBar() {
   return (
     <Container>
       <Title>업적</Title>
-      <BadgeBox onClick={() => router.push('/achievement')}>
+      <BadgeBox onClick={() => router.push('/achievement/1')}>
         <BadgeWrapper>
           <Badge />
           <Badge />

@@ -5,34 +5,31 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { motion, useAnimation, useDragControls } from 'framer-motion';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
-import { fadeUp } from '@styles/GlobalStyles';
+import { StyledButton, fadeUp } from '@styles/GlobalStyles';
 import useClickOutside from '@hooks/useClickOutside';
 import { ICONS } from 'constants/icon';
 import useStore from 'store/store';
+import { useRouter } from 'next/navigation';
 
-interface BottomSheetProps {
-  /** 바텀시트 안에 담길 요소들 */
-  children: React.ReactNode;
-  /** 바텀시트 제목 */
-  title: string;
-  /** 바텀시트 제어 함수 */
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
-  const { isOpenLoginPopUp } = useStore();
+function LoginSheet() {
+  const router = useRouter();
+  const { setIsOpenLoginPopUp } = useStore();
   const ref = useRef<HTMLDivElement | null>(null); // BottomSheet에 대한 ref
   const [sheetHeight, setSheetHeight] = useState<number>(0); // BottomSheet 높이
   const controls = useAnimation(); // BottomSheet 애니메이션 제어
   const dragControls = useDragControls(); // drag 제어
 
+  const handleClickLogin = () => {
+    closeBottomsheet();
+    router.push('/login');
+  };
+
   /* ----- 바텀시트 닫는 함수 ----- */
   const closeBottomsheet = () => {
-    if (!isOpenLoginPopUp) {
-      controls.start({ y: sheetHeight + 1000 }); // BottomSheet를 애니메이션하여 화면 밖으로 내보냄
-      setTimeout(() => setOpen(false), 300); // BottomSheet를 완전히 닫음
-      document.body.style.overflow = 'auto';
-    }
+    controls.start({ y: sheetHeight + 1000 }); // BottomSheet를 애니메이션하여 화면 밖으로 내보냄
+    setTimeout(() => setIsOpenLoginPopUp(false), 300); // BottomSheet를 완전히 닫음
+    document.body.style.overflow = 'auto';
+    setIsOpenLoginPopUp(false);
   };
 
   /* ----- 바텀시트 바깥 클릭 시 닫힘 hook ----- */
@@ -89,15 +86,34 @@ function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
             width={36}
             height={4}
           />
-          <Title>{title}</Title>
         </Header>
-        {children}
+        <Content>
+          <Wrapper>
+            <Logo
+              src={ICONS.home.frologLogo}
+              alt='logo'
+              width={120}
+              height={120}
+            />
+            <TextBox>
+              <h4>아직 계정이 없습니다...</h4>
+              <p>
+                해당 기능은 로그인 이후에
+                <br />
+                이용이 가능해요!
+              </p>
+            </TextBox>
+          </Wrapper>
+          <StyledButton disabled={false} onClick={handleClickLogin}>
+            로그인하러 가기
+          </StyledButton>
+        </Content>
       </BottomSheetContainer>
     </Background>
   );
 }
 
-export default BottomSheet;
+export default LoginSheet;
 
 const Background = styled(motion.div)`
   width: 100%;
@@ -107,7 +123,7 @@ const Background = styled(motion.div)`
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 900;
+  z-index: 999;
 
   // 모바일 사이즈(최대 430px)에서 벗어날 경우 사이즈 고정
   @media screen and (min-width: 430px) {
@@ -120,24 +136,18 @@ const Background = styled(motion.div)`
 
 const BottomSheetContainer = styled(motion.div)`
   width: 100%;
-  height: 80%;
+  height: fit-content;
   background-color: ${({ theme }) => theme.colors.bg_white};
   border-radius: 18px 18px 0 0;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 999;
   animation: ${fadeUp} 0.5s;
-
-  // 모바일 사이즈(최대 430px)에서 벗어날 경우 사이즈 고정
-  @media screen and (min-width: 430px) {
-    height: 80%;
-  }
 `;
 
 const Header = styled.button`
@@ -154,8 +164,43 @@ const Header = styled.button`
   color: ${({ theme }) => theme.colors.text_black};
 `;
 
-const Title = styled.h4`
-  height: fit-content;
-  font-size: ${({ theme }) => theme.fontSize.md};
-  text-align: center;
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  & h4 {
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    text-align: center;
+    font-weight: 500;
+  }
+
+  & p {
+    text-align: center;
+    font-size: ${({ theme }) => theme.fontSize.md};
+    line-height: 140%;
+  }
+`;
+
+const Logo = styled(Image)`
+  margin: 0;
+`;
+
+const Content = styled.div`
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 50px;
+  gap: 30px;
 `;
