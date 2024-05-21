@@ -10,8 +10,12 @@ import { ICONS } from 'constants/icon';
 function LogoHeader() {
   const router = useRouter();
   const step = parseInt(useSearchParams().get('step')!, 10);
-  const totalSteps = usePathname().includes('signup') ? 5 : 8;
   const pathname = usePathname();
+  const totalSteps = pathname.includes('signup')
+    ? 5
+    : pathname.includes('password')
+      ? 2
+      : 8;
 
   return (
     <Header>
@@ -29,15 +33,16 @@ function LogoHeader() {
 
         <h1>Frolog</h1>
 
-        {pathname.includes('signup') && (
-          <ExitImg
-            src={ICONS.header.exit}
-            alt='exit'
-            width={28}
-            height={28}
-            onClick={() => router.push('/login')}
-          />
-        )}
+        {pathname.includes('signup') ||
+          (pathname.includes('password') && (
+            <ExitImg
+              src={ICONS.header.exit}
+              alt='exit'
+              width={28}
+              height={28}
+              onClick={() => router.push('/login')}
+            />
+          ))}
       </Title>
       <ProgressBar currentStep={step} totalSteps={totalSteps} />
     </Header>

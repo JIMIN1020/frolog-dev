@@ -4,14 +4,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface NextButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
   disabled?: boolean;
+  type?: 'button' | 'submit';
 }
 
-function NextButton({ onClick, children, disabled }: NextButtonProps) {
+function NextButton({
+  onClick,
+  children,
+  disabled,
+  type = 'button',
+}: NextButtonProps) {
   return (
-    <Button onClick={onClick} disabled={disabled}>
+    <Button type={type} onClick={onClick} disabled={disabled}>
       {children}
     </Button>
   );

@@ -13,8 +13,9 @@ interface CommonPopUpProps {
   title: string;
   text: React.ReactNode; // <>제목<> 형태로 전달 -> 중간에 <br/> 태그로 줄바꿈 해야하는 경우가 있기 때문
   btnText: string;
-  closePopup: () => void; // 팝업 닫힘 함수
+  closePopup?: () => void; // 팝업 닫힘 함수
   handleClick: () => void; // 팝업 버튼 클릭 핸들러 함수
+  hasButton: boolean; // x 버튼 유무
 }
 
 function CommonPopUp({
@@ -23,11 +24,12 @@ function CommonPopUp({
   btnText,
   closePopup,
   handleClick,
+  hasButton,
 }: CommonPopUpProps) {
   const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
 
   /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
-  useClickOutside(ref, () => closePopup());
+  useClickOutside(ref, closePopup ? () => closePopup() : () => handleClick());
 
   return (
     <Background
@@ -44,14 +46,16 @@ function CommonPopUp({
         transition={{ duration: 0.3, type: 'spring' }}
       >
         <Icon src='' alt='' />
-        <CancelButton type='button' onClick={() => closePopup()}>
-          <Image
-            src={ICONS.common.cancel}
-            alt='cancel'
-            width={26}
-            height={26}
-          />
-        </CancelButton>
+        {hasButton && (
+          <CancelButton type='button' onClick={() => closePopup!()}>
+            <Image
+              src={ICONS.common.cancel}
+              alt='cancel'
+              width={26}
+              height={26}
+            />
+          </CancelButton>
+        )}
         <Title>{title}</Title>
         <Text>{text}</Text>
         <StyledButton type='button' disabled={false} onClick={handleClick}>

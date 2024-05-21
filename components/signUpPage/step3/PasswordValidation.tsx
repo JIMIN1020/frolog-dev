@@ -7,9 +7,10 @@ import { SignUpFormValues } from '../form/SignupFormSchema';
 
 interface Props {
   setIsPasswordValid: React.Dispatch<React.SetStateAction<boolean>>;
+  formType: 'signup' | 'password';
 }
 
-function PasswordValidation({ setIsPasswordValid }: Props) {
+function PasswordValidation({ setIsPasswordValid, formType }: Props) {
   const { watch } = useFormContext<SignUpFormValues>();
   const password = watch('password');
 
@@ -28,7 +29,11 @@ function PasswordValidation({ setIsPasswordValid }: Props) {
 
   return (
     <Container>
-      <PasswordInput placeholder='비밀번호를 입력하세요' name='password' />
+      <PasswordInput
+        placeholder='비밀번호를 입력하세요'
+        name='password'
+        formType={formType}
+      />
       <PasswordRequirements>
         <Requirement $valid={isUpperCase && isLowerCase}>
           암호 대소문자 <Check />

@@ -27,6 +27,7 @@ function Step2() {
         <EmailForm
           isEmailVerified={isEmailVerified}
           setEmailVerified={setEmailVerified}
+          formType='signup'
         />
       </MainContent>
       <NextButton onClick={onClickNext} disabled={!isEmailVerified}>

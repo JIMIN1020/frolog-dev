@@ -42,7 +42,10 @@ function Step3() {
             <InputTitle>
               비밀번호 <small>*</small>
             </InputTitle>
-            <PasswordValidation setIsPasswordValid={setIsPasswordValid} />
+            <PasswordValidation
+              setIsPasswordValid={setIsPasswordValid}
+              formType='signup'
+            />
           </InputContainer>
           <InputContainer>
             <InputTitle>
@@ -52,6 +55,7 @@ function Step3() {
             <PasswordInput
               placeholder='비밀번호를 다시 입력하세요'
               name='passwordCheck'
+              formType='signup'
             />
           </InputContainer>
         </Inputs>

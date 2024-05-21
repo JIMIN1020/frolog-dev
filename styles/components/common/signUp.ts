@@ -24,6 +24,7 @@ export const TopWrapper = styled.div`
 `;
 
 export const StepTitle = styled.h2`
+  width: 100%;
   font-size: ${({ theme }) => theme.fontSize.xl};
   padding: 40px 0;
   line-height: 140%;

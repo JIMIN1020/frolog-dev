@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { InputContainer, InputTitle } from '@styles/components/common/signUp';
 import { useFormContext } from 'react-hook-form';
+import { PasswordFormType } from 'app/(logo)/reset-password/page';
 import styled from 'styled-components';
 import { SignUpFormValues } from '../form/SignupFormSchema';
 
 interface EmailFormProps {
   isEmailVerified: boolean;
   setEmailVerified: React.Dispatch<React.SetStateAction<boolean>>;
+  formType: 'signup' | 'password';
 }
 
-function EmailForm({ isEmailVerified, setEmailVerified }: EmailFormProps) {
-  const { register, watch } = useFormContext<SignUpFormValues>();
+// EmailForm 컴포넌트 정의
+function EmailForm({
+  isEmailVerified,
+  setEmailVerified,
+  formType,
+}: EmailFormProps) {
+  type FormType = typeof formType extends 'signup'
+    ? SignUpFormValues
+    : PasswordFormType;
+  const { register, watch } = useFormContext<FormType>();
 
   const [verificationCode, setVerificationCode] = useState('');
   const [inputCode, setInputCode] = useState('');
@@ -34,7 +44,7 @@ function EmailForm({ isEmailVerified, setEmailVerified }: EmailFormProps) {
   }, [isTimerActive, timeLeft]);
 
   const sendVerificationCode = async () => {
-    const isValid = checkEmail(watch('email'));
+    const isValid = checkEmail(watch('email' as keyof FormType));
 
     if (isValid) {
       setVerificationCode('123456'); // 예시로 '123456'을 인증 코드로 설정
@@ -74,11 +84,13 @@ function EmailForm({ isEmailVerified, setEmailVerified }: EmailFormProps) {
               autoFocus
               disabled={isEmailVerified}
               placeholder='이메일을 입력하세요'
-              {...register('email', {
+              {...register('email' as keyof FormType, {
                 required: '이메일을 입력하세요',
               })}
             />
-            <Button onClick={sendVerificationCode}>인증 요청</Button>
+            <Button type='button' onClick={sendVerificationCode}>
+              인증 요청
+            </Button>
           </InputWrapper>
         </InputContainer>
         {isTimerActive && (
@@ -97,9 +109,13 @@ function EmailForm({ isEmailVerified, setEmailVerified }: EmailFormProps) {
               </Timer>
             </CertifyInput>
             {timeLeft > 0 ? (
-              <Button onClick={verifyCode}>확인</Button>
+              <Button type='button' onClick={verifyCode}>
+                확인
+              </Button>
             ) : (
-              <Button onClick={sendVerificationCode}>재요청</Button>
+              <Button type='button' onClick={sendVerificationCode}>
+                재요청
+              </Button>
             )}
           </CertifyInputWrapper>
         )}
