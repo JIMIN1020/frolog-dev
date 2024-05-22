@@ -16,12 +16,12 @@ function TagContainer({ tagData, type }: TagContainerProps) {
   const selectedTags = watch(type) || []; // 현재 선택된 태그
 
   /* ----- 태그 선택 처리 함수 ----- */
-  const handleTagSelect = (id: number) => {
+  const handleTagSelect = (id: string) => {
     const isSelected = selectedTags.includes(id);
 
     // 이미 선택된 태그인 경우
     if (isSelected) {
-      const updatedTags = selectedTags.filter((tagId: number) => tagId !== id); // 제거
+      const updatedTags = selectedTags.filter((tagId: string) => tagId !== id); // 제거
       setValue(type, updatedTags);
     }
     // 선택되지 않은 태그인 경우

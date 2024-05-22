@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { ICONS } from 'constants/icon';
+import { ratingMessage } from '@data/ratingMessage';
 
 function Rating() {
   /* ----- form context 가져오기 ----- */
@@ -22,14 +23,15 @@ function Rating() {
     const clickPosition = event.clientX - rect.left;
 
     const newRating = clickPosition < starHalf ? index + 0.5 : index + 1;
-    setValue('rating', newRating);
+
+    setValue('rating', newRating === 0.5 ? 1 : newRating);
   };
 
   return (
     <RatingContainer>
       <RatingText>
         <h4>{rating}점</h4>
-        <span>별점을 남겨주세요</span>
+        <span>{ratingMessage.find((msg) => msg.id === rating)!.message}</span>
       </RatingText>
       <StarContainer>
         {Array.from({ length: 5 }, (_, index) => {

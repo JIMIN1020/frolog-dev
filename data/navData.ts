@@ -1,4 +1,5 @@
 export const navData = [
+  { route: '/review', label: '내가 작성한 리뷰' },
   { route: '/reviews', label: '작성한 리뷰' },
   { route: '/like/reviews', label: '좋아요한 리뷰' },
   { route: '/like/books', label: '좋아요한 책' },

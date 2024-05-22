@@ -60,7 +60,7 @@ function LoginForm() {
       }
 
       // token cookie에 저장 - redirect 처리용
-      setCookie('accessToken', 'access');
+      setCookie('accessToken', 'access', { maxAge: 3600 });
 
       // zustand store에 유저 정보 저장
       setUser({

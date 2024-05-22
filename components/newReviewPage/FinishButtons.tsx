@@ -9,7 +9,7 @@ function FinishButtons() {
   return (
     <ButtonContainer>
       <Button onClick={() => router.push('/')}>홈 화면 가기</Button>
-      <Button onClick={() => router.push('/my-review')}>
+      <Button onClick={() => router.push('/review/1')}>
         내 리뷰 보러 가기
       </Button>
     </ButtonContainer>

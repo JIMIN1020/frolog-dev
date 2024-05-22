@@ -18,12 +18,12 @@ function OneLiner() {
         {...register('oneLiner', {
           required: true,
           minLength: {
-            value: 10,
-            message: '한줄평은 최소 10자 이상 작성해야 합니다',
+            value: 3,
+            message: '한줄평은 최소 3자 이상 작성해야 합니다',
           },
         })}
         maxLength={30}
-        placeholder='한줄평을 남겨보세요! (최소 10자 이상)'
+        placeholder='한줄평을 남겨보세요! (최소 3자 이상)'
       />
       <CharacterCount $exceed={inputLength >= 30}>
         {inputLength}/30
