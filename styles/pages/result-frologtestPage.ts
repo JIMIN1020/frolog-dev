@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 50px 50px 30px;
+  padding: 40px;
   gap: 50px;
 `;
 
@@ -99,9 +99,16 @@ export const Details = styled.ul`
   color: ${({ theme }) => theme.colors.text_black};
   text-align: left;
   list-style-type: disc;
-  padding-left: 20px;
   line-height: 200%;
   font-weight: 300;
 
   padding: 30px;
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 `;

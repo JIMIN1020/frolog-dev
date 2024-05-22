@@ -4,15 +4,12 @@ import React from 'react';
 import * as S from '@styles/pages/signup-successPage';
 import { SignUpContainer } from '@styles/components/common/signUp';
 import { ICONS } from 'constants/icon';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import NextButton from './NextButton';
 
-interface SignupSuccessProps {
-  nickname: string;
-}
-
-function SignupSuccess({ nickname }: SignupSuccessProps) {
+function SignupSuccess() {
   const router = useRouter();
+  const name = useSearchParams().get('name')!;
 
   return (
     <SignUpContainer>
@@ -39,7 +36,7 @@ function SignupSuccess({ nickname }: SignupSuccessProps) {
             height={20}
           />
           <S.Message>
-            {nickname}님 <br />
+            {name}님 <br />
             독서 성향을 알아보기 위해,
             <br />
             간단하게 7가지만 물어볼게요.

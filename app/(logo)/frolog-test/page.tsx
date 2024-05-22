@@ -37,6 +37,7 @@ function FrologTestPage() {
       const query = new URLSearchParams({
         answers: JSON.stringify(updatedAnswers),
       }).toString();
+      localStorage.setItem('test', 'true'); // 테스트 여부 저장 -> 임시
       router.push(`/frolog-test?step=8&${query}`);
     } else {
       router.push(`/frolog-test?step=${step + 1}`);

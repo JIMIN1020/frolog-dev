@@ -33,16 +33,15 @@ function LogoHeader() {
 
         <h1>Frolog</h1>
 
-        {pathname.includes('signup') ||
-          (pathname.includes('password') && (
-            <ExitImg
-              src={ICONS.header.exit}
-              alt='exit'
-              width={28}
-              height={28}
-              onClick={() => router.push('/login')}
-            />
-          ))}
+        {(pathname.includes('signup') || pathname.includes('password')) && (
+          <ExitImg
+            src={ICONS.header.exit}
+            alt='exit'
+            width={28}
+            height={28}
+            onClick={() => router.push('/login')}
+          />
+        )}
       </Title>
       <ProgressBar currentStep={step} totalSteps={totalSteps} />
     </Header>

@@ -44,6 +44,7 @@ const TestFinish = () => {
           ? resultIndexes[Math.floor(Math.random() * resultIndexes.length)]
           : resultIndexes[0];
       setResultType(resultIndex + 1); // `resultType`은 1부터 시작해서 1 더해줌.
+      localStorage.removeItem('answers');
     }
   }, [loading, answers]);
 

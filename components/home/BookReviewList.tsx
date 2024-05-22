@@ -15,13 +15,11 @@ function BookReviewList() {
       {reviews.map((reviewData, index) => {
         if (reviewData.id === 'review4') {
           return (
-            <>
+            <React.Fragment key={reviewData.id}>
               {!user && <LoginPrompt />}
-              <React.Fragment key={reviewData.id}>
-                <BookReview reviewData={reviewData} />
-                {index === 0 && <BookRecommendation />}
-              </React.Fragment>
-            </>
+              <BookReview reviewData={reviewData} />
+              {index === 0 && <BookRecommendation />}
+            </React.Fragment>
           );
         }
         return (

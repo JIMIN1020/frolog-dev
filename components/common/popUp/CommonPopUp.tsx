@@ -101,7 +101,7 @@ const PopUp = styled(motion.div)`
   color: ${({ theme }) => theme.colors.text_black};
   border-radius: 12px;
   position: relative;
-  padding: 70px 0 20px;
+  padding: 70px 20px 20px 20px;
 `;
 
 const Icon = styled(Image)`

@@ -13,7 +13,7 @@ import Gender from './Gender';
 import BirthDate from './BirthDate';
 
 function Step4() {
-  const { trigger, getValues } = useFormContext<SignUpFormValues>();
+  const { trigger, watch, getValues } = useFormContext<SignUpFormValues>();
   const router = useRouter();
 
   const onClickSubmit = async () => {
@@ -28,7 +28,7 @@ function Step4() {
       const allValues = getValues(); // 전체 폼 데이터 가져옴
       console.log('All form values:', allValues);
       // 서버로 데이터를 전송하는 로직 추가
-      router.push('/signup?step=5');
+      router.push(`/signup?step=5&name=${watch('nickname')}`);
     }
   };
 

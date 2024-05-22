@@ -11,13 +11,14 @@ import SignupSuccess from '@components/signUpPage/SignUpSuccess';
 
 function SignUpPage() {
   const step = parseInt(useSearchParams().get('step')!, 10);
+
   return (
     <SignUpFormProvider>
       {step === 1 && <Step1 />}
       {step === 2 && <Step2 />}
       {step === 3 && <Step3 />}
       {step === 4 && <Step4 />}
-      {step === 5 && <SignupSuccess nickname='w' />}
+      {step === 5 && <SignupSuccess />}
     </SignUpFormProvider>
   );
 }

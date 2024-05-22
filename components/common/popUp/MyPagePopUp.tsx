@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import useStore from 'store/store';
 import { motion } from 'framer-motion';
+import { deleteCookie } from 'cookies-next';
 import { ICONS } from 'constants/icon';
 import { useRouter } from 'next/navigation';
 import { modalBackgroundVariants } from '@styles/framer-motion/variants';
@@ -28,6 +29,7 @@ function MyPagePopUp({ setOpen, onClickEdit }: MyPagePopUpProps) {
   const handleLogOut = () => {
     setUser(null);
     clearStorage();
+    deleteCookie('accessToken'); // redirect용 쿠키
     router.push(`/login`);
   };
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import styled from 'styled-components';
+import { StyledButton } from '@styles/GlobalStyles';
 
 interface FrologStartButtonProps {
   type: number;
@@ -24,18 +24,11 @@ function FrologStartButton({ type }: FrologStartButtonProps) {
     }
   };
 
-  return <Button onClick={handleClick}>Frolog 시작하기</Button>;
+  return (
+    <StyledButton disabled={false} onClick={handleClick}>
+      Frolog 시작하기
+    </StyledButton>
+  );
 }
 
 export default FrologStartButton;
-
-const Button = styled.button`
-  width: 100%;
-  height: 44px;
-  border-radius: 50px;
-  background: ${({ theme }) => theme.colors.key_color};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  flex-shrink: 0;
-  color: ${({ theme }) => theme.colors.text_white};
-  font-size: ${({ theme }) => theme.fontSize.lg};
-`;

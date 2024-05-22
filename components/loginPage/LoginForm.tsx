@@ -11,6 +11,7 @@ import { StyledCheckbox, StyledInput } from '@styles/GlobalStyles';
 import { dummyUsers } from '@data/dummyData/dummyUsers';
 import { ICONS } from 'constants/icon';
 import useStore from 'store/store';
+import { setCookie } from 'cookies-next';
 
 interface FormValues {
   email: string;
@@ -58,6 +59,9 @@ function LoginForm() {
         localStorage.setItem('password', data.password);
       }
 
+      // token cookie에 저장 - redirect 처리용
+      setCookie('accessToken', 'access');
+
       // zustand store에 유저 정보 저장
       setUser({
         id: 'test-user',
@@ -79,7 +83,11 @@ function LoginForm() {
 
   useEffect(() => {
     if (loginSuccess) {
-      router.push('/');
+      if (localStorage.getItem('test')) {
+        router.push('/');
+      } else {
+        router.push('/signup?step=5');
+      }
     }
   }, [loginSuccess, router]);
 

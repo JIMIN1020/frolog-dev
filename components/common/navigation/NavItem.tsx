@@ -18,10 +18,7 @@ function NavItem({ href, iconUrl, size, label }: NavItemProps) {
   const { user, setIsOpenLoginPopUp } = useStore();
 
   const handleClick = () => {
-    console.log(href);
-
     if (user || href === '/search' || href === '/') {
-      console.log('click');
       router.push(href);
     } else {
       setIsOpenLoginPopUp(true);
