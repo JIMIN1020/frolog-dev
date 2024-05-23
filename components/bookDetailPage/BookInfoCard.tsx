@@ -2,35 +2,42 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import AddBookButton from '@components/common/button/AddBookButton';
+import { BookDataType } from '@data/dummyData/recommendDummy';
 import Rating from '../common/Rating';
-import LikeButton from '../common/button/LikeButton';
 
-function BookInfoCard() {
-  const [like, setLike] = useState<boolean>(false);
-  const [likesCount, setLikesCount] = useState<number>(0);
+interface Props {
+  bookData: BookDataType;
+}
 
-  const toggleLike = () => {
-    setLike(!like);
-    setLikesCount(like ? likesCount - 1 : likesCount + 1);
+function BookInfoCard({ bookData }: Props) {
+  const [add, setAdd] = useState<boolean>(false);
+  const [addCount, setAddCount] = useState<number>(31);
+
+  const toggleAdd = () => {
+    setAdd(!add);
+    setAddCount(add ? addCount - 1 : addCount + 1);
   };
   return (
     <Container>
       <BookImgWrapper>
-        <BookImg src='' alt='임시' />
+        <BookImg src={bookData.img} alt='임시' />
       </BookImgWrapper>
       <Content>
         <BookInfo>
-          <h2>해변의 카프카(상)</h2>
-          <span>무라카미 하루키</span>
+          <h2>{bookData.name}</h2>
+          <span>{bookData.author}</span>
         </BookInfo>
-        <Rating rating={4} starSize={22} gap={6} fontSize={12} />
-        <ReviewText>
-          정건우가 있다. 정건우가 있다. 정건우가 있다. 정건우가 있다. 정건우가
-          있다. 정건우가 있다. 정건우가 있다정건우가 있다. 정건우가 있다.
-          정건우가 있다. 정건우가 있다. 정건우가 있다. 정건우가 있다. 정건우가
-          있다
-        </ReviewText>
-        <LikeButton like={like} onClick={toggleLike} likesCount={likesCount} />
+        <ContentWrapper>
+          <Rating
+            rating={bookData.rating}
+            starSize={22}
+            gap={6}
+            fontSize={12}
+          />
+          <ReviewText>{bookData.summary}</ReviewText>
+        </ContentWrapper>
+        <AddBookButton add={add} onClick={toggleAdd} addCount={addCount} />
       </Content>
     </Container>
   );
@@ -40,11 +47,19 @@ export default BookInfoCard;
 
 const Container = styled.div`
   width: 100%;
+  height: fit-content;
   display: flex;
   padding: 30px;
   justify-content: center;
   align-items: center;
   gap: 30px;
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const BookImgWrapper = styled.div`
@@ -61,15 +76,18 @@ const BookImg = styled.img`
 `;
 
 const Content = styled.div`
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 0;
   gap: 10px;
 `;
 
 const BookInfo = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -78,6 +96,7 @@ const BookInfo = styled.div`
     color: ${({ theme }) => theme.colors.text_black};
     font-size: ${({ theme }) => theme.fontSize.xxl};
     font-weight: 400;
+    line-height: 140%;
   }
 
   & span {
@@ -88,6 +107,7 @@ const BookInfo = styled.div`
 `;
 
 const ReviewText = styled.p`
+  width: 100%;
   color: ${({ theme }) => theme.colors.text_black};
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: 300;

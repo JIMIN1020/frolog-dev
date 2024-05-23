@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    user: {
+    userData: {
       id: 'user1',
       username: '김혜나',
       message: 'message 1',

@@ -3,6 +3,10 @@
   scrollbar-width: none; /* Firefox */
 }
 
+body:has(.no-doc-scroll) {
+  overflow-y: hidden;
+}
+
 body {
   margin: 0;
   width: 100vw;

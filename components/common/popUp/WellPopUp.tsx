@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useMockData } from 'mock/MockData';
-import { motion } from 'framer-motion';
 import { ICONS } from 'constants/icon';
 import { useRouter } from 'next/navigation';
-import { modalBackgroundVariants } from '@styles/framer-motion/variants';
 import styled from 'styled-components';
-import useClickOutside from '../../../hooks/useClickOutside';
+import PopUpLayout from './PopUpLayout';
 
 type WellPopUpProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,11 +16,7 @@ type WellPopUpProps = {
 function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
   const router = useRouter();
   const { deleteWell } = useMockData();
-  const ref = useRef<HTMLDivElement | null>(null); // 팝업에 대한 ref
   const [openDelete, setOpenDelete] = useState<boolean>(false); // 우물 삭제 팝업
-
-  /* ----- 팝업 바깥 클릭 시 닫힘 hook ----- */
-  useClickOutside(ref, () => setOpen(false));
 
   /* ----- 우물 삭제 핸들러 ----- */
   const onDeleteWell = () => {
@@ -32,91 +26,43 @@ function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
   };
 
   return (
-    <Background
-      variants={modalBackgroundVariants}
-      initial='initial'
-      animate='animate'
-      exit='exit'
-    >
-      <PopUp
-        ref={ref}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 30 }}
-      >
-        {/* 기본 팝업 */}
-        {!openDelete && (
-          <>
-            <MenuItem
-              onClick={() =>
-                router.push(`/well/edit?new=false&wellId=${wellId}`)
-              }
-            >
-              편집하기
-            </MenuItem>
-            <MenuItem
-              onClick={() => setOpenDelete(true)}
-              style={{ color: 'red' }}
-            >
-              삭제
-            </MenuItem>
-          </>
-        )}
-        {/* 삭제 팝업 */}
-        {openDelete && (
-          <>
-            <DeleteWarning>
-              이 우물이 삭제됩니다. 이 동작은 취소할 수 없습니다.
-            </DeleteWarning>
-            <MenuItem style={{ color: 'red' }} onClick={onDeleteWell}>
-              우물 삭제
-            </MenuItem>
-          </>
-        )}
-        <CancelBtn onClick={() => setOpen(false)}>
-          <Image src={ICONS.popUp.cancel} alt='cancel' width={24} height={24} />
-          취소
-        </CancelBtn>
-      </PopUp>
-    </Background>
+    <PopUpLayout closePopUp={() => setOpen(false)}>
+      {/* 기본 팝업 */}
+      {!openDelete && (
+        <>
+          <MenuItem
+            onClick={() => router.push(`/well/edit?new=false&wellId=${wellId}`)}
+          >
+            편집하기
+          </MenuItem>
+          <MenuItem
+            onClick={() => setOpenDelete(true)}
+            style={{ color: 'red' }}
+          >
+            삭제
+          </MenuItem>
+        </>
+      )}
+      {/* 삭제 팝업 */}
+      {openDelete && (
+        <>
+          <DeleteWarning>
+            이 우물이 삭제됩니다. 이 동작은 취소할 수 없습니다.
+          </DeleteWarning>
+          <MenuItem style={{ color: 'red' }} onClick={onDeleteWell}>
+            우물 삭제
+          </MenuItem>
+        </>
+      )}
+      <CancelBtn onClick={() => setOpen(false)}>
+        <Image src={ICONS.popUp.cancel} alt='cancel' width={24} height={24} />
+        취소
+      </CancelBtn>
+    </PopUpLayout>
   );
 }
 
 export default WellPopUp;
-
-const Background = styled(motion.div)`
-  width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
-  background-color: ${({ theme }) => theme.colors.bg_popup};
-
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 900;
-
-  // 모바일 사이즈(최대 430px)에서 벗어날 경우 사이즈 고정
-  @media screen and (min-width: 430px) {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 450px;
-  }
-`;
-
-const PopUp = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  background-color: ${({ theme }) => theme.colors.bg_white};
-
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  padding: 0 18px;
-  padding-bottom: 16px;
-`;
 
 const MenuItem = styled.button`
   width: 100%;

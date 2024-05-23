@@ -1,7 +1,9 @@
 import React from 'react';
+import useStore from 'store/store';
 import styled from 'styled-components';
 
 function HeaderWithBtn() {
+  const { isEditing, setIsEditing } = useStore();
   return (
     <HeaderContainer>
       <LeftSection>
@@ -10,11 +12,16 @@ function HeaderWithBtn() {
           alt={`user's profile`}
         />
         <UserInfo>
-          <UserName>김혜나</UserName>
-          <UserNickname>느긋한 돌멩이</UserNickname>
+          <UserName>테스트</UserName>
+          <UserNickname>나는 프롤로그 테스터</UserNickname>
         </UserInfo>
       </LeftSection>
-      <DoneBtn type='submit'>완료</DoneBtn>
+      <DoneBtn
+        type='submit'
+        onMouseDown={isEditing ? () => setIsEditing(false) : () => {}}
+      >
+        완료
+      </DoneBtn>
     </HeaderContainer>
   );
 }

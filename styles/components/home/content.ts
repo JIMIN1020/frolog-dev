@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: flex-start; /* 상단 정렬 */
   padding: 0px 20px;
   gap: 16px;
+  cursor: pointer;
 `;
 
 export const Tag = styled.div`

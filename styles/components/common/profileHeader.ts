@@ -16,7 +16,7 @@ export const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 800;
+  z-index: 700;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
 `;
 

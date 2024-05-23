@@ -1,8 +1,10 @@
 export interface BookType {
+  img?: string;
   id: string;
   name: string;
   author: string;
   rating: number;
+  summary?: string;
 }
 
 export const bookDummy: BookType[] = [

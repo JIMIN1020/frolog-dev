@@ -4,20 +4,45 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { ICONS } from 'constants/icon';
+import useStore from 'store/store';
+import { usePathname, useRouter } from 'next/navigation';
 
-interface InputHeaderProps {
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-}
+function InputHeader() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const {
+    searchValue,
+    searchForReviewValue,
+    setSearchForReviewValue,
+    setSearchValue,
+  } = useStore();
 
-function InputHeader({ searchValue, setSearchValue }: InputHeaderProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (pathname === '/search-for-review') {
+      setSearchForReviewValue(e.target.value);
+    } else {
+      router.push('/search?searching=true');
+      setSearchValue(e.target.value);
+    }
+  };
+
+  const handleDelete = () => {
+    if (pathname === '/search-for-review') {
+      setSearchForReviewValue('');
+    } else {
+      setSearchValue('');
+    }
+  };
+
   return (
     <HeaderContainer>
       <SearchInput
         type='text'
-        value={searchValue}
+        value={
+          pathname === '/search-for-review' ? searchForReviewValue : searchValue
+        }
         placeholder='책 제목, 작가 이름 등으로 검색해보세요!'
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={(e) => handleChange(e)}
       />
       <SearchIcon
         src={ICONS.header.search}
@@ -25,7 +50,7 @@ function InputHeader({ searchValue, setSearchValue }: InputHeaderProps) {
         width={24}
         height={24}
       />
-      <CancelIcon onClick={() => setSearchValue('')}>
+      <CancelIcon onClick={handleDelete}>
         <Image
           src={ICONS.header.inputCancel}
           alt='cancel'

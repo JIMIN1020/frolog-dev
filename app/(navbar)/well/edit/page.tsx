@@ -37,7 +37,7 @@ export default function WellEditPage() {
       },
       name: wellData ? wellData.name : '',
       desc: wellData ? wellData.desc : '',
-      is_default: false,
+      is_default: wellData ? wellData.is_default : false,
       stat: {
         like_cnt: wellData ? wellData.stat.like_cnt : 0,
       },
@@ -101,11 +101,15 @@ export default function WellEditPage() {
 
 const FormContainer = styled.form`
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100 - 70px);
+  height: calc(100dvh - 70px);
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: center;
+
+  @media screen and (min-width: 430px) {
+    height: 100%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -143,5 +147,5 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 20px 0;
+  padding: 20px 50px;
 `;

@@ -1,41 +1,38 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as S from '@styles/layout';
-import useStore from 'store/store';
-import { AnimatePresence } from 'framer-motion';
-import LoginSheet from '@components/common/LoginSheet';
 import StyledComponentsRegistry from '@lib/registry';
 import { GlobalStyles } from '@styles/GlobalStyles';
+import MyPagePopUp from '@components/common/popUp/MyPagePopUp';
+import LikeBottomSheet from '@components/wellPage/LikeBottomSheet';
 import { theme } from '@styles/theme';
-import Header from '../common/header/Header';
-import NavigationBar from '../common/navigation/NavigationBar';
+import LoginSheet from '@components/common/LoginSheet';
+import { AnimatePresence } from 'framer-motion';
+import useStore from 'store/store';
+import NavigationBar from '../components/common/navigation/NavigationBar';
 
-export default function MainLayout({
+export default function NavBarLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { isOpenLoginPopUp } = useStore();
-  const setScreenSize = () => {
-    const vh = window.innerHeight * 0.01; // 하단 bar 제외 높이 -> 100등분 (1vh 구하기 위함)
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  };
+  const { isOpenLoginPopUp, isOpenLike, isOpenMyPageEdit } = useStore();
 
-  useEffect(() => {
-    setScreenSize();
-  }, []);
   return (
     <StyledComponentsRegistry>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <S.Container>
-          <Header />
           <S.Content>{children}</S.Content>
           <NavigationBar />
           <AnimatePresence>
             {isOpenLoginPopUp && <LoginSheet />}
+          </AnimatePresence>
+          <AnimatePresence>{isOpenLike && <LikeBottomSheet />}</AnimatePresence>
+          <AnimatePresence>
+            {isOpenMyPageEdit && <MyPagePopUp />}
           </AnimatePresence>
         </S.Container>
       </ThemeProvider>

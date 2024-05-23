@@ -1,11 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import React from 'react';
+import useStore from 'store/store';
 import styled from 'styled-components';
 import { ICONS } from 'constants/icon';
-import MyPagePopUp from '../../popUp/MyPagePopUp';
 import ProfileHeaderLayout from './ProfileHeaderLayout';
 
 interface ProfileHeaderWithMenuProps {
@@ -13,30 +12,16 @@ interface ProfileHeaderWithMenuProps {
     userName: string;
     achievement: string;
   };
-  setIsEdit?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ProfileHeaderWithMenu({
-  setIsEdit,
-  userInfo,
-}: ProfileHeaderWithMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onClickEdit = () => {
-    setIsEdit!(true);
-    setIsOpen(false);
-  };
+function ProfileHeaderWithMenu({ userInfo }: ProfileHeaderWithMenuProps) {
+  const { setIsOpenMyPageEdit } = useStore();
 
   return (
     <ProfileHeaderLayout userInfo={userInfo}>
-      <MenuBtn onClick={() => setIsOpen(true)}>
+      <MenuBtn onClick={() => setIsOpenMyPageEdit(true)}>
         <Image src={ICONS.common.menu} alt='menu' width={26} height={20} />
       </MenuBtn>
-      <AnimatePresence>
-        {isOpen && (
-          <MyPagePopUp setOpen={setIsOpen} onClickEdit={onClickEdit} />
-        )}
-      </AnimatePresence>
     </ProfileHeaderLayout>
   );
 }

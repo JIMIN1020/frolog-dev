@@ -6,10 +6,15 @@ import styled from 'styled-components';
 import WellPopUp from '@components/common/popUp/WellPopUp';
 import { useMockData } from 'mock/MockData';
 import WellBook from '@components/wellPage/WellBook';
-import { motion } from 'framer-motion';
-import { bookContainerVariants } from '@styles/framer-motion/variants';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  bookContainerVariants,
+  wellItemVariants,
+} from '@styles/framer-motion/variants';
 import ProfileHeaderInWell from '@components/common/header/profileHeader/ProfileHeaderInWell';
 import { wellDummy } from '@data/dummyData/wellDummy';
+import { ICONS } from 'constants/icon';
+import Image from 'next/image';
 
 // export async function generateStaticParams() {
 //   const slugs = wellDummy.map((well) => ({
@@ -70,20 +75,29 @@ export default function WellDetailPage({ params }: WellDetailPageProps) {
         ) : (
           <></>
         )}
+        <Frog variants={wellItemVariants}>
+          <Image src={ICONS.common.frog} alt='frog' width={100} height={100} />
+        </Frog>
       </BookContainer>
-      {open && <WellPopUp wellId={data.id} setOpen={setOpen} />}
+      <AnimatePresence>
+        {open && <WellPopUp wellId={data.id} setOpen={setOpen} />}
+      </AnimatePresence>
     </Container>
   );
 }
 
 const Container = styled.div`
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100 - 70px);
+  height: calc(100dvh - 70px);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.input_gray};
+
+  @media screen and (min-width: 430px) {
+    height: 100%;
+  }
 `;
 
 const WellInfoWrapper = styled.div`
@@ -105,4 +119,9 @@ const BookContainer = styled(motion.div)`
   align-items: center;
   justify-content: end;
   background-color: ${({ theme }) => theme.colors.bg_white};
+`;
+
+const Frog = styled(motion.div)`
+  width: 100px;
+  height: 100px;
 `;

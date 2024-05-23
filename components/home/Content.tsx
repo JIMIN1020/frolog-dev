@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import * as S from '@styles/components/home/content';
 import { BookReviewData } from '@data/dummyData/homeDummy';
 import Rating from '../common/Rating';
@@ -8,8 +11,9 @@ interface ContentProps {
 }
 
 function Content({ reviewData }: ContentProps) {
+  const router = useRouter();
   return (
-    <S.Container>
+    <S.Container onClick={() => router.push('/review/1')}>
       <S.BookImage src={reviewData.bookImage} alt='Book' />
       <S.ContentRight>
         <S.ReviewSection>

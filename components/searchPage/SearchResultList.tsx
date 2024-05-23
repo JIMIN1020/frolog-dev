@@ -6,7 +6,7 @@ import {
   BookDataType,
   recommendBookDummy,
 } from '@data/dummyData/recommendDummy';
-import BookCardHorizontal from '../common/bookCard/BookCardHorizontal';
+import BookResult from './BookResult';
 
 interface SearchResultListProps {
   handleClick: (book: BookDataType) => void;
@@ -19,7 +19,7 @@ function SearchResultList({ handleClick }: SearchResultListProps) {
         {recommendBookDummy.map((data) => {
           return (
             <Card key={data.id} onClick={() => handleClick(data)}>
-              <BookCardHorizontal bookData={data} />
+              <BookResult bookData={data} />
             </Card>
           );
         })}
@@ -40,14 +40,13 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   height: fit-content;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const Card = styled.div`
   width: 100%;
   padding: 30px 0;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
 
   display: flex;
   justify-content: center;

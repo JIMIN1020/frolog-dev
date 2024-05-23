@@ -16,10 +16,10 @@ interface BottomSheetProps {
   /** 바텀시트 제목 */
   title: string;
   /** 바텀시트 제어 함수 */
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  closeSheet: () => void;
 }
 
-function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
+function BottomSheet({ children, title, closeSheet }: BottomSheetProps) {
   const { isOpenLoginPopUp } = useStore();
   const ref = useRef<HTMLDivElement | null>(null); // BottomSheet에 대한 ref
   const [sheetHeight, setSheetHeight] = useState<number>(0); // BottomSheet 높이
@@ -30,7 +30,7 @@ function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
   const closeBottomsheet = () => {
     if (!isOpenLoginPopUp) {
       controls.start({ y: sheetHeight + 1000 }); // BottomSheet를 애니메이션하여 화면 밖으로 내보냄
-      setTimeout(() => setOpen(false), 300); // BottomSheet를 완전히 닫음
+      setTimeout(() => closeSheet(), 300); // BottomSheet를 완전히 닫음
       document.body.style.overflow = 'auto';
     }
   };
@@ -64,6 +64,7 @@ function BottomSheet({ children, title, setOpen }: BottomSheetProps) {
       initial='initial'
       animate='animate'
       exit='exit'
+      className='no-doc-scroll'
     >
       <BottomSheetContainer
         ref={ref}
@@ -101,7 +102,7 @@ export default BottomSheet;
 
 const Background = styled(motion.div)`
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100dvh;
   background-color: ${({ theme }) => theme.colors.bg_popup};
 
   position: fixed;
@@ -115,6 +116,7 @@ const Background = styled(motion.div)`
     left: 50%;
     transform: translateX(-50%);
     width: 450px;
+    height: 100vh;
   }
 `;
 

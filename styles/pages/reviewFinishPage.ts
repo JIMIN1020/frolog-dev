@@ -8,10 +8,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 70px 0;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   box-sizing: border-box;
 `;
@@ -49,6 +49,6 @@ export const Message = styled(motion.div)`
 
 export const Logo = styled(Image)`
   width: 160px;
-  height: 202px;
+  height: 200px;
   flex-shrink: 0;
 `;

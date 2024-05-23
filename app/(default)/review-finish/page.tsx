@@ -1,9 +1,21 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import * as S from '@styles/pages/reviewFinishPage';
 import FinishButtons from '@components/newReviewPage/FinishButtons';
 import { ICONS } from 'constants/icon';
+import { useRouter } from 'next/navigation';
 
 function ReviewFinishPage() {
+  const router = useRouter();
+  useEffect(() => {
+    window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', () => router.push('/'));
+    return () => {
+      window.removeEventListener('popstate', () => router.push('/'));
+    };
+  }, []);
+
   return (
     <S.Container>
       <S.LogoAndMessageContainer>

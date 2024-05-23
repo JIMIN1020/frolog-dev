@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useStore from 'store/store';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { AnimatePresence } from 'framer-motion';
 import { ICONS } from 'constants/icon';
-import CommentBottomSheet from '../comment/CommentBottomSheet';
 import LikeButton from './button/LikeButton';
 
 interface BottomBarProps {
@@ -14,7 +13,7 @@ interface BottomBarProps {
 }
 
 function BottomBar({ commentsCount }: BottomBarProps) {
-  const [commentOpen, setCommentOpen] = useState(false);
+  const { setIsOpenComment } = useStore();
   const [like, setLike] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
 
@@ -22,15 +21,6 @@ function BottomBar({ commentsCount }: BottomBarProps) {
     setLike(!like);
     setLikesCount(like ? likesCount - 1 : likesCount + 1);
   };
-
-  /* ----- 댓글 바텀시트 등장 시 스크롤 방지 ----- */
-  useEffect(() => {
-    if (commentOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [commentOpen]);
 
   /* ----- 피드 공유 함수 ----- */
   const handleShare = async () => {
@@ -50,7 +40,7 @@ function BottomBar({ commentsCount }: BottomBarProps) {
     <BarContainer>
       <ButtonsContainer>
         <LikeButton like={like} onClick={toggleLike} likesCount={likesCount} />
-        <CommentButton onClick={() => setCommentOpen(true)}>
+        <CommentButton onClick={() => setIsOpenComment(true)}>
           <Icon src={ICONS.home.comment} alt='comment' width={16} height={16} />
           <ButtonText>댓글 {commentsCount}</ButtonText>
         </CommentButton>
@@ -59,9 +49,6 @@ function BottomBar({ commentsCount }: BottomBarProps) {
         <Icon src={ICONS.home.share} alt='share' width={16} height={16} />
         <ButtonText>공유하기</ButtonText>
       </ShareButton>
-      <AnimatePresence>
-        {commentOpen && <CommentBottomSheet setOpen={setCommentOpen} />}
-      </AnimatePresence>
     </BarContainer>
   );
 }

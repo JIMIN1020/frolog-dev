@@ -16,7 +16,12 @@ function InputWithBtnHeader({ handleDone }: InputWithBtnHeaderProps) {
         <Image src={ICONS.notice.arrowLeft} alt='back' width={36} height={36} />
       </BackBtn>
       <InputWrapper>
-        <SearchIcon src={ICONS.header.search} alt='search' fill />
+        <SearchIcon
+          src={ICONS.header.search}
+          alt='search'
+          width={24}
+          height={24}
+        />
         <SearchInput
           type='text'
           placeholder='책 제목, 작가 이름 등으로 검색해보세요!'
@@ -78,7 +83,7 @@ const SearchIcon = styled(Image)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 8px;
+  left: 10px;
   z-index: 10;
 `;
 
@@ -96,6 +101,6 @@ const BackBtn = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 0px;
+  left: 4px;
   cursor: pointer;
 `;

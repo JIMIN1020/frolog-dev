@@ -1,20 +1,20 @@
 'use client';
 
 import React from 'react';
-import { BookDataType } from '@data/dummyData/recommendDummy';
+import { BookType } from '@data/dummyData/bookDummy';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Rating from '../Rating';
 
 interface BookCardHorizontalProps {
-  bookData: BookDataType;
+  bookData: BookType;
 }
 
 function BookCardWithBtn({ bookData }: BookCardHorizontalProps) {
   const { img, rating, name, author, summary } = bookData;
   return (
     <BookContainer>
-      <BookImg src={img} alt='임시' width={110} height={140} />
+      <BookImg src={img!} alt='임시' width={110} height={140} />
       <Content>
         <Rating rating={rating} starSize={14} gap={4} fontSize={10} />
         <BookTitle>{name}</BookTitle>

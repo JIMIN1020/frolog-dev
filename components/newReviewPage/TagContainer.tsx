@@ -76,7 +76,7 @@ const SectionContainer = styled.div<{ $type: string }>`
 
   & span {
     color: ${({ theme }) => theme.colors.text_lightgray};
-    font-size: ${({ theme }) => theme.fontSize.lg};
+    font-size: ${({ theme }) => theme.fontSize.md};
     font-weight: 300;
   }
 `;

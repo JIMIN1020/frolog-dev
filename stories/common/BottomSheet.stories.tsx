@@ -16,5 +16,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: { children: <span>내용</span>, title: '타이틀', setOpen: () => {} },
+  args: { children: <span>내용</span>, title: '타이틀', closeSheet: () => {} },
 };

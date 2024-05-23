@@ -81,18 +81,20 @@ function NewReviewPage() {
 
   return (
     <S.PageContainer>
-      <S.Header>
-        <S.CloseButton href='/'>
-          <S.CloseIcon
-            src={ICONS.newReview.close}
-            alt='close'
-            width={59}
-            height={59}
-          />
-        </S.CloseButton>
-        <S.Title>새 리뷰</S.Title>
-      </S.Header>
-      <ProgressBar currentStep={step} totalSteps={3} />
+      <S.HeadeBar>
+        <S.Header>
+          <S.CloseButton href='/'>
+            <S.CloseIcon
+              src={ICONS.newReview.close}
+              alt='close'
+              width={59}
+              height={59}
+            />
+          </S.CloseButton>
+          <S.Title>새 리뷰</S.Title>
+        </S.Header>
+        <ProgressBar currentStep={step} totalSteps={3} />
+      </S.HeadeBar>
       {/* react-hook-form의 FormProvider */}
       <FormProvider {...methods}>
         <S.Form>

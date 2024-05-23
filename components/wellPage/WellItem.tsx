@@ -1,39 +1,39 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ICONS } from 'constants/icon';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { WellDataType } from '@data/dummyData/wellDummy';
-import { AnimatePresence } from 'framer-motion';
-import LikeBottomSheet from './LikeBottomSheet';
+import useStore from 'store/store';
 
 interface WellItemProps {
   data: WellDataType;
 }
 
 export default function WellItem({ data }: WellItemProps) {
-  const [likeOpen, setLikeOpen] = useState<boolean>(false);
-
+  const { setIsOpenLike } = useStore();
   if (!data) return <></>;
 
   return (
     <Container>
       <Wrapper href={`/well/${data.owner.id}/${data.id}`}>
-        <WellIcon src={ICONS.well.well} alt='well' width={59} height={59} />
+        <WellIcon
+          src={data.is_default ? ICONS.well.defaultWell : ICONS.well.well}
+          alt='well'
+          width={59}
+          height={59}
+        />
         <InfoText>
           <h3>{data.name}</h3>
           <span>{data.desc}</span>
         </InfoText>
       </Wrapper>
-      <Button onClick={() => setLikeOpen(true)}>
+      <Button onClick={() => setIsOpenLike(true)}>
         <Image src={ICONS.well.like} alt='like' width={26} height={26} />
         <span>{data.stat.like_cnt}</span>
       </Button>
-      <AnimatePresence>
-        {likeOpen && <LikeBottomSheet setOpen={setLikeOpen} />}
-      </AnimatePresence>
     </Container>
   );
 }

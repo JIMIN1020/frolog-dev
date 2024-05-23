@@ -16,6 +16,7 @@ export const ICONS = {
       clicked: `${BASE_PATH}/common/LikeClicked.svg`,
       default: `${BASE_PATH}/common/LikeDefault.svg`,
     },
+    frog: `${BASE_PATH}/common/frog.svg`,
   },
   header: {
     inputCancel: `${BASE_PATH}/header/input-cancel.svg`,
@@ -90,5 +91,10 @@ export const ICONS = {
     like: `${BASE_PATH}/well/like.svg`,
     setting: `${BASE_PATH}/well/setting.svg`,
     well: `${BASE_PATH}/well/well-icon.svg`,
+    defaultWell: `${BASE_PATH}/well/default-well.svg`,
+  },
+  bookDetail: {
+    add: `${BASE_PATH}/bookDetail/book-plus.svg`,
+    saved: `${BASE_PATH}/bookDetail/book-saved.svg`,
   },
 };

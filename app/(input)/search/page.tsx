@@ -1,33 +1,40 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { InputContext } from '@components/layout/SearchLayout';
 import AdBanner from '@components/common/AdBanner';
 import BookRecommendation from '@components/searchPage/BookRecommendation';
 import FrologPick from '@components/searchPage/FrologPick';
 import SearchResultList from '@components/searchPage/SearchResultList';
 import { BookDataType } from '@data/dummyData/recommendDummy';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import BookRegister from '@components/searchPage/BookRegister';
+import useStore from 'store/store';
 
 function SearchPage() {
+  const { searchValue, setSearchValue } = useStore();
+  const searchParams = useSearchParams();
+  const isSearching = searchParams.get('searching');
   const router = useRouter();
-  const { searchValue } = useContext(InputContext);
 
-  /* ----- 상세 페이지로 이동하는 함수 -> 추후 id를 query string으로 넣을 예정 ----- */
+  /* ----- 상세 페이지로 이동하는 함수 ----- */
   const handleBookClick = (bookData: BookDataType) => {
-    router.push('/book-detail');
-    console.log(bookData.id);
+    router.push(`/book-detail/${bookData.id}`);
   };
+
+  useEffect(() => {
+    if (!isSearching) {
+      setSearchValue('');
+    }
+  }, [isSearching]);
 
   return (
     <Container>
-      {searchValue.length > 0 && searchValue.length < 10 && (
+      {isSearching && searchValue.length < 10 && (
         <SearchResultList handleClick={handleBookClick} />
       )}
-      {searchValue.length >= 10 && <BookRegister />}
-      {searchValue.length === 0 && (
+      {isSearching && searchValue.length >= 10 && <BookRegister />}
+      {!isSearching && (
         <Wrapper>
           <AdContainer>
             <AdBanner />

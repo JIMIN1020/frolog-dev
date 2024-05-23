@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import useStore from 'store/store';
 import { User } from '@data/dummyData/userDummyData';
 import Image from 'next/image';
 import { ICONS } from 'constants/icon';
@@ -11,25 +12,34 @@ import FeedPopUp from '../popUp/FeedPopUp';
 
 interface ProfileBarProps {
   /** 프로필 유저 정보 */
-  user: User;
+  userData: User;
   /** 팝업 메뉴 여부 (피드, 우물페이지) */
   popUp?: boolean;
 }
 
-function ProfileBar({ user, popUp = false }: ProfileBarProps) {
+function ProfileBar({ userData, popUp = false }: ProfileBarProps) {
+  const { user, setIsOpenLoginPopUp } = useStore();
   const router = useRouter();
   const [openPopup, setOpenPopup] = useState<boolean>(false);
 
+  const handleClickProfile = () => {
+    if (user) {
+      router.push(`/profile/${userData.id}`);
+    } else {
+      setIsOpenLoginPopUp(true);
+    }
+  };
+
   return (
     <BarContainer>
-      <LeftSection onClick={() => router.push(`/profile/${user.id}`)}>
+      <LeftSection onClick={handleClickProfile}>
         <ProfileImage
-          src={user.profile_url}
-          alt={`${user.username}'s profile`}
+          src={userData.profile_url}
+          alt={`${userData.username}'s profile`}
         />
         <UserInfo>
-          <UserName>{user.username}</UserName>
-          <UserNickname>{user.achievement}</UserNickname>
+          <UserName>{userData.username}</UserName>
+          <UserNickname>{userData.achievement}</UserNickname>
         </UserInfo>
       </LeftSection>
       {popUp && (

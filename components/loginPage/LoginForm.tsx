@@ -32,7 +32,6 @@ function LoginForm() {
   const router = useRouter();
   const { setUser } = useStore();
   const [generalError, setGeneralError] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(false); // 로그인 성공 여부 저장.
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 상태 추가
   const [isSaved, setIsSaved] = useState(false); // 로그인 정보 저장 여부
   const {
@@ -70,7 +69,11 @@ function LoginForm() {
         refreshToken: 'refresh',
       });
 
-      setLoginSuccess(true);
+      if (localStorage.getItem('test')) {
+        router.push('/');
+      } else {
+        router.push(`/signup?step=5&name=테스트`);
+      }
     } catch (error) {
       console.error('Error:', error);
       if (error instanceof Error) {
@@ -80,16 +83,6 @@ function LoginForm() {
       }
     }
   };
-
-  useEffect(() => {
-    if (loginSuccess) {
-      if (localStorage.getItem('test')) {
-        router.push('/');
-      } else {
-        router.push('/signup?step=5');
-      }
-    }
-  }, [loginSuccess, router]);
 
   useEffect(() => {
     if (localStorage.getItem('email')) {

@@ -1,17 +1,17 @@
 import React from 'react';
 import * as S from '@styles/components/common/bookCardHorizontal';
-import { BookDataType } from '@data/dummyData/recommendDummy';
+import { BookType } from '@data/dummyData/bookDummy';
 import Rating from '../Rating';
 
 interface BookCardHorizontalProps {
-  bookData: BookDataType;
+  bookData: BookType;
 }
 
 function BookCardHorizontal({ bookData }: BookCardHorizontalProps) {
   const { img, rating, name, author, summary } = bookData;
   return (
     <S.BookContainer>
-      <S.BookImg src={img} alt='임시' width={110} height={140} />
+      <S.BookImg src={img!} alt='임시' width={110} height={140} />
       <S.Content>
         <Rating rating={rating} starSize={14} gap={4} fontSize={10} />
         <S.BookTitle>{name}</S.BookTitle>

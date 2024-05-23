@@ -1,5 +1,6 @@
 'use client';
 
+import { wellItemVariants } from '@styles/framer-motion/variants';
 import { motion } from 'framer-motion';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
@@ -23,22 +24,8 @@ const WellBook = ({ bookData }: WellBookProps) => {
     return margins[randomIndex];
   }, []);
 
-  const itemVariants = {
-    in: {
-      y: -50,
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
-
   return (
-    <Book variants={itemVariants} $margin={margin}>
+    <Book variants={wellItemVariants} $margin={margin}>
       <span>{bookData.name}</span>
     </Book>
   );

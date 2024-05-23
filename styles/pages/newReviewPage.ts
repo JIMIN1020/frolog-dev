@@ -9,7 +9,21 @@ export const PageContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
+
+export const HeadeBar = styled.div`
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.bg_white};
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+  z-index: 900;
+`;
+
 export const Header = styled.div`
   display: flex;
   align-items: center;

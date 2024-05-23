@@ -12,7 +12,7 @@ interface BookReviewProps {
 function BookReview({ reviewData }: BookReviewProps) {
   return (
     <S.ReviewContainer>
-      <ProfileBar user={reviewData.user} popUp />
+      <ProfileBar userData={reviewData.user} popUp />
       <Content reviewData={reviewData} />
       <BottomBar commentsCount={reviewData.commentsCount} />
     </S.ReviewContainer>

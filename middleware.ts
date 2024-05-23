@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const protectedRoutes = ['/well', '/search-for-review', '/profile', '/notice']; // 로그인이 필요한 페이지 목록
-const publicRoutes = ['/login', '/signup', '/frolog-test']; // 로그인이 되면 접근할 수 없는 페이지 목록
+const publicRoutes = ['/login']; // 로그인이 되면 접근할 수 없는 페이지 목록
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {

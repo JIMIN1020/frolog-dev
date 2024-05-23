@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import * as S from '@styles/components/common/bookCardWithLike';
-import { BookDataType } from '@data/dummyData/recommendDummy';
+import { BookType } from '@data/dummyData/bookDummy';
 import { ICONS } from 'constants/icon';
 import Image from 'next/image';
 import Rating from '../Rating';
 
 interface BookCardHorizontalProps {
-  bookData: BookDataType;
+  bookData: BookType;
 }
 
 function BookCardWithLike({ bookData }: BookCardHorizontalProps) {
@@ -18,7 +18,7 @@ function BookCardWithLike({ bookData }: BookCardHorizontalProps) {
   return (
     <S.Card>
       <S.BookContainer>
-        <S.BookImg src={img} alt='임시' width={110} height={140} />
+        <S.BookImg src={img!} alt='임시' width={110} height={140} />
         <S.Content>
           <Rating rating={rating} starSize={14} gap={4} fontSize={10} />
           <S.BookTitle>{name}</S.BookTitle>

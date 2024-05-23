@@ -37,6 +37,7 @@ function CommonPopUp({
       initial='initial'
       animate='animate'
       exit='exit'
+      className='no-doc-scroll'
     >
       <PopUp
         ref={ref}

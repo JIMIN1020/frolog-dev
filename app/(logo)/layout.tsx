@@ -1,4 +1,4 @@
-import LogoLayout from '@components/layout/LogoLayout';
+import LogoLayout from 'layouts/LogoLayout';
 
 export default function LogoLayouts({
   children,

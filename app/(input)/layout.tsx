@@ -1,4 +1,4 @@
-import SearchLayout from '@components/layout/SearchLayout';
+import SearchLayout from 'layouts/SearchLayout';
 
 export default function SearchLayouts({
   children,

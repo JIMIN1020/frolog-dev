@@ -20,6 +20,7 @@ export const BookContainer = styled.div`
   width: 100%;
   flex: 1;
   padding: 0 30px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

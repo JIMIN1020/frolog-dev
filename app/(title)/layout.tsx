@@ -1,4 +1,4 @@
-import TitleLayout from '@components/layout/TitleLayout';
+import TitleLayout from 'layouts/TitleLayout';
 
 export default function TitleLayouts({
   children,

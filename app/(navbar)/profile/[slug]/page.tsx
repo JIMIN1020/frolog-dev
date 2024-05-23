@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ReadingTemp from '@components/myPage/ReadingTemp';
 import BadgeBar from '@components/myPage/badge/BadgeBar';
@@ -12,6 +12,8 @@ import ProfileHeader from '@components/common/header/profileHeader/ProfileHeader
 import { userDummy } from '@data/dummyData/userDummyData';
 import { useRouter } from 'next/navigation';
 import { ICONS } from 'constants/icon';
+import useStore from 'store/store';
+import HeaderWithBtn from '@components/common/header/HeaderWithBtn';
 
 function ProfilePage({
   params,
@@ -20,7 +22,7 @@ function ProfilePage({
     slug: string;
   };
 }) {
-  const [isEdit, setIsEdit] = useState<boolean>(false); // TODO: edit page 따로 만들것
+  const { isEditing } = useStore();
   const router = useRouter();
   const { slug } = params;
   const data = userDummy.find((data) => data.id === slug)!;
@@ -36,12 +38,15 @@ function ProfilePage({
 
   return (
     <Container>
-      <ProfileHeader
-        userInfo={{ userName: data.username, achievement: data.achievement }}
-        setIsEdit={setIsEdit}
-      />
+      {isEditing ? (
+        <HeaderWithBtn />
+      ) : (
+        <ProfileHeader
+          userInfo={{ userName: data.username, achievement: data.achievement }}
+        />
+      )}
       <Wrapper>
-        <OneLineMessage message={data.message} isEdit={isEdit} />
+        <OneLineMessage message={data.message} />
         <FrogWrapper>
           <MyPageIcon
             src={ICONS.myPage.frog}
@@ -49,7 +54,7 @@ function ProfilePage({
             width={200}
             height={200}
           />
-          {isEdit && <ChangeClothesBtn />}
+          {isEditing && <ChangeClothesBtn />}
         </FrogWrapper>
         <TempAndBadge>
           <ReadingTemp temp={data.temperature} />

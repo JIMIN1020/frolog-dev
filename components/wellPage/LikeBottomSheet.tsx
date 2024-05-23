@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import ProfileBarWithIcon from '@components/common/profileBar/ProfileBarWithIcon';
 import BottomSheet from '@components/common/BottomSheet';
 import { userDummy } from '@data/dummyData/userDummyData';
+import useStore from 'store/store';
 
-type LikeBottomSheet = {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export default function LikeBottomSheet({ setOpen }: LikeBottomSheet) {
+export default function LikeBottomSheet() {
+  const { setIsOpenLike } = useStore();
   return (
-    <BottomSheet title='좋아요' setOpen={setOpen}>
+    <BottomSheet title='좋아요' closeSheet={() => setIsOpenLike(false)}>
       <LikeList>
         <ProfileBarWithIcon user={userDummy[1]} />
         <ProfileBarWithIcon user={userDummy[2]} />

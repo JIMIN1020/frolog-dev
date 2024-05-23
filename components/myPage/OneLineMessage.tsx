@@ -4,20 +4,18 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { ICONS } from 'constants/icon';
+import useStore from 'store/store';
 
 interface OneLineMessageProps {
   message: string;
-  isEdit: boolean;
 }
 
-export default function OneLineMessage({
-  isEdit,
-  message,
-}: OneLineMessageProps) {
+export default function OneLineMessage({ message }: OneLineMessageProps) {
+  const { isEditing } = useStore();
   const [curMessage, setCurMessage] = useState<string>(message);
   return (
     <Message>
-      {isEdit ? (
+      {isEditing ? (
         <InputWrapper>
           <MessageInput
             type='text'
