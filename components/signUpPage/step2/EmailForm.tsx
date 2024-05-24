@@ -31,7 +31,7 @@ function EmailForm({
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (isTimerActive && timeLeft > 0) {
+    if (isTimerActive && timeLeft > 0 && !isEmailVerified) {
       timer = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
@@ -41,7 +41,7 @@ function EmailForm({
       setSuccessMessage('');
     }
     return () => clearInterval(timer);
-  }, [isTimerActive, timeLeft]);
+  }, [isTimerActive, timeLeft, isEmailVerified]);
 
   const sendVerificationCode = async () => {
     const isValid = checkEmail(watch('email' as keyof FormType));

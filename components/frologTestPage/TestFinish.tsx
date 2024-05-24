@@ -87,7 +87,7 @@ export default TestFinish;
 
 const Container = styled.div`
   width: 100%;
-  background-color: aliceblue;
+  height: calc(100dvh - 82px);
   display: flex;
   flex-direction: column;
   align-items: center;

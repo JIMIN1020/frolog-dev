@@ -6,6 +6,8 @@ import { useFormContext } from 'react-hook-form';
 import { SignUpFormValues } from '@components/signUpPage/form/SignupFormSchema';
 import NextButton from '@components/signUpPage/NextButton';
 import styled from 'styled-components';
+import useStore from 'store/store';
+import { setCookie } from 'cookies-next';
 import { SignUpContainer, StepTitle } from '@styles/components/common/signUp';
 import Nickname from './Nickname';
 import JobSelector from './JobSelector';
@@ -13,6 +15,7 @@ import Gender from './Gender';
 import BirthDate from './BirthDate';
 
 function Step4() {
+  const { setUser } = useStore();
   const { trigger, watch, getValues } = useFormContext<SignUpFormValues>();
   const router = useRouter();
 
@@ -25,9 +28,20 @@ function Step4() {
     ]);
 
     if (isValid) {
-      const allValues = getValues(); // 전체 폼 데이터 가져옴
-      console.log('All form values:', allValues);
-      // 서버로 데이터를 전송하는 로직 추가
+      const data = getValues(); // 전체 폼 데이터 가져옴
+      console.log(data); // TODO: 서버로 데이터 전송
+
+      // token cookie에 저장 - redirect 처리용
+      setCookie('accessToken', 'access', { maxAge: 3600 });
+
+      // zustand store에 유저 정보 저장
+      setUser({
+        id: 'test-user',
+        name: 'test',
+        accessToken: 'access',
+        refreshToken: 'refresh',
+      });
+
       router.push(`/signup?step=5&name=${watch('nickname')}`);
     }
   };

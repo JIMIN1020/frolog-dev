@@ -84,7 +84,7 @@ const MainContent = styled.div`
 
 const ErrorMessage = styled.div`
   color: ${({ theme }) => theme.colors.error_red};
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  font-size: ${({ theme }) => theme.fontSize.base};
   margin-top: 10px;
 `;
 
