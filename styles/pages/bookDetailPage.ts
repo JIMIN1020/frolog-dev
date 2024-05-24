@@ -24,10 +24,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 20px 0;
+  padding: 20px 30px;
   padding-bottom: 30px;
   border-top: 1px solid ${({ theme }) => theme.colors.key_color};
   border-bottom: 1px solid ${({ theme }) => theme.colors.key_color};
+`;
+
+export const LinkWrapper = styled.div`
+  width: 100%;
+  cursor: pointer;
 `;
 
 export const ProsAndConsContainer = styled.div`
@@ -39,7 +44,7 @@ export const ProsAndConsContainer = styled.div`
 `;
 
 export const ReviewButton = styled.button`
-  width: 288px;
+  width: 100%;
   height: 44px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text_white};

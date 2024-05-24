@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;

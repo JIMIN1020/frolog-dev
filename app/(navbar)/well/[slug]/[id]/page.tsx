@@ -94,10 +94,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.input_gray};
-
-  @media screen and (min-width: 430px) {
-    height: 100%;
-  }
 `;
 
 const WellInfoWrapper = styled.div`

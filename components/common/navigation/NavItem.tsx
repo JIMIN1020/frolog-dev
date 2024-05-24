@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import React from 'react';
 import useStore from 'store/store';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 interface NavItemProps {
   href: string;
@@ -14,28 +14,41 @@ interface NavItemProps {
 }
 
 function NavItem({ href, iconUrl, size, label }: NavItemProps) {
-  const router = useRouter();
   const { user, setIsOpenLoginPopUp } = useStore();
 
-  const handleClick = () => {
-    if (user || href === '/search' || href === '/') {
-      router.push(href);
-    } else {
+  const handleClick = (e: React.MouseEvent) => {
+    if (!user && href !== '/search' && href !== '/') {
+      e.preventDefault();
       setIsOpenLoginPopUp(true);
     }
   };
 
   return (
-    <Nav onClick={handleClick}>
-      <Icon src={iconUrl} alt={href} width={size} height={size} />
-      {label && <Label>{label}</Label>}
-    </Nav>
+    <Wrapper onClick={handleClick}>
+      {!(!user && href !== '/search' && href !== '/') ? (
+        <Nav href={href} passHref>
+          <Icon src={iconUrl} alt={href} width={size} height={size} />
+          {label && <Label>{label}</Label>}
+        </Nav>
+      ) : (
+        <>
+          <Icon src={iconUrl} alt={href} width={size} height={size} />
+          {label && <Label>{label}</Label>}
+        </>
+      )}
+    </Wrapper>
   );
 }
 
 export default NavItem;
 
-const Nav = styled.button`
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Nav = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;

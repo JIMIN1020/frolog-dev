@@ -18,19 +18,31 @@ function TitleHeader({ button = false }: TitleHeaderProps) {
     .join('/');
   const router = useRouter();
   return (
-    <Header>
-      <BackButton />
-      <h1>{getLabelByRoute(route)}</h1>
-      {button && (
-        <DoneBtn onClick={() => router.push(`/profile/test-user`)}>
-          완료
-        </DoneBtn>
-      )}
-    </Header>
+    <Wrapper>
+      <Header>
+        <BackButton />
+        <h1>{getLabelByRoute(route)}</h1>
+        {button && (
+          <DoneBtn onClick={() => router.push(`/profile/test-user`)}>
+            완료
+          </DoneBtn>
+        )}
+      </Header>
+    </Wrapper>
   );
 }
 
 export default TitleHeader;
+
+const Wrapper = styled.div`
+  width: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  background-color: ${({ theme }) => theme.colors.bg_white};
+`;
 
 const Header = styled.header`
   display: flex;

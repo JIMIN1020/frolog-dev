@@ -17,6 +17,7 @@ function MyPagePopUp() {
   /* ----- 로그아웃 함수 ----- */
   const handleLogOut = () => {
     setUser(null);
+    setIsOpenMyPageEdit(false);
     clearStorage();
     deleteCookie('accessToken'); // redirect용 쿠키
     router.push(`/login`);

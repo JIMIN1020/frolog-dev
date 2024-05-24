@@ -106,10 +106,6 @@ const FormContainer = styled.form`
   flex-direction: column;
   position: relative;
   justify-content: center;
-
-  @media screen and (min-width: 430px) {
-    height: 100%;
-  }
 `;
 
 const Wrapper = styled.div`

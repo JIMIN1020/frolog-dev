@@ -9,7 +9,8 @@ import { ICONS } from 'constants/icon';
 
 function LogoHeader() {
   const router = useRouter();
-  const step = parseInt(useSearchParams().get('step')!, 10);
+  const searchParams = useSearchParams();
+  const step = parseInt(searchParams.get('step')!, 10);
   const pathname = usePathname();
   const totalSteps = pathname.includes('signup')
     ? 5
@@ -39,7 +40,11 @@ function LogoHeader() {
             alt='exit'
             width={28}
             height={28}
-            onClick={() => router.push('/login')}
+            onClick={
+              searchParams.get('step') === '5'
+                ? () => router.push('/')
+                : () => router.push('/login')
+            }
           />
         )}
       </Title>

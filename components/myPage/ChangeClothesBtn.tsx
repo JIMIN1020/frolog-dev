@@ -3,13 +3,12 @@
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ICONS } from 'constants/icon';
 
 function ChangeClothesBtn() {
-  const router = useRouter();
   return (
-    <Container onClick={() => router.push('/change-frog')}>
+    <Container href='/change-frog/1'>
       <ButtonText>외형 변경</ButtonText>
       <Image src={ICONS.myPage.clothes} alt='clothes' width={24} height={24} />
     </Container>
@@ -18,7 +17,7 @@ function ChangeClothesBtn() {
 
 export default ChangeClothesBtn;
 
-const Container = styled.button`
+const Container = styled(Link)`
   width: 120px;
   padding: 12px 0;
   background-color: ${({ theme }) => theme.colors.key_color};

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@ export const Container = styled.div`
   padding: 50px 0;
 `;
 
-export const ExitImg = styled(Image)`
+export const ExitButton = styled(Link)`
   position: absolute;
   top: 30px;
   right: 30px;

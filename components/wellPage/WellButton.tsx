@@ -1,13 +1,12 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
 function WellButton() {
-  const router = useRouter();
   return (
-    <WellBtnContainer onClick={() => router.push('/well/edit?new=true')}>
+    <WellBtnContainer href='/well/edit?new=true'>
       <WellImg src='' alt='임시' />
       <WellAddButton>우물 새로 파기</WellAddButton>
     </WellBtnContainer>
@@ -16,7 +15,7 @@ function WellButton() {
 
 export default WellButton;
 
-const WellBtnContainer = styled.div`
+const WellBtnContainer = styled(Link)`
   width: 100%;
   display: flex;
   justify-content: center;

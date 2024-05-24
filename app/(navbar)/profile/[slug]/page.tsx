@@ -10,10 +10,10 @@ import Dashboard from '@components/myPage/Dashboard';
 import ChangeClothesBtn from '@components/myPage/ChangeClothesBtn';
 import ProfileHeader from '@components/common/header/profileHeader/ProfileHeaderWithMenu';
 import { userDummy } from '@data/dummyData/userDummyData';
-import { useRouter } from 'next/navigation';
 import { ICONS } from 'constants/icon';
 import useStore from 'store/store';
 import HeaderWithBtn from '@components/common/header/HeaderWithBtn';
+import Link from 'next/link';
 
 function ProfilePage({
   params,
@@ -23,18 +23,9 @@ function ProfilePage({
   };
 }) {
   const { isEditing } = useStore();
-  const router = useRouter();
   const { slug } = params;
   const data = userDummy.find((data) => data.id === slug)!;
   const isMyPage = slug === 'test-user'; // TODO: 추후 contextAPI로 유저 id와 직접 비교
-
-  const handleClickBtn = () => {
-    if (isMyPage) {
-      router.push('/memo');
-    } else {
-      router.push(`/well/${slug}`);
-    }
-  };
 
   return (
     <Container>
@@ -59,7 +50,10 @@ function ProfilePage({
         <TempAndBadge>
           <ReadingTemp temp={data.temperature} />
           <BadgeBar />
-          <MemoButton onClick={handleClickBtn}>
+          <MemoButton
+            $isEditing={isEditing}
+            href={isMyPage ? '/memo' : `/well/${slug}`}
+          >
             {isMyPage ? '내 메모' : '우물 놀러가기'}
           </MemoButton>
         </TempAndBadge>
@@ -105,7 +99,7 @@ const TempAndBadge = styled.div`
   margin: 30px 0;
 `;
 
-const MemoButton = styled.button`
+const MemoButton = styled(Link)<{ $isEditing: boolean }>`
   width: 100%;
   background: none;
   border: none;
@@ -114,6 +108,8 @@ const MemoButton = styled.button`
   padding: 16px 0;
   margin-top: 8px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  text-align: center;
+  pointer-events: ${({ $isEditing }) => ($isEditing ? 'none' : 'all')};
 
   color: ${({ theme }) => theme.colors.text_white};
   font-size: ${({ theme }) => theme.fontSize.xl};

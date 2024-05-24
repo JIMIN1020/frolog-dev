@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import styled from 'styled-components';
 import useStore from 'store/store';
 import { User } from '@data/dummyData/userDummyData';
@@ -19,13 +19,11 @@ interface ProfileBarProps {
 
 function ProfileBar({ userData, popUp = false }: ProfileBarProps) {
   const { user, setIsOpenLoginPopUp } = useStore();
-  const router = useRouter();
   const [openPopup, setOpenPopup] = useState<boolean>(false);
 
-  const handleClickProfile = () => {
-    if (user) {
-      router.push(`/profile/${userData.id}`);
-    } else {
+  const handleClickProfile = (e: React.MouseEvent) => {
+    if (!user) {
+      e.preventDefault();
       setIsOpenLoginPopUp(true);
     }
   };
@@ -33,14 +31,29 @@ function ProfileBar({ userData, popUp = false }: ProfileBarProps) {
   return (
     <BarContainer>
       <LeftSection onClick={handleClickProfile}>
-        <ProfileImage
-          src={userData.profile_url}
-          alt={`${userData.username}'s profile`}
-        />
-        <UserInfo>
-          <UserName>{userData.username}</UserName>
-          <UserNickname>{userData.achievement}</UserNickname>
-        </UserInfo>
+        {user ? (
+          <StyledLink href={`/profile/${userData.id}`} passHref>
+            <ProfileImage
+              src={userData.profile_url}
+              alt={`${userData.username}'s profile`}
+            />
+            <UserInfo>
+              <UserName>{userData.username}</UserName>
+              <UserNickname>{userData.achievement}</UserNickname>
+            </UserInfo>
+          </StyledLink>
+        ) : (
+          <>
+            <ProfileImage
+              src={userData.profile_url}
+              alt={`${userData.username}'s profile`}
+            />
+            <UserInfo>
+              <UserName>{userData.username}</UserName>
+              <UserNickname>{userData.achievement}</UserNickname>
+            </UserInfo>
+          </>
+        )}
       </LeftSection>
       {popUp && (
         <Button onClick={() => setOpenPopup(true)}>
@@ -84,6 +97,12 @@ const ProfileImage = styled.img`
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const StyledLink = styled(Link)`
+  width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const UserName = styled.div`

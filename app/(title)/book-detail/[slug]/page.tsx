@@ -7,8 +7,8 @@ import ProsAndCons from '@components/bookDetailPage/ProsAndCons';
 import { reviews } from '@data/dummyData/homeDummy';
 import BookReview from '@components/home/BookReview';
 import { recommendBookDummy } from '@data/dummyData/recommendDummy';
-import { useRouter } from 'next/navigation';
 import useStore from 'store/store';
+import { StyledLink } from '@styles/GlobalStyles';
 
 interface Props {
   params: {
@@ -18,13 +18,10 @@ interface Props {
 
 function BookDetailPage({ params: { slug } }: Props) {
   const { user, setIsOpenLoginPopUp } = useStore();
-  const router = useRouter();
   const data = recommendBookDummy.find((book) => book.id === slug)!;
 
   const handleReviewClick = () => {
-    if (user) {
-      router.push(`/new-review?step=1&selectedBook=${JSON.stringify(data)}`);
-    } else {
+    if (!user) {
       setIsOpenLoginPopUp(true);
     }
   };
@@ -38,9 +35,18 @@ function BookDetailPage({ params: { slug } }: Props) {
             <ProsAndCons type='pros' tagData={data.pros} />
             <ProsAndCons type='cons' tagData={data.cons} />
           </S.ProsAndConsContainer>
-          <S.ReviewButton type='button' onClick={handleReviewClick}>
-            리뷰 작성하기
-          </S.ReviewButton>
+          <S.LinkWrapper onClick={handleReviewClick}>
+            {user ? (
+              <StyledLink
+                href={`/new-review?step=1&selectedBook=${JSON.stringify(data)}`}
+                passHref
+              >
+                <S.ReviewButton type='button'>리뷰 작성하기</S.ReviewButton>
+              </StyledLink>
+            ) : (
+              <S.ReviewButton type='button'>리뷰 작성하기</S.ReviewButton>
+            )}
+          </S.LinkWrapper>
         </S.Wrapper>
         <S.BestReview>Best Review</S.BestReview>
       </S.BookContainer>

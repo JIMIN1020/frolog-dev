@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { StyledLink } from '@styles/GlobalStyles';
 import { useMockData } from 'mock/MockData';
 import { ICONS } from 'constants/icon';
 import { useRouter } from 'next/navigation';
@@ -20,7 +21,6 @@ function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
 
   /* ----- 우물 삭제 핸들러 ----- */
   const onDeleteWell = () => {
-    router.push('/well/test-user');
     setOpen(false);
     deleteWell(wellId);
   };
@@ -49,9 +49,13 @@ function WellPopUp({ setOpen, wellId }: WellPopUpProps) {
           <DeleteWarning>
             이 우물이 삭제됩니다. 이 동작은 취소할 수 없습니다.
           </DeleteWarning>
-          <MenuItem style={{ color: 'red' }} onClick={onDeleteWell}>
-            우물 삭제
-          </MenuItem>
+          <WrapperButton onClick={onDeleteWell}>
+            <StyledLink href='/well/test-user'>
+              <MenuItem style={{ color: 'red' }} onClick={onDeleteWell}>
+                우물 삭제
+              </MenuItem>
+            </StyledLink>
+          </WrapperButton>
         </>
       )}
       <CancelBtn onClick={() => setOpen(false)}>
@@ -74,6 +78,10 @@ const MenuItem = styled.button`
   font-weight: 400;
   border: none;
   background-color: ${({ theme }) => theme.colors.bg_white};
+`;
+
+const WrapperButton = styled.div`
+  cursor: pointer;
 `;
 
 const CancelBtn = styled.button`

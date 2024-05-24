@@ -1,12 +1,10 @@
 'use client';
 
-import { StyledButton } from '@styles/GlobalStyles';
-import { useRouter } from 'next/navigation';
+import { StyledButton, StyledLink } from '@styles/GlobalStyles';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 export default function DeleteConfirmPage() {
-  const router = useRouter();
   const [email, setEmail] = useState<string>('');
   return (
     <Container>
@@ -29,12 +27,11 @@ export default function DeleteConfirmPage() {
       </Wrapper>
       <ButtonWrapper>
         <span>영구적으로 계정이 삭제됩니다. 이 동작은 취소할 수 없습니다.</span>
-        <StyledButton
-          onClick={() => router.push('/delete-account/confirm')}
-          disabled={email.trim().length === 0}
-        >
-          탈퇴하기
-        </StyledButton>
+        <StyledLink href='/delete-account/confirm' passHref>
+          <StyledButton disabled={email.trim().length === 0}>
+            탈퇴하기
+          </StyledButton>
+        </StyledLink>
       </ButtonWrapper>
     </Container>
   );
@@ -42,7 +39,7 @@ export default function DeleteConfirmPage() {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: calc(100dvh - 140px);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -84,7 +81,7 @@ const ButtonWrapper = styled.div`
   align-items: center;
   gap: 20px;
   border-top: 1px solid ${({ theme }) => theme.colors.key_color};
-  padding: 16px 0;
+  padding: 16px;
 
   & span {
     color: ${({ theme }) => theme.colors.text_gray};

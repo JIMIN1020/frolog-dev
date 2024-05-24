@@ -4,6 +4,7 @@ import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import reset from 'styled-reset';
+import Link from 'next/link';
 
 export const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -59,6 +60,36 @@ export const StyledButton = styled.button<{
     disabled
       ? theme.colors.button_gray
       : theme.colors[($color as keyof typeof theme.colors) || 'key_color']};
+`;
+
+export const StyledButtonLink = styled(Link)<{ $color?: string }>`
+  width: 100%;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s;
+  color: ${({ theme }) => theme.colors.text_white};
+  font-weight: 600;
+  font-size: ${({ theme }) => theme.fontSize.lg};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: ${({ theme, $color }) =>
+    $color
+      ? theme.colors[$color as keyof typeof theme.colors]
+      : theme.colors.key_color};
+`;
+
+export const StyledLink = styled(Link)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
 `;
 
 export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`

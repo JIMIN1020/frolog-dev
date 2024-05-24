@@ -2,9 +2,11 @@
 
 import { getRouteByLabel } from '@data/navData';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
+import useStore from 'store/store';
 
 interface DashboardItemProps {
   iconUrl: string;
@@ -17,17 +19,12 @@ export default function DashboardItem({
   title,
   count,
 }: DashboardItemProps) {
-  const router = useRouter();
+  const { isEditing } = useStore();
   const pathname = usePathname().split('/').slice(-1);
-
-  /* ----- 클릭 시 상세페이지로 이동 함수 ----- */
-  const handleClick = () => {
-    const route = getRouteByLabel(title);
-    router.push(`${route}/${pathname}`);
-  };
+  const route = getRouteByLabel(title);
 
   return (
-    <Container onClick={handleClick}>
+    <Container $isEditing={isEditing} href={`${route}/${pathname}`}>
       <Image src={iconUrl} alt='icon' width={34} height={30} />
       <Content>
         <h5>{title}</h5>
@@ -37,7 +34,7 @@ export default function DashboardItem({
   );
 }
 
-const Container = styled.div`
+const Container = styled(Link)<{ $isEditing: boolean }>`
   width: 100%;
   height: 80px;
   display: flex;
@@ -45,6 +42,7 @@ const Container = styled.div`
   border-radius: 12px;
   padding: 0 22px;
   gap: 14px;
+  pointer-events: ${({ $isEditing }) => ($isEditing ? 'none' : 'all')};
   background-color: ${({ theme }) => theme.colors.key_color_light};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

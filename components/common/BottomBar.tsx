@@ -60,7 +60,7 @@ const BarContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-
+  padding: 0 20px;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.bg_white};
 `;
@@ -68,7 +68,7 @@ const BarContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 20px;
+
   gap: 10px;
 `;
 
@@ -81,7 +81,7 @@ const CommentButton = styled.button`
 const ShareButton = styled.button`
   display: flex;
   align-items: center;
-  margin-right: 42px;
+
   border: none;
   background-color: ${({ theme }) => theme.colors.bg_white};
 `;

@@ -1,8 +1,9 @@
 'use client';
 
 import styled from 'styled-components';
+import Link from 'next/link';
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   display: flex;
   width: 100%;
   align-items: flex-start; /* 상단 정렬 */
